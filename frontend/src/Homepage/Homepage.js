@@ -28,7 +28,7 @@ const Homepage = () => {
       <h1>Micro Brew</h1>
       <div className='interface'>
         <h3>Micro Brew</h3>
-        <h4>Brew, Enjoy, Repeat</h4>
+        <h4>Brew, Enjoy, Empty, Repeat !</h4>
         <button className='btn btn-login' onClick={() => setIsLoginForm(true)}>
           Login
         </button>

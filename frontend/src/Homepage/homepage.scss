@@ -16,18 +16,36 @@ h1 {
 }
 
 .interface {
-  background-color: orchid;
+  background-color: whitesmoke;
+  padding: 0.8em;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 .user-form {
   position: absolute;
   z-index: 2;
+  padding: 1em;
+  border-radius: 5px;
   background-color: palegreen;
 }
 
 form {
   display: flex;
   flex-direction: column;
+}
+
+.btn {
+  background-color: gray;
+  padding: 1em;
+  margin: 0.5em;
+  border: 0;
+  border-radius: 5px;
+
+  &-login {
+    background-color: #f0b90b;
+  }
 }
 
 .filter {

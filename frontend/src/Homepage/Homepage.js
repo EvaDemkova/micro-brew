@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import './homepage.scss'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
@@ -29,6 +30,7 @@ const Homepage = () => {
       <div className='interface'>
         <h3>Micro Brew</h3>
         <h4>Brew, Enjoy, Empty, Repeat !</h4>
+        <Link to='/feed'>Go to FEED !</Link>
         <button className='btn btn-login' onClick={() => setIsLoginForm(true)}>
           Login
         </button>

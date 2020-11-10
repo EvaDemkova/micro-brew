@@ -15,7 +15,7 @@ class CreateBeerpostPhotosTable extends Migration
     {
         Schema::create('beerpost_photos', function (Blueprint $table) {
             $table->id();
-            $table->undignedBigInteger('beerpost_id');
+            $table->unsignedBigInteger('beerpost_id');
             $table->string('image');
             $table->timestamps();
         });

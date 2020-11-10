@@ -15,6 +15,10 @@ class CreateBeerpostIngredientsTable extends Migration
     {
         Schema::create('beerpost_ingredients', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('beerpost_id');
+            $table->unsignedBigInteger('ingredient_id');
+            $table->string('ingredient_name')->nullable();
+            $table->string('quantity')->nullable();
             $table->timestamps();
         });
     }

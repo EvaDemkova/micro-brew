@@ -15,6 +15,9 @@ class CreateBeerpostCommentsTable extends Migration
     {
         Schema::create('beerpost_comments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('beerpost_id');
+            $table->unsignedBigInteger('user_id');
+            $table->text('text');
             $table->timestamps();
         });
     }

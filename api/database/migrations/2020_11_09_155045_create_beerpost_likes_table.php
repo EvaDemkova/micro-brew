@@ -15,6 +15,8 @@ class CreateBeerpostLikesTable extends Migration
     {
         Schema::create('beerpost_likes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('beerpost_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

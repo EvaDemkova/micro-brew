@@ -15,6 +15,10 @@ class CreateBeerpostSectionsTable extends Migration
     {
         Schema::create('beerpost_sections', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('beerpost_id');
+            $table->string('section_name');
+            $table->text('description')->nullable();
+            $table->unsignedSmallInteger('duration')->nullable();
             $table->timestamps();
         });
     }

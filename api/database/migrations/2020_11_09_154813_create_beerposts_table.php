@@ -15,6 +15,18 @@ class CreateBeerpostsTable extends Migration
     {
         Schema::create('beerposts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('beer_name')->nullable();
+            $table->string('type')->nullable();
+            $table->text('description')->nullable();
+            $table->string('abv')->nullable();
+            $table->float('og')->nullable();
+            $table->float('carbonation')->nullable();
+            $table->string('gravity')->nullable();
+            $table->string('status')->nullable();
+            $table->float('ebc')->nullable();
+            $table->unsignedTinyInteger('ibu')->nullable();
+            $table->float('batch_volume')->nullable();
             $table->timestamps();
         });
     }

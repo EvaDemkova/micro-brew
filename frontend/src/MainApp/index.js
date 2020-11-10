@@ -6,15 +6,15 @@ import Feed from './Feed'
 import Map from './Map'
 import Profile from './Profile'
 import Header from './Header'
-import Homepage from '../Homepage/Homepage'
+import App from '../App'
 
-function App() {
+function MainApp() {
   return (
     <Router>
       <Header />
       <Switch>
         <Route exact path='/'>
-          <Homepage />
+          <App />
         </Route>
         <Route path='/dashboard'>
           <Dashboard />
@@ -33,4 +33,4 @@ function App() {
   )
 }
 
-export default App
+export default MainApp

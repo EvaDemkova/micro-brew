@@ -21,7 +21,7 @@ class CreateBeerpostsTable extends Migration
             $table->text('description')->nullable();
             $table->string('abv')->nullable();
             $table->float('og')->nullable();
-            $table->float('carbonation')->nullable();
+            $table->string('carbonation')->nullable();
             $table->string('gravity')->nullable();
             $table->string('status')->nullable();
             $table->float('ebc')->nullable();

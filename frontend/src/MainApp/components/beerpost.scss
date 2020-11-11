@@ -1,12 +1,14 @@
 .beerpost {
   background-color: #ebebeb;
-  width: 60%;
+  flex-grow: 1;
+  border: 1px solid black;
+  border-radius: 50px 0 50px 0;
 
   &__preview {
     display: flex;
 
     .left-menu {
-      width: 20%;
+      max-width: 10em;
       padding: 1em;
       img {
         width: 100%;
@@ -16,7 +18,9 @@
   }
 
   .preview-info {
-    width: 50%;
+    flex-grow: 1;
+    border-left: 2px solid;
+    padding: 0 1em;
     display: flex;
     flex-direction: column;
 
@@ -34,13 +38,26 @@
     .title {
       padding: 0.3em;
     }
+
+    .stats {
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        //list-style-type: none;
+      }
+      li {
+        flex-basis: 50%;
+      }
+    }
   }
 
   &__photos {
     width: 30%;
+
     img {
       height: 100%;
       width: 100%;
+      border-radius: 0 0 50px 0;
     }
   }
 }

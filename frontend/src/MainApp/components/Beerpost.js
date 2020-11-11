@@ -28,7 +28,7 @@ const Beerpost = () => {
           </div>
           <div className='status'>Status Fermentation</div>
           <div className='type'>Type - Lager</div>
-          <div className='beerpost__stats'>
+          <div className='stats'>
             <ul>
               <li>ABV</li>
               <li>OG</li>

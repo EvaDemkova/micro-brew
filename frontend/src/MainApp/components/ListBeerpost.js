@@ -1,9 +1,10 @@
 import React from 'react'
 import Beerpost from './Beerpost'
+import './listBeerpost.scss'
 
 const ListBeerpost = () => {
   return (
-    <div>
+    <div className='listBeerpost'>
       <Beerpost />
     </div>
   )

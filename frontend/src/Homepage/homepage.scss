@@ -6,7 +6,7 @@
 }
 
 img {
-  width: 59%;
+  height: 100vh;
 }
 
 .interface {
@@ -21,7 +21,8 @@ img {
 
 .user-form {
   position: absolute;
-  margin-left: 42%;
+  width: 350px;
+  margin-left: 40%;
   z-index: 2;
   padding: 2em;
   border-radius: 5px;
@@ -57,4 +58,19 @@ form {
   background-color: rgba($color: whitesmoke, $alpha: 0.4);
   filter: blur(15px);
   backdrop-filter: blur(2px);
+}
+
+input {
+  padding: 0.3em;
+  margin: 0.7em;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid gray;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+  justify-content: space-around;
 }

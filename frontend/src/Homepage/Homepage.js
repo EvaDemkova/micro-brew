@@ -26,7 +26,6 @@ const Homepage = () => {
 
   return (
     <div className='homepage'>
-      
       <img src="homepage/beer4.jpg" alt=""/>
       <div className='interface'>
         <h3>Micro Brew</h3>

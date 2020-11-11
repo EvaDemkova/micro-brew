@@ -28,36 +28,38 @@ const RegisterForm = () => {
       <h3>Registration form</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor='name'>Name</label>
-        <input
-          type='text'
-          name='name'
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label htmlFor='email'>Email</label>
-        <input
-          type='email'
-          name='email'
-          id='email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor='password'>Password</label>
-        <input
-          type='password'
-          name='password'
-          id='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <label htmlFor='passwordConfirm'>Confirm  Password</label>
-        <input
-          type='password'
-          name='passwordConfirm'
-          id='passwordConfirm'
-          value={passwordConfirm}
-          onChange={(e) => setPasswordConfirm(e.target.value)}
-        />
+        <div className="inputs">
+          <input
+            type='text'
+            name='name'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <label htmlFor='email'>Email</label>
+          <input
+            type='email'
+            name='email'
+            id='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label htmlFor='password'>Password</label>
+          <input
+            type='password'
+            name='password'
+            id='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <label htmlFor='passwordConfirm'>Confirm  Password</label>
+          <input
+            type='password'
+            name='passwordConfirm'
+            id='passwordConfirm'
+            value={passwordConfirm}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
+          />
+        </div>
         <button className='btn'>REGISTER</button>
       </form>
     </div>

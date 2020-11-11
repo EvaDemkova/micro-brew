@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+
 
 const RegisterForm = () => {
   const [name, setName] = useState('')
@@ -49,7 +50,7 @@ const RegisterForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <label htmlFor='passwordConfirm'>Repeat Password</label>
+        <label htmlFor='passwordConfirm'>Confirm  Password</label>
         <input
           type='password'
           name='passwordConfirm'

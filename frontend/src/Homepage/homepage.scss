@@ -1,34 +1,32 @@
 .homepage {
   position: relative;
-
   height: 100vh;
-  background: grey
-    url('https://cdn.pixabay.com/photo/2015/07/10/17/53/cheers-839865_1280.jpg')
-    center/cover no-repeat;
-
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
 }
 
-h1 {
-  margin: 0;
+img {
+  width: 59%;
 }
 
 .interface {
   background-color: whitesmoke;
-  padding: 0.8em;
-  border-radius: 5px;
+  width: 30%;
+  margin: auto;
+  padding: 1.5em;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
 }
 
 .user-form {
   position: absolute;
+  margin-left: 42%;
   z-index: 2;
-  padding: 1em;
+  padding: 2em;
   border-radius: 5px;
-  background-color: palegreen;
+  background-color: #eeeeee;
+  opacity: 0.9;
 }
 
 form {
@@ -37,14 +35,17 @@ form {
 }
 
 .btn {
+  font-weight: bold;
+  color: white;
   background-color: gray;
+  width: 80%;
+  margin: 0.5em auto;
   padding: 1em;
-  margin: 0.5em;
   border: 0;
   border-radius: 5px;
-
   &-login {
     background-color: #f0b90b;
+    color: black;
   }
 }
 
@@ -53,6 +54,7 @@ form {
   z-index: 1;
   width: 100%;
   height: 100%;
-  background-color: rgba($color: #000000, $alpha: 0.5);
+  background-color: rgba($color: whitesmoke, $alpha: 0.4);
+  filter: blur(15px);
   backdrop-filter: blur(2px);
 }

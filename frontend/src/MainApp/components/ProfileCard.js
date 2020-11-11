@@ -1,9 +1,15 @@
 import React from 'react'
+import './profileCard.scss'
 
 const ProfileCard = () => {
   return (
     <div className='profile-card'>
-      <div className='profile-card__photo'>Photo</div>
+      <div className='profile-card__photo'>
+        <img
+          src='https://vignette.wikia.nocookie.net/heros/images/4/42/Alice_Disney_Infobox.jpg/revision/latest/scale-to-width-down/310?cb=20200622124942&path-prefix=fr'
+          alt=''
+        />
+      </div>
       <div className='profile-card__name'>Alice and Bob</div>
       <div className='profile-card__stats'>
         <div className='profile-card__item'>

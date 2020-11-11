@@ -11,6 +11,8 @@ use Database\Seeders\FollowerSeeder;
 use Database\Seeders\IngredientSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\Beerpost_ingredientsSeeder;
+use Database\Seeders\Beerpost_sectionsSeeder;
+use Database\Seeders\Beerpost_photosSeeder;
 
 
 class DatabaseSeeder extends Seeder
@@ -32,5 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FollowerSeeder::class);
         $this->call(IngredientSeeder::class);
         $this->call(Beerpost_ingredientsSeeder::class);
+        $this->call(Beerpost_sectionsSeeder::class);
+        $this->call(Beerpost_photosSeeder::class);
     }
 }

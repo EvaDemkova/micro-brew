@@ -63,8 +63,7 @@ class BeerpostSeeder extends Seeder
                 "user_id" => "3",
                 "beer_name" => "Vienna Lager", 
                 "type"=>"lager",
-                "description"=>"
-                            Comfortable and well balanced.This beer is for many a reference to how a good single-store citra IPA should be: Lots of good citrus flavor, without the bitterness taking over.",
+                "description"=>null,
                 "abv"=>"6.0 %",
                 "og"=>"1.057",
                 "carbonation"=>"2.4-2.9",
@@ -124,7 +123,7 @@ class BeerpostSeeder extends Seeder
                             This brew has a video on youtube https://youtu.be/hHPy_nNkN68",
                 "abv"=>"6.6 %",
                 "og"=>"1.056",
-                "carbonation"=>"",
+                "carbonation"=>null,
                 "gravity"=>"14 °",
                 "status"=>"Secondary fermentation",
                 "ebc"=>"23",

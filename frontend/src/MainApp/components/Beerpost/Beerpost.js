@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoMdBeer } from 'react-icons/io'
+import { FaArrowDown, FaArrowUp } from 'react-icons/fa'
 import './beerpost.scss'
+import BeerpostExtend from './BeerpostExtend'
 
 const Beerpost = ({ data }) => {
   console.log(data)
@@ -17,6 +19,13 @@ const Beerpost = ({ data }) => {
     og,
     status,
   } = data
+
+  const [isExtended, setIsExtended] = useState(false)
+
+  const extendsBeerpost = () => {
+    setIsExtended(!isExtended)
+  }
+
   return (
     <div className='beerpost'>
       <div className='beerpost__preview'>
@@ -61,6 +70,10 @@ const Beerpost = ({ data }) => {
           />
         </div>
       </div>
+      <div className='arrow_down' onClick={extendsBeerpost}>
+        {isExtended ? <FaArrowUp /> : <FaArrowDown />}
+      </div>
+      {isExtended && <BeerpostExtend data={data} />}
     </div>
   )
 }

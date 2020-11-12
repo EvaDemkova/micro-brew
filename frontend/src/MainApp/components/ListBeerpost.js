@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Beerpost from './Beerpost'
+import Beerpost from './Beerpost/Beerpost'
 import './listBeerpost.scss'
 
 const ListBeerpost = () => {

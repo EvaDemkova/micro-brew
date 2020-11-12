@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-
+import React, { useState } from 'react'
 
 const RegisterForm = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [passwordConfirm, setPasswordConfirm] = useState('')
+  const [password_confirmation, setPasswordConfirm] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    let request_data = { email, name, password, passwordConfirm }
+    let request_data = { email, name, password, password_confirmation }
     const response = await fetch('http://www.microbrew.test/register', {
       method: 'POST',
       body: JSON.stringify(request_data),
@@ -28,7 +27,7 @@ const RegisterForm = () => {
       <h3>Registration form</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor='name'>Name</label>
-        <div className="inputs">
+        <div className='inputs'>
           <input
             type='text'
             name='name'
@@ -51,12 +50,12 @@ const RegisterForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <label htmlFor='passwordConfirm'>Confirm  Password</label>
+          <label htmlFor='password_confirmation'>Confirm Password</label>
           <input
             type='password'
-            name='passwordConfirm'
+            name='password_confirmation'
             id='passwordConfirm'
-            value={passwordConfirm}
+            value={password_confirmation}
             onChange={(e) => setPasswordConfirm(e.target.value)}
           />
         </div>

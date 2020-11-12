@@ -11,6 +11,12 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function follows() {
+        return $this->belongsToMany(User::class, 'followers','user_id_follower','user_id_followed');
+    }
+    public function followed_by() {
+        return $this->belongsToMany(User::class, 'followers','user_id_followed','user_id_follower');
+    }
     /**
      * The attributes that are mass assignable.
      *

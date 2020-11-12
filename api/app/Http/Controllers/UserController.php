@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Beerpost;
 use App\Models\User;
 
-class BeerpostController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -47,7 +46,13 @@ class BeerpostController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::query()
+        ->findOrFail($id);
+
+        $user->follows;
+        $user->followed_by;
+
+        return $user;
     }
 
     /**
@@ -82,18 +87,5 @@ class BeerpostController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function show_by_user_id($id)
-    {
-        $user = User::findOrFail($id);
-        $beerposts = Beerpost::query()
-        ->with('ingredients')
-        ->with('likes')
-        ->with('comments')
-        ->where('user_id', $user->id)
-        ->get();
-
-        return $beerposts;
     }
 }

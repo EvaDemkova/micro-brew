@@ -14,3 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/api/beerposts/users/{id}', 'BeerpostController@show_by_user_id');
+
+Route::get('/api/users/{id}', 'UserController@show');

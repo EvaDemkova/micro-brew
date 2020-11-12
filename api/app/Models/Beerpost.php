@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Beerpost_ingredient;
 use App\Models\Ingredient;
+use App\Models\Beerpost_like;
+use App\Models\Beerpost_comment;
 
 class Beerpost extends Model
 {
@@ -14,5 +16,15 @@ class Beerpost extends Model
     public function ingredients() 
     {
         return $this->belongsToMany(Ingredient::class, 'beerpost_ingredients')->withPivot('ingredient_name','quantity');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Beerpost_like::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Beerpost_comment::class);
     }
 }

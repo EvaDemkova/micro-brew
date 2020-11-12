@@ -2,7 +2,21 @@ import React from 'react'
 import { IoMdBeer } from 'react-icons/io'
 import './beerpost.scss'
 
-const Beerpost = () => {
+const Beerpost = ({ data }) => {
+  console.log(data)
+  const {
+    beer_name,
+    type,
+    abv,
+    batch_volume,
+    carbonation,
+    description,
+    ebc,
+    gravity,
+    ibu,
+    og,
+    status,
+  } = data
   return (
     <div className='beerpost'>
       <div className='beerpost__preview'>
@@ -22,21 +36,21 @@ const Beerpost = () => {
               <IoMdBeer />
             </div>
             <div className='title'>
-              <h3>My great beer</h3>
-              <p>I made this nice Lager with love</p>
+              <h3>{beer_name}</h3>
+              <p>{description}</p>
             </div>
           </div>
-          <div className='status'>Status Fermentation</div>
-          <div className='type'>Type - Lager</div>
+          <div className='status'>Status {status}</div>
+          <div className='type'>Type - {type}</div>
           <div className='stats'>
             <ul>
-              <li>ABV</li>
-              <li>OG</li>
-              <li>EBC</li>
-              <li>IBU</li>
-              <li>Carbonation</li>
-              <li>Gravity</li>
-              <li>Batch Volume</li>
+              <li>ABV - {abv}</li>
+              <li>OG - {og}</li>
+              <li>EBC - {ebc}</li>
+              <li>IBU - {ibu}</li>
+              <li>Carbonation - {carbonation}</li>
+              <li>Gravity -{gravity}</li>
+              <li>Batch Volume - {batch_volume}</li>
             </ul>
           </div>
         </div>

@@ -89,6 +89,7 @@ class BeerpostController extends Controller
         $user = User::findOrFail($id);
         $beerposts = Beerpost::query()
         ->with('ingredients')
+        ->with('beerpost_sections')
         ->with('likes')
         ->with('comments')
         ->where('user_id', $user->id)

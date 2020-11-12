@@ -3,3 +3,12 @@
   align-items: flex-start;
   margin: 1em;
 }
+
+.plus-btn {
+  color: rgba($color: #d3671f, $alpha: 1);
+  width: 55px;
+  height: 55px;
+  position: fixed;
+  bottom: 1em;
+  right: 10em;
+}

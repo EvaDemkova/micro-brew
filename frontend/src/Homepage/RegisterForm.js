@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 const RegisterForm = () => {
   const [name, setName] = useState('')
@@ -7,26 +8,37 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('')
   const [password_confirmation, setPasswordConfirm] = useState('')
 
-  const history = useHistory();
+  const history = useHistory()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     let request_data = { email, name, password, password_confirmation }
-    const response = await fetch('http://www.microbrew.test/register', {
-      method: 'POST',
-      body: JSON.stringify(request_data),
-      headers: {
-        Accept: 'application/json',
-        'Content-type': 'application/json',
-      },
-    })
-    const response_data = await response.json()
-    console.log(response_data)
+
+    await axios.get('http://www.microbrew.test/sanctum/csrf-cookie')
+    const response = await axios
+      .post('http://www.microbrew.test/register', request_data)
+      .then(function (response) {
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+
+    // const response = await fetch('http://www.microbrew.test/register', {
+    //   method: 'POST',
+    //   body: JSON.stringify(request_data),
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-type': 'application/json',
+    //   },
+    // })
+    // const response_data = await response.json()
+    // console.log(response_data)
 
     //here comes fetchUser function.
 
-    history.push('/feed');
+    history.push('/feed')
   }
 
   return (

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import { IoMdBeer } from 'react-icons/io'
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa'
 import './beerpost.scss'
@@ -18,12 +19,56 @@ const Beerpost = ({ data }) => {
     ibu,
     og,
     status,
+    user,
+    likes,
   } = data
 
   const [isExtended, setIsExtended] = useState(false)
 
   const extendsBeerpost = () => {
     setIsExtended(!isExtended)
+  }
+  const url = `http://www.microbrew.test/api/beerposts/2/like`
+
+  const likeBtn = async () => {
+    console.log('liked')
+    await axios.get('http://www.microbrew.test/sanctum/csrf-cookie')
+    await axios
+      .post(url, {
+        user_id: '2',
+        beerpost_id: '2',
+      })
+      .then(function (response) {
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+
+    const data = {
+      ebc,
+      ibu,
+    }
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log('success!')
+        } else {
+          console.log('error')
+        }
+
+        // reload the data...
+      })
+      .catch(() => {
+        // catches `system` errors - timeout, no response ...
+      })
   }
 
   return (
@@ -35,9 +80,12 @@ const Beerpost = ({ data }) => {
               src='https://vignette.wikia.nocookie.net/heros/images/4/42/Alice_Disney_Infobox.jpg/revision/latest/scale-to-width-down/310?cb=20200622124942&path-prefix=fr'
               alt=''
             />
-            <p>Alice and Bob</p>
+            <p>{user.name}</p>
           </div>
           <div className='updated-time'>Posted : 3 hours ago</div>
+          <div className='likes' onClick={likeBtn}>
+            Likes : {likes.length}
+          </div>
         </div>
         <div className='preview-info'>
           <div className='header'>

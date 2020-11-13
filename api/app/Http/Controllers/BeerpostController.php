@@ -92,6 +92,7 @@ class BeerpostController extends Controller
         ->with('beerpost_sections')
         ->with('likes')
         ->with('comments')
+        ->with('user')
         ->where('user_id', $user->id)
         ->get();
 
@@ -119,5 +120,27 @@ class BeerpostController extends Controller
         ->get();
 
         return $beerposts;
+    }
+
+    public function like($id, Request $request)
+    {
+        $beerpost = Beerpost::findOrFail($id);
+        $beerpost->likes()->create(['user_id'=>'3']);
+
+        return [
+            'status' => 'success'
+        ];
+    }
+    public function review($id, Request $request)
+    {
+        // todo provide validation!
+
+        $movie = Movie::findOrFail($id);
+
+        $movie->reviews()->create($request->all());
+
+        return [
+            'status' => 'success'
+        ];
     }
 }

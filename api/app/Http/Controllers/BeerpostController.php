@@ -97,4 +97,27 @@ class BeerpostController extends Controller
 
         return $beerposts;
     }
+
+    public function show_feed($id)
+    {
+        $user = User::findOrFail($id);
+        $user_follows = $user->follows()->get();
+        $user_follows_id = [];
+
+        //get the list of all id of users being followed 
+        foreach($user_follows as $item) {
+            $user_follows_id[] = $item->id;
+        };
+        
+        $beerposts = Beerpost::query()
+        ->with('ingredients')
+        ->with('beerpost_sections')
+        ->with('likes')
+        ->with('comments')
+        ->with('user')
+        ->whereIn('user_id', $user_follows_id)
+        ->get();
+
+        return $beerposts;
+    }
 }

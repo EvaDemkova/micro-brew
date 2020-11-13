@@ -12,7 +12,7 @@ const LoginForm = () => {
 
     await axios.get('http://www.microbrew.test/sanctum/csrf-cookie')
 
-    const response = await axios
+    await axios
       .post('http://www.microbrew.test/login', {
         email,
         password,
@@ -23,7 +23,7 @@ const LoginForm = () => {
       .catch(function (error) {
         console.log(error)
       })
-    const response2 = await axios
+    await axios
       .get('http://www.microbrew.test/api/user')
       .then(function (response) {
         console.log(response)
@@ -31,8 +31,6 @@ const LoginForm = () => {
       .catch(function (error) {
         console.log(error)
       })
-
-    // console.log(response);
   }
 
   return (

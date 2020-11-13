@@ -9,6 +9,7 @@ use App\Models\Ingredient;
 use App\Models\Beerpost_like;
 use App\Models\Beerpost_comment;
 use App\Models\Beerpost_section;
+use App\Models\User;
 
 class Beerpost extends Model
 {
@@ -32,5 +33,10 @@ class Beerpost extends Model
     public function beerpost_sections()
     {
         return $this->hasMany(Beerpost_section::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

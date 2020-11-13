@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const RegisterForm = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [password_confirmation, setPasswordConfirm] = useState('')
+
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -20,6 +23,10 @@ const RegisterForm = () => {
     })
     const response_data = await response.json()
     console.log(response_data)
+
+    //here comes fetchUser function.
+
+    history.push('/feed');
   }
 
   return (

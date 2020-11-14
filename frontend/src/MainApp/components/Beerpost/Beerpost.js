@@ -22,7 +22,6 @@ const Beerpost = ({ data }) => {
     user,
     likes,
   } = data
-  console.log(data.id)
   const [isExtended, setIsExtended] = useState(false)
 
   const extendsBeerpost = () => {

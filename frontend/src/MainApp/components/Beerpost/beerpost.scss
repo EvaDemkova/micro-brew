@@ -53,8 +53,8 @@
   }
 
   &__photos {
-    width: 30%;
-
+    min-width: 16em;
+    background-color: grey;
     img {
       height: 100%;
       width: 100%;

@@ -15,6 +15,8 @@ class Beerpost extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'beer_name', 'type', 'description', 'abv', 'og', 'carbonation', 'gravity', 'status', 'ebc', 'ibu', 'batch_volume'];
+
     public function ingredients() 
     {
         return $this->belongsToMany(Ingredient::class, 'beerpost_ingredients')->withPivot('ingredient_name','quantity');
@@ -38,5 +40,10 @@ class Beerpost extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function beerpost_photos()
+    {
+        return $this->hasMany(Beerpost_photo::class);
     }
 }

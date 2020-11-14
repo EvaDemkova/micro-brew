@@ -10,10 +10,10 @@ const LoginForm = () => {
     e.preventDefault()
     console.log(email, password)
 
-    await axios.get('http://www.microbrew.test/sanctum/csrf-cookie')
+    await axios.get(`${process.env.REACT_APP_SERVER_URL}/sanctum/csrf-cookie`)
 
     await axios
-      .post('http://www.microbrew.test/login', {
+      .post(`${process.env.REACT_APP_SERVER_URL}/login`, {
         email,
         password,
       })

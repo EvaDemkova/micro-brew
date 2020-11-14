@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/api/beerposts/users/{id}', 'BeerpostController@show_by_user_id');
 Route::get('/api/beerposts/feed/{id}', 'BeerpostController@show_feed');
 Route::post('/api/beerposts/{id}/like/','BeerpostController@like');
+Route::post('/api/beerposts/store','BeerpostController@store');
+
+
 Route::post('/api/movies/{id}/review', 'Api\MovieController@review');
 
 Route::get('/api/users/{id}', 'UserController@show');

@@ -36,7 +36,12 @@ class BeerpostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+      $beerpost = new Beerpost;
+      $beerpost->create($request->all());  
+      return [
+            'status' => 'success'
+        ];
     }
 
     /**

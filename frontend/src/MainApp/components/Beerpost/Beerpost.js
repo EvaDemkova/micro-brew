@@ -6,8 +6,8 @@ import './beerpost.scss'
 import BeerpostExtend from './BeerpostExtend'
 
 const Beerpost = ({ data }) => {
-  console.log(data)
   const {
+    id,
     beer_name,
     type,
     abv,
@@ -22,13 +22,13 @@ const Beerpost = ({ data }) => {
     user,
     likes,
   } = data
-
+  console.log(data.id)
   const [isExtended, setIsExtended] = useState(false)
 
   const extendsBeerpost = () => {
     setIsExtended(!isExtended)
   }
-  const url = `http://www.microbrew.test/api/beerposts/2/like`
+  const url = `${process.env.REACT_APP_SERVER_URL}/api/beerposts/${id}/like`
 
   const likeBtn = async () => {
     console.log('liked')
@@ -36,38 +36,12 @@ const Beerpost = ({ data }) => {
     await axios
       .post(url, {
         user_id: '2',
-        beerpost_id: '2',
       })
       .then(function (response) {
         console.log(response)
       })
       .catch(function (error) {
         console.log(error)
-      })
-
-    const data = {
-      ebc,
-      ibu,
-    }
-
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log('success!')
-        } else {
-          console.log('error')
-        }
-
-        // reload the data...
-      })
-      .catch(() => {
-        // catches `system` errors - timeout, no response ...
       })
   }
 

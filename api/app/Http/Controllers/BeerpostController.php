@@ -125,8 +125,8 @@ class BeerpostController extends Controller
     public function like($id, Request $request)
     {
         $beerpost = Beerpost::findOrFail($id);
-        $beerpost->likes()->create(['user_id'=>'3']);
-
+        //$beerpost->likes()->create(['user_id'=>'3']);
+        $beerpost->likes()->create($request->all());
         return [
             'status' => 'success'
         ];

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io'
 import { useGlobalContext } from '../../context'
+import './likeBtn.scss'
 
 const LikeBtn = ({ likes, beerpost_id }) => {
   const [isLiked, setIsLiked] = useState(false)
@@ -24,6 +26,8 @@ const LikeBtn = ({ likes, beerpost_id }) => {
 
     // New like is inserted if the post is not liked yet
     if (!isLiked) {
+      setNbLikes(nbLikes + 1)
+      setIsLiked(true)
       const url = `${process.env.REACT_APP_SERVER_URL}/api/beerposts/${beerpost_id}/like`
       await axios
         .post(url, {
@@ -35,14 +39,15 @@ const LikeBtn = ({ likes, beerpost_id }) => {
         .catch(function (error) {
           console.log(error)
         })
-      setNbLikes(nbLikes + 1)
-      setIsLiked(true)
     }
   }
 
   return (
     <div className='likes' onClick={likeBtn}>
-      Likes : {nbLikes} {isLiked ? 'true' : 'false'}
+      <div className='likes__icon'>
+        {isLiked ? <IoIosHeart /> : <IoIosHeartEmpty />}
+      </div>
+      <div className='likes__count'>{nbLikes}</div>
     </div>
   )
 }

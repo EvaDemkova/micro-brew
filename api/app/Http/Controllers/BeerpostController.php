@@ -124,21 +124,10 @@ class BeerpostController extends Controller
 
     public function like($id, Request $request)
     {
+        // missing validation of input and check that the post is not already liked by user (frontend only)
         $beerpost = Beerpost::findOrFail($id);
         //$beerpost->likes()->create(['user_id'=>'3']);
         $beerpost->likes()->create($request->all());
-        return [
-            'status' => 'success'
-        ];
-    }
-    public function review($id, Request $request)
-    {
-        // todo provide validation!
-
-        $movie = Movie::findOrFail($id);
-
-        $movie->reviews()->create($request->all());
-
         return [
             'status' => 'success'
         ];

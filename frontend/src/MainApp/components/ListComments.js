@@ -10,7 +10,7 @@ const ListComments = ({ comments, beerpost_id }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     await axios.get(`${process.env.REACT_APP_SERVER_URL}/sanctum/csrf-cookie`)
-    const url = `${process.env.REACT_APP_SERVER_URL}/api/beerposts/comment/`
+    const url = `${process.env.REACT_APP_SERVER_URL}/api/beerposts/comment`
     await axios
       .post(url, {
         beerpost_id: beerpost_id,

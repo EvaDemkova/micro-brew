@@ -1,14 +1,15 @@
 import React from 'react'
+import ListComments from '../ListComments'
 import './beerpostExtended.scss'
 
 const BeerpostExtend = ({ data }) => {
-  const { ingredients } = data
-  console.log(ingredients)
+  const { ingredients, comments } = data
 
   const displayIngredient = (ingredient) => {
     const result = ingredients.filter((item) => item.type === ingredient)
-    return result.map((item) => (
-      <p>
+    console.log(result)
+    return result.map((item, index) => (
+      <p key={index}>
         {item.pivot.ingredient_name} | {item.pivot.quantity}
       </p>
     ))
@@ -45,6 +46,12 @@ const BeerpostExtend = ({ data }) => {
               {displayIngredient('others')}
             </div>
           </div>
+        </div>
+      </section>
+      <section>
+        <div className='left-menu'>Comments</div>
+        <div className='content'>
+          <ListComments comments={comments} />
         </div>
       </section>
     </div>

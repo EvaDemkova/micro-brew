@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io'
 import { useGlobalContext } from '../../context'
-import './likeBtn.scss'
+import './styles/likeBtn.scss'
 
 const LikeBtn = ({ likes, beerpost_id }) => {
   const [isLiked, setIsLiked] = useState(false)

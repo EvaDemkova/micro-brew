@@ -20,7 +20,7 @@ Route::post('/api/beerposts/store','BeerpostController@store');
 
 
 Route::post('/api/movies/{id}/review', 'Api\MovieController@review');
-
+Route::post('/api/beerposts/{id}/unlike/','BeerpostController@unlike');
 Route::get('/api/users/{id}', 'UserController@show');
 
 

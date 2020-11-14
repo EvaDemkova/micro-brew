@@ -66,12 +66,7 @@ const Beerpost = ({ data }) => {
             </ul>
           </div>
         </div>
-        <div className='beerpost__photos'>
-          <img
-            src='https://upload.wikimedia.org/wikipedia/commons/d/da/Pilsner_urquell_mug.jpg'
-            alt=''
-          />
-        </div>
+        <div className='beerpost__photos'></div>
       </div>
       <div className='arrow_down' onClick={extendsBeerpost}>
         {isExtended ? <FaArrowUp /> : <FaArrowDown />}

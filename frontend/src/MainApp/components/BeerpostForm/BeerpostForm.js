@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { MdCancel, MdEdit, MdDelete } from 'react-icons/md';
+import { useGlobalContext } from '../../../context.js';
 import axios from 'axios';
 import './BeerpostForm.scss';
 
 const BeerpostForm = ({isBeerpostForm, setIsBeerpostForm}) => {
 
+    const user = useGlobalContext()
     const [values, setValues] = useState({
         //user_id to be adjusted to currently logged user later 
-        user_id: 1,
+        user_id: user.id,
         beer_name : '', 
         type: '', 
         description: '',
@@ -20,6 +22,8 @@ const BeerpostForm = ({isBeerpostForm, setIsBeerpostForm}) => {
         ibu: '', 
         batch_volume: '', 
     })
+
+    console.log(values.user_id);
 
     const handleChange = (event) => {
         const beerpost_info = ['beer_name', 'type', 'description', 'abv', 'og', 'carbonation', 'gravity', 'status', 'ebc', 'ibu', 'batch_volume'],

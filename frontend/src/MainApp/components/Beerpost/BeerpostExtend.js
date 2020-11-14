@@ -5,9 +5,9 @@ import './beerpostExtended.scss'
 const BeerpostExtend = ({ data }) => {
   const { ingredients, comments } = data
 
+  console.log(data)
   const displayIngredient = (ingredient) => {
     const result = ingredients.filter((item) => item.type === ingredient)
-    console.log(result)
     return result.map((item, index) => (
       <p key={index}>
         {item.pivot.ingredient_name} | {item.pivot.quantity}
@@ -51,7 +51,7 @@ const BeerpostExtend = ({ data }) => {
       <section>
         <div className='left-menu'>Comments</div>
         <div className='content'>
-          <ListComments comments={comments} />
+          <ListComments comments={comments} beerpost_id={data.id} />
         </div>
       </section>
     </div>

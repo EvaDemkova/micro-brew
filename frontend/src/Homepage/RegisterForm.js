@@ -15,9 +15,9 @@ const RegisterForm = () => {
 
     let request_data = { email, name, password, password_confirmation }
 
-    await axios.get('http://www.microbrew.test/sanctum/csrf-cookie')
+    await axios.get(`${process.env.REACT_APP_SERVER_URL}/sanctum/csrf-cookie`)
     const response = await axios
-      .post('http://www.microbrew.test/register', request_data)
+      .post(`${process.env.REACT_APP_SERVER_URL}/register`, request_data)
       .then(function (response) {
         console.log(response)
       })

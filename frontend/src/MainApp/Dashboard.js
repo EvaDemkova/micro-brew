@@ -12,7 +12,9 @@ const Dashboard = () => {
     return (
       <div className='dashboard'>
         <ProfileCard />
-        <ListBeerpost url='http://www.microbrew.test/api/beerposts/users/2' />
+        <ListBeerpost
+          url={`${process.env.REACT_APP_SERVER_URL}/api/beerposts/users/2`}
+        />
         <BsFillPlusCircleFill
           className='plus-btn'
           onClick={() => setIsBeerpostForm(true)}

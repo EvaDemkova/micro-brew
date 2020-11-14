@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import { IoMdBeer } from 'react-icons/io'
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa'
 import './beerpost.scss'
 import BeerpostExtend from './BeerpostExtend'
+import LikeBtn from '../LikeBtn'
 
 const Beerpost = ({ data }) => {
   const {
@@ -28,22 +28,6 @@ const Beerpost = ({ data }) => {
   const extendsBeerpost = () => {
     setIsExtended(!isExtended)
   }
-  const url = `${process.env.REACT_APP_SERVER_URL}/api/beerposts/${id}/like`
-
-  const likeBtn = async () => {
-    console.log('liked')
-    await axios.get('http://www.microbrew.test/sanctum/csrf-cookie')
-    await axios
-      .post(url, {
-        user_id: '2',
-      })
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }
 
   return (
     <div className='beerpost'>
@@ -57,9 +41,7 @@ const Beerpost = ({ data }) => {
             <p>{user.name}</p>
           </div>
           <div className='updated-time'>Posted : 3 hours ago</div>
-          <div className='likes' onClick={likeBtn}>
-            Likes : {likes.length}
-          </div>
+          <LikeBtn likes={likes} beerpost_id={id} />
         </div>
         <div className='preview-info'>
           <div className='header'>

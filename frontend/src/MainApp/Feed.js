@@ -6,7 +6,9 @@ const Feed = () => {
   return (
     <div className='feed'>
       <ProfileCard />
-      <ListBeerpost url='http://www.microbrew.test/api/beerposts/feed/2' />
+      <ListBeerpost
+        url={`${process.env.REACT_APP_SERVER_URL}/api/beerposts/feed/2`}
+      />
     </div>
   )
 }

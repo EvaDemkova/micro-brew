@@ -137,13 +137,15 @@ class BeerpostController extends Controller
     public function unlike($id, Request $request)
     {
         //missing validation of existing like in the database
+        $user_id = $request->input('user_id');
         $beerpost = Beerpost::findOrFail($id);
         $like = Beerpost_like::query()
         ->where('beerpost_id',$id)
-        ->where('user_id','1')
+        ->where('user_id',$user_id)
         ->first();
 
-        $like->forceDelete();
+        $like->delete();
+
         return [
             'status' => 'success'
         ];

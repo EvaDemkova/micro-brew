@@ -12,7 +12,6 @@ const LikeBtn = ({ likes, beerpost_id }) => {
   //create array of all user_id who liked the post
   const user_id_like = []
   likes.map((like) => user_id_like.push(like.user_id))
-  console.log(user_id_like)
 
   useEffect(() => {
     if (user_id_like.indexOf(user.id) !== -1) {

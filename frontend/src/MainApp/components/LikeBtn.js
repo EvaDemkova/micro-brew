@@ -1,7 +1,10 @@
 import React from 'react'
 import axios from 'axios'
+import { useGlobalContext } from '../../context'
 
 const LikeBtn = ({ likes, beerpost_id }) => {
+  const user = useGlobalContext()
+  console.log(user)
   const url = `${process.env.REACT_APP_SERVER_URL}/api/beerposts/${beerpost_id}/like`
 
   const likeBtn = async () => {

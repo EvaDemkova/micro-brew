@@ -19,7 +19,7 @@ Route::post('/api/beerposts/{id}/like/','BeerpostController@like');
 Route::post('/api/beerposts/{id}/unlike/','BeerpostController@unlike');
 Route::post('/api/beerposts/store','BeerpostController@store');
 
-Route::post('/api/beerposts/comment/','BeerpostCommentController@store');
+Route::post('/api/beerposts/comment','BeerpostCommentController@store');
 
 Route::get('/api/users/{id}', 'UserController@show');
 

@@ -21,7 +21,6 @@ const LikeBtn = ({ likes, beerpost_id }) => {
   }, [])
 
   const likeBtn = async () => {
-    console.log('liked')
     await axios.get(`${process.env.REACT_APP_SERVER_URL}/sanctum/csrf-cookie`)
 
     // New like is inserted if the post is not liked yet
@@ -29,6 +28,22 @@ const LikeBtn = ({ likes, beerpost_id }) => {
       setNbLikes(nbLikes + 1)
       setIsLiked(true)
       const url = `${process.env.REACT_APP_SERVER_URL}/api/beerposts/${beerpost_id}/like`
+      await axios
+        .post(url, {
+          user_id: user.id,
+        })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+    // Delete the existing like from the database
+    else {
+      setNbLikes(nbLikes - 1)
+      setIsLiked(false)
+      const url = `${process.env.REACT_APP_SERVER_URL}/api/beerposts/${beerpost_id}/unlike`
       await axios
         .post(url, {
           user_id: user.id,

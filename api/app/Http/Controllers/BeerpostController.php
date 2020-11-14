@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Beerpost;
 use App\Models\User;
+use App\Models\Beerpost_like;
 
 class BeerpostController extends Controller
 {
@@ -128,6 +129,21 @@ class BeerpostController extends Controller
         $beerpost = Beerpost::findOrFail($id);
         //$beerpost->likes()->create(['user_id'=>'3']);
         $beerpost->likes()->create($request->all());
+        return [
+            'status' => 'success'
+        ];
+    }
+
+    public function unlike($id, Request $request)
+    {
+        //missing validation of existing like in the database
+        $beerpost = Beerpost::findOrFail($id);
+        $like = Beerpost_like::query()
+        ->where('beerpost_id',$id)
+        ->where('user_id','1')
+        ->first();
+
+        $like->forceDelete();
         return [
             'status' => 'success'
         ];

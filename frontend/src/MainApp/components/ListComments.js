@@ -17,6 +17,7 @@ const ListComments = ({ comments, setComments, beerpost_id }) => {
         beerpost_id: beerpost_id,
         user_id: user.id,
         text: value,
+        user: { name: user.name },
       },
     ])
     await axios.get(`${process.env.REACT_APP_SERVER_URL}/sanctum/csrf-cookie`)

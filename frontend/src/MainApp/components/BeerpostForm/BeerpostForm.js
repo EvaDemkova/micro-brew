@@ -6,7 +6,6 @@ import './BeerpostForm.scss';
 import Beerpost_ingredients from './Beerpost_ingredients'
 
 const BeerpostForm = ({isBeerpostForm, setIsBeerpostForm}) => {
-
     const user = useGlobalContext()
     const [values, setValues] = useState({
         //user_id to be adjusted to currently logged user later 
@@ -29,8 +28,6 @@ const BeerpostForm = ({isBeerpostForm, setIsBeerpostForm}) => {
         quantity: "", 
     });
     const [listOfIngredients, setListOfIngredients] = useState([]);
-
-    
 
     const handleChange = (event) => {
         const beerpost_info = ['beer_name', 'type', 'description', 'abv', 'og', 'carbonation', 'gravity', 'status', 'ebc', 'ibu', 'batch_volume'],

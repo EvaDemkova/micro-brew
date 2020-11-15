@@ -36,10 +36,16 @@ class BeerpostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {  
+        dd($request);
+       // This will line to be deleted after using users. now just for testing purpose
+      $request['user_id']=1;
 
       $beerpost = new Beerpost;
-      $beerpost->create($request->all());  
+      $beerpost->create($request->all());
+      
+      $beerpost_id = Beerpost::all() -> last()->id;
+    
       return [
             'status' => 'success'
         ];

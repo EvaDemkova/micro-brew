@@ -3,6 +3,7 @@ import { MdCancel, MdEdit, MdDelete } from 'react-icons/md';
 import { useGlobalContext } from '../../../context.js';
 import axios from 'axios';
 import './BeerpostForm.scss';
+import Beerpost_ingredients from './Beerpost_ingredients'
 
 const BeerpostForm = ({isBeerpostForm, setIsBeerpostForm}) => {
 
@@ -22,8 +23,14 @@ const BeerpostForm = ({isBeerpostForm, setIsBeerpostForm}) => {
         ibu: '', 
         batch_volume: '', 
     })
+    const [beerpostIngredients, setBeerpostIngredients] = useState({
+        ingredient_id: "",
+        ingredient_name : "", 
+        quantity: "", 
+    });
+    const [listOfIngredients, setListOfIngredients] = useState([]);
 
-    console.log(values.user_id);
+    
 
     const handleChange = (event) => {
         const beerpost_info = ['beer_name', 'type', 'description', 'abv', 'og', 'carbonation', 'gravity', 'status', 'ebc', 'ibu', 'batch_volume'],
@@ -40,23 +47,32 @@ const BeerpostForm = ({isBeerpostForm, setIsBeerpostForm}) => {
                 );
             });
         }
+
+        
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(values);
-        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/beerposts/store`, values)
-            .then(function (response) {
-                console.log(response.status)
-                if (response.status === 200) {
-                    console.log('Beerpost saved')
-                }
-            })
-        .catch(function (error) {
-          console.log(error)
-        })  
-    }
+        setListOfIngredients(listOfIngredients => [...listOfIngredients, beerpostIngredients])
 
+
+        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/beerposts/store`, {
+            values: values,
+            listOfIngredients: listOfIngredients
+        })
+        //     .then(function (response) {
+        //         // console.log(response.status)
+        //         if (response.status === 200) {
+        //             console.log('Beerpost saved')
+        //         }
+        //     })
+        // .catch(function (error) {
+        //   console.log(error)
+        // })  
+        console.log(response);
+    }
+    console.log(listOfIngredients);
+    
     return (
         <div>
             <form action="" method='post' className="beerpost-form" onSubmit={handleSubmit}>
@@ -113,6 +129,7 @@ const BeerpostForm = ({isBeerpostForm, setIsBeerpostForm}) => {
                         <input type="number" name="batch_volume" placeholder="Batch Volume" value={values.batch_volume} onChange={ handleChange}/>
                     </div>
                 </div>
+                <Beerpost_ingredients beerpostIngredients={beerpostIngredients} setBeerpostIngredients={setBeerpostIngredients} handleSubmit={handleSubmit} setListOfIngredients={setListOfIngredients} listOfIngredients={ listOfIngredients}/>
                 <button type="submit">Save</button>
             </form>
         </div>

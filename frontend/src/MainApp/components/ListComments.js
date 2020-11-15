@@ -3,19 +3,30 @@ import axios from 'axios'
 import Comment from './Comment'
 import { useGlobalContext } from '../../context'
 
-const ListComments = ({ comments, beerpost_id }) => {
-  const [comment, setComment] = useState('')
+const ListComments = ({ comments, setComments, beerpost_id }) => {
+  const [value, setValue] = useState('')
   const user = useGlobalContext()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    setComments((prev) => [
+      ...prev,
+      {
+        id: new Date().getTime().toString(),
+        beerpost_id: beerpost_id,
+        user_id: user.id,
+        text: value,
+        user: { name: user.name },
+      },
+    ])
     await axios.get(`${process.env.REACT_APP_SERVER_URL}/sanctum/csrf-cookie`)
     const url = `${process.env.REACT_APP_SERVER_URL}/api/beerposts/comment`
     await axios
       .post(url, {
         beerpost_id: beerpost_id,
         user_id: user.id,
-        text: comment,
+        text: value,
       })
       .then(function (response) {
         console.log(response)
@@ -38,8 +49,8 @@ const ListComments = ({ comments, beerpost_id }) => {
           cols='10'
           rows='10'
           placeholder='your comment...'
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
         />
         <button>Post your comment</button>
       </form>

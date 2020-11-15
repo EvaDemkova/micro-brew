@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Beerpost from './Beerpost/Beerpost'
-import './listBeerpost.scss'
+import './styles/listBeerpost.scss'
 
 const ListBeerpost = ({ url }) => {
   const [beerposts, setBeerposts] = useState([])

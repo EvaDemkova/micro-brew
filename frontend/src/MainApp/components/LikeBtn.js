@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io'
 import { useGlobalContext } from '../../context'
-import './likeBtn.scss'
+import './styles/likeBtn.scss'
 
 const LikeBtn = ({ likes, beerpost_id }) => {
   const [isLiked, setIsLiked] = useState(false)
@@ -12,7 +12,6 @@ const LikeBtn = ({ likes, beerpost_id }) => {
   //create array of all user_id who liked the post
   const user_id_like = []
   likes.map((like) => user_id_like.push(like.user_id))
-  console.log(user_id_like)
 
   useEffect(() => {
     if (user_id_like.indexOf(user.id) !== -1) {

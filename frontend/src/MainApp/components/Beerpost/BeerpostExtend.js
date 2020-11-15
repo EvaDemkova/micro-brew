@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ListComments from '../ListComments'
 import './beerpostExtended.scss'
 
 const BeerpostExtend = ({ data }) => {
-  const { ingredients, comments } = data
-
-  console.log(data)
+  const { ingredients } = data
+  const [comments, setComments] = useState(data.comments)
+  console.log(comments)
   const displayIngredient = (ingredient) => {
     const result = ingredients.filter((item) => item.type === ingredient)
     return result.map((item, index) => (
@@ -51,7 +51,11 @@ const BeerpostExtend = ({ data }) => {
       <section>
         <div className='left-menu'>Comments</div>
         <div className='content'>
-          <ListComments comments={comments} beerpost_id={data.id} />
+          <ListComments
+            comments={comments}
+            setComments={setComments}
+            beerpost_id={data.id}
+          />
         </div>
       </section>
     </div>

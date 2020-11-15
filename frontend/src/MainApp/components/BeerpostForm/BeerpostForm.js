@@ -229,4 +229,4 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
   )
 }
 
-export default BeerpostForm
+ export default BeerpostForm;

@@ -4,6 +4,7 @@ import { FaArrowDown, FaArrowUp } from 'react-icons/fa'
 import './beerpost.scss'
 import BeerpostExtend from './BeerpostExtend'
 import LikeBtn from '../LikeBtn'
+import { ebcToColor } from './ebcToColor'
 
 const Beerpost = ({ data }) => {
   const {
@@ -45,7 +46,7 @@ const Beerpost = ({ data }) => {
         <div className='preview-info'>
           <div className='header'>
             <div className='logo'>
-              <IoMdBeer />
+              <IoMdBeer style={{ color: ebcToColor(ebc) }} />
             </div>
             <div className='title'>
               <h3>{beer_name}</h3>

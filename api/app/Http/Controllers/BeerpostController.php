@@ -126,7 +126,7 @@ class BeerpostController extends Controller
         ->with('ingredients')
         ->with('beerpost_sections')
         ->with('likes')
-        ->with('comments')
+        ->with('comments.user')
         ->with('user')
         ->whereIn('user_id', $user_follows_id)
         ->get();

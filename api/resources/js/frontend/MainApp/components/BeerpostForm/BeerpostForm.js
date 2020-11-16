@@ -6,10 +6,9 @@ import './BeerpostForm.scss'
 import Beerpost_ingredients from './Beerpost_ingredients'
 
 const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
-  const user = useGlobalContext()
+  const {user} = useGlobalContext()
 
   const [values, setValues] = useState({
-    //user_id to be adjusted to currently logged user later
     user_id: user.id,
     beer_name: '',
     type: '',

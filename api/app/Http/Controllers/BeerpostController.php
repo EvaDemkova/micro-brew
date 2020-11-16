@@ -37,8 +37,6 @@ class BeerpostController extends Controller
      */
     public function store(Request $request)
     {  
-
-      dd($request);
       $beerpost = new Beerpost;
       $beerpost->create($request->all());
       

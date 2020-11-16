@@ -6,6 +6,7 @@ import './BeerpostForm.scss'
 import Beerpost_ingredients from './Beerpost_ingredients'
 
 const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
+  
   const {user} = useGlobalContext()
 
   const [values, setValues] = useState({

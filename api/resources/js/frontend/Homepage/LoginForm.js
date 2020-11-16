@@ -23,8 +23,9 @@ const LoginForm = () => {
             .catch(function(error) {
                 console.log(error);
             });
+
         await axios
-            .get("http://www.microbrew.test/api/user")
+            .get("/api/user")
             .then(function(response) {
                 console.log(response);
             })

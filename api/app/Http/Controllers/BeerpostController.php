@@ -37,8 +37,12 @@ class BeerpostController extends Controller
      */
     public function store(Request $request)
     {  
+     
       $beerpost = new Beerpost;
-      $beerpost->create($request->all());
+    //   $beerpost['user_id'] = $request['values']->input('user_id');
+      $beerpost->create($request['values']->all());
+
+      return $beerpost;
       
       $beerpost_id = Beerpost::all() -> last()->id;
     

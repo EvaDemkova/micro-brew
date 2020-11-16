@@ -15,7 +15,7 @@ class Beerpost extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'beer_name', 'type', 'description', 'abv', 'og', 'carbonation', 'gravity', 'status', 'ebc', 'ibu', 'batch_volume'];
+    protected $fillable = [ 'user_id', 'beer_name', 'type', 'description', 'abv', 'og', 'carbonation', 'gravity', 'status', 'ebc', 'ibu', 'batch_volume'];
 
     public function ingredients() 
     {

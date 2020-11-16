@@ -52,12 +52,14 @@ const Ingredient = ({
                 name='ingredient_name'
                 value={item.ingredient_name}
                 onChange={(e) => handleName(e, item.key)}
+                placeholder={name }
               />
               <input
                 type='text'
                 name='quantity'
                 value={item.quantity}
                 onChange={(e) => handleQuantity(e, item.key)}
+                placeholder="Quantity"
               />
               <BsFillPlusCircleFill
                 onClick={() => addIngredient(ingredient_id)}

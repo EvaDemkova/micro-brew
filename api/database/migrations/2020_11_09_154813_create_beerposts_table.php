@@ -15,7 +15,7 @@ class CreateBeerpostsTable extends Migration
     {
         Schema::create('beerposts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('beer_name')->nullable();
             $table->string('type')->nullable();
             $table->text('description')->nullable();

@@ -4,11 +4,13 @@ import { useGlobalContext } from '../../../context.js'
 import axios from 'axios'
 import './BeerpostForm.scss'
 import Beerpost_ingredients from './Beerpost_ingredients'
+import Beerpost_sections from './Beerpost_sections';
 
-const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
+const BeerpostForm = ({setIsBeerpostForm }) => {
   
-  const {user} = useGlobalContext()
+  const { user } = useGlobalContext()
 
+  
   const [values, setValues] = useState({
     user_id: user.id,
     beer_name: '',
@@ -21,8 +23,10 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
     status: '',
     ebc: '',
     ibu: '',
-    batch_volume: '',
+    batch_volume: ''   
   })
+
+  console.log(values.user_id)
   const [beerpostIngredients, setBeerpostIngredients] = useState([
     {
       key: 1,
@@ -62,6 +66,44 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
     },
   ])
 
+  const [beerpostSections, setBeerpostSections] = useState([
+    {
+      key: 1, 
+      section_name: "Mash Profile", 
+      description: null, 
+      duration: null, 
+      date: null
+    }, 
+    {
+      key: 2, 
+      section_name: "Hopping Profile", 
+      description: null, 
+      duration: null, 
+      date: null
+    }, 
+    {
+      key: 3, 
+      section_name: "Primary Fermentation", 
+      description: null, 
+      duration: null, 
+      date: null
+    }, 
+    {
+      key: 4, 
+      section_name: "Bottling", 
+      description: null, 
+      duration: null, 
+      date: null
+    }, 
+    {
+      key: 5, 
+      section_name: "Secondary Fermentation", 
+      description: null, 
+      duration: null, 
+      date: null
+    }, 
+  ])
+
   const handleChange = (event) => {
     const beerpost_info = [
         'beer_name',
@@ -75,6 +117,7 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
         'ebc',
         'ibu',
         'batch_volume',
+        
       ],
       name = event.target.name,
       value = event.target.value
@@ -91,24 +134,28 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(values);
-    console.log(beerpostIngredients);
-    // const response = await axios.post(
-    //   `${process.env.REACT_APP_SERVER_URL}/api/beerposts/store`,
-    //   {
-    //     values: values,
-    //     beerpostIngredients: beerpostIngredients,
-    //   }
-    // ).then(function (response) {
-    //         console.log(response.status)
-    //         if (response.status === 200) {
-    //             console.log('Beerpost saved')
-    //         }
-    //     })
-    // .catch(function (error) {
-    //   console.log(error)
-    // })
-    // console.log(response)
+
+    //token to be used !!
+    await axios.get("/sanctum/csrf-cookie");
+
+
+    await axios.post(
+      "/api/beerposts/store",
+      {
+        values: values,
+        // beerpostIngredients: beerpostIngredients,
+        // beerpostSections: beerpostSections
+      }
+    ).then(function (response) {
+            console.log(response.config.data)
+            if (response.status === 200) {
+              console.log('Beerpost saved')
+              
+            }
+        })
+    .catch(function (error) {
+      console.log(error)
+    })
   }
 
   return (
@@ -246,6 +293,10 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
         <Beerpost_ingredients
           beerpostIngredients={beerpostIngredients}
           setBeerpostIngredients={setBeerpostIngredients}
+        />
+        <Beerpost_sections
+          beerpostSections={beerpostSections}
+          setBeerpostSections={ setBeerpostSections}        
         />
         <button type='submit'>Save</button>
       </form>

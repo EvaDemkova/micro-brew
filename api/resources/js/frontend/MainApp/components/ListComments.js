@@ -5,7 +5,7 @@ import { useGlobalContext } from "../../context";
 
 const ListComments = ({ comments, setComments, beerpost_id }) => {
     const [value, setValue] = useState("");
-    const user = useGlobalContext();
+    const { user } = useGlobalContext();
 
     const handleSubmit = async e => {
         e.preventDefault();

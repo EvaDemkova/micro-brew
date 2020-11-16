@@ -22,7 +22,9 @@ Route::post('/api/beerposts/store','BeerpostController@store');
 
 Route::post('/api/beerposts/comment','BeerpostCommentController@store');
 
+Route::get('/api/users/follow_list_proposal', 'UserController@follow_list_proposal');
 Route::get('/api/users/{id}', 'UserController@show');
+
 
 //if no other route was matched yet
 Route::view('/{path?}', 'frontend')->where('path', '.*');

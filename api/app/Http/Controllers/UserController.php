@@ -88,4 +88,22 @@ class UserController extends Controller
     {
         //
     }
+
+    public function follow_list_proposal() 
+    {
+        $id = 2;
+        $user = User::findOrFail($id);
+        $user_follows = $user->follows()->get();
+        $user_follows_id = [$id];
+
+        //get the list of all id of users that you follow 
+        foreach($user_follows as $item) {
+            $user_follows_id[] = $item->id;
+        };
+
+        $follow_list_proposal = User::query()
+        ->whereNotIn('id', $user_follows_id)
+        ->get();
+        return $follow_list_proposal;
+    }
 }

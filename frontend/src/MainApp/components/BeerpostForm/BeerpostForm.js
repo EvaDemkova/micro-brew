@@ -6,7 +6,9 @@ import './BeerpostForm.scss'
 import Beerpost_ingredients from './Beerpost_ingredients'
 
 const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
+
   const user = useGlobalContext()
+
   const [values, setValues] = useState({
     //user_id to be adjusted to currently logged user later
     user_id: user.id,
@@ -22,12 +24,12 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
     ibu: '',
     batch_volume: '',
   })
-  const [beerpostIngredients, setBeerpostIngredients] = useState({
+  const [beerpostIngredients, setBeerpostIngredients] = useState([{
     ingredient_id: '',
     ingredient_name: '',
     quantity: '',
-  })
-  const [listOfIngredients, setListOfIngredients] = useState([])
+  }])
+  
 
   const handleChange = (event) => {
     const beerpost_info = [
@@ -58,16 +60,13 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setListOfIngredients((listOfIngredients) => [
-      ...listOfIngredients,
-      beerpostIngredients,
-    ])
+
 
     const response = await axios.post(
       `${process.env.REACT_APP_SERVER_URL}/api/beerposts/store`,
       {
         values: values,
-        listOfIngredients: listOfIngredients,
+        beerpostIngredients: beerpostIngredients,
       }
     )
     //     .then(function (response) {
@@ -81,8 +80,7 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
     // })
     console.log(response)
   }
-  console.log(listOfIngredients)
-
+ 
   return (
     <div>
       <form
@@ -219,9 +217,6 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
         <Beerpost_ingredients
           beerpostIngredients={beerpostIngredients}
           setBeerpostIngredients={setBeerpostIngredients}
-          handleSubmit={handleSubmit}
-          setListOfIngredients={setListOfIngredients}
-          listOfIngredients={listOfIngredients}
         />
         <button type='submit'>Save</button>
       </form>

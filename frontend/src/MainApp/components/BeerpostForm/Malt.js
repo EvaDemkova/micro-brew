@@ -9,7 +9,7 @@ const Malt = ({addMalt, setBeerpostIngredients, beerpostIngredients, listOfIngre
         quantity: ""
     })
 
-    beerpostIngredients.ingredient_id = 1    
+    
     const handleChange = (e) => {
         const malt_info = ['ingredient_id', 'ingredient_name', 'quantity'],
               name  = e.target.name,

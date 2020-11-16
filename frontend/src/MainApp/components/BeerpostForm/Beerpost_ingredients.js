@@ -1,43 +1,61 @@
 import React, { useState, useEffect } from 'react';
-import { BsFillPlusCircleFill } from 'react-icons/bs'
 import axios from 'axios';
-import Malt from './Malt';
-import Hop from './Hop';
 import './BeerpostForm.scss';
+import Ingredient from './Ingredient';
 
 
-const Beerpost_ingredients = ({beerpostIngredients, setBeerpostIngredients, handleSubmit, listOfIngredients, setListOfIngredients}) => {
-    const [maltList, setMaltList] = useState([<Malt />])
-    const [hopList, setHopList] = useState([<Hop/>])
-
-    const addMalt = (e) => {
-        setMaltList(maltList => [...maltList, <Malt />])
+const Beerpost_ingredients = ({ beerpostIngredients, setBeerpostIngredients }) => {
     
-        
+    // const [maltList, setMaltList] = useState([{
+    //     ingredient_id: 1,
+    //     ingredient_name: '',
+    //     quantity: '',
+    // }])
+
+    const addIngredient = (ingredient_id) => {
+        setBeerpostIngredients(beerpostIngredients => [...beerpostIngredients, {
+        ingredient_id: ingredient_id,
+        ingredient_name: '',
+        quantity: '',
+        }])
     }
 
-    // const addHop = (e) => {
-    //     setHopList(hopList => [...hopList, <Hop/>])
-    // }
 
-    useEffect(() => {
-        // console.log(maltList)
-    }, [maltList])
-    
+    const handleQuantity = (e, index) => {
+        setBeerpostIngredients(prev => (prev.map((item, i) => {
+            if (i === index) {
+                return {
+                    ...item,
+                    quantity: e.target.value
+                }
+            } else {
+                return {...item}
+            }
+        })))
+    }
+
+    const handleName = (e, index) => {
+        setBeerpostIngredients(prev => (prev.map((item, i) => {
+            if (i === index) {
+                return {
+                    ...item,
+                    ingredient_name: e.target.value
+                }
+            } else {
+                return {...item}
+            }
+        })))
+    }
+
+    console.log(beerpostIngredients)   
 
     return (
-        <div>
-            {maltList.map((item, index) => {
-                return (
-                    <div key={index}><Malt addMalt={addMalt} beerpostIngredients={beerpostIngredients} setBeerpostIngredients={setBeerpostIngredients} handleSubmit={handleSubmit} listOfIngredients={listOfIngredients} setListOfIngredients={setListOfIngredients}/></div>
-                )
-            })}
-            {/* {hopList.map((item, index) => {
-                return (
-                    <div key={index}><Hop addHop={addHop} beerpostIngredients={beerpostIngredients} setBeerpostIngredients={ setBeerpostIngredients}/></div>
-                )
-            })} */}
-        </div>
+        <>
+        <Ingredient ingredient_id={1} name='Malt' handleName={handleName} handleQuantity={handleQuantity} beerpostIngredients={beerpostIngredients} addIngredient={addIngredient} />
+        <Ingredient ingredient_id={2} name='Hop' handleName={handleName} handleQuantity={handleQuantity} beerpostIngredients={beerpostIngredients} addIngredient={addIngredient} />
+            
+
+        </>
     )
 
 }

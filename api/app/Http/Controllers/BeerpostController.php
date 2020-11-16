@@ -115,7 +115,7 @@ class BeerpostController extends Controller
         $user_follows = $user->follows()->get();
         $user_follows_id = [];
 
-        //get the list of all id of users being followed 
+        //get the list of all id of users that you follow 
         foreach($user_follows as $item) {
             $user_follows_id[] = $item->id;
         };

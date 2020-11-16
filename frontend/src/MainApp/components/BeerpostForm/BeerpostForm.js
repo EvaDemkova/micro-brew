@@ -42,6 +42,24 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
       ingredient_name: '',
       quantity: '',
     },
+    {
+      key: 4,
+      ingredient_id: 4,
+      ingredient_name: '',
+      quantity: '',
+    },
+    {
+      key: 5,
+      ingredient_id: 5,
+      ingredient_name: '',
+      quantity: '',
+    },
+    {
+      key: 6,
+      ingredient_id: 6,
+      ingredient_name: '',
+      quantity: '',
+    },
   ])
 
   const handleChange = (event) => {
@@ -73,16 +91,16 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    const response = await axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/api/beerposts/store`,
-      {
-        values: values,
-        beerpostIngredients: beerpostIngredients,
-      }
-    )
-    //     .then(function (response) {
-    //         // console.log(response.status)
+    console.log(values);
+    console.log(beerpostIngredients);
+    // const response = await axios.post(
+    //   `${process.env.REACT_APP_SERVER_URL}/api/beerposts/store`,
+    //   {
+    //     values: values,
+    //     beerpostIngredients: beerpostIngredients,
+    //   }
+    // ).then(function (response) {
+    //         console.log(response.status)
     //         if (response.status === 200) {
     //             console.log('Beerpost saved')
     //         }
@@ -90,13 +108,12 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
     // .catch(function (error) {
     //   console.log(error)
     // })
-    console.log(response)
+    // console.log(response)
   }
 
   return (
     <div>
       <form
-        action=''
         method='post'
         className='beerpost-form'
         onSubmit={handleSubmit}

@@ -30,7 +30,6 @@ const Beerpost_ingredients = ({
         })}
         addIngredient={addIngredient}
       />
-
       <Ingredient
         ingredient_id={2}
         name='Hop'
@@ -48,7 +47,34 @@ const Beerpost_ingredients = ({
           return item.ingredient_id == 3
         })}
         addIngredient={addIngredient}
-      />
+          />
+      <Ingredient
+        ingredient_id={4}
+        name='Honey'
+        setBeerpostIngredients={setBeerpostIngredients}
+        beerpostIngredients={beerpostIngredients.filter((item) => {
+          return item.ingredient_id == 4
+        })}
+        addIngredient={addIngredient}
+          />
+      <Ingredient
+        ingredient_id={5}
+        name='Spices'
+        setBeerpostIngredients={setBeerpostIngredients}
+        beerpostIngredients={beerpostIngredients.filter((item) => {
+          return item.ingredient_id == 5
+        })}
+        addIngredient={addIngredient}
+          />
+      <Ingredient
+        ingredient_id={6}
+        name='Others'
+        setBeerpostIngredients={setBeerpostIngredients}
+        beerpostIngredients={beerpostIngredients.filter((item) => {
+          return item.ingredient_id == 6
+        })}
+        addIngredient={addIngredient}
+          />
     </>
   )
 }

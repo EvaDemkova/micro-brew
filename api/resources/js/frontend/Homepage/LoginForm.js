@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { useGlobalContext } from "../context";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { fetchUser } = useGlobalContext();
+    const history = useHistory();
 
     const handleSubmit = async e => {
         e.preventDefault();
-        console.log(email, password);
 
         await axios.get(`/sanctum/csrf-cookie`);
 
@@ -23,10 +25,14 @@ const LoginForm = () => {
             .catch(function(error) {
                 console.log(error);
             });
-
         await axios
             .get("/api/user")
             .then(function(response) {
+                if (response.status === 200) {
+                    console.log("setting user");
+                    fetchUser(response);
+                    history.push("/feed");
+                }
                 console.log(response);
             })
             .catch(function(error) {

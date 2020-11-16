@@ -16,7 +16,7 @@ const RegisterForm = () => {
         let request_data = { email, name, password, password_confirmation };
 
         await axios.get(`/sanctum/csrf-cookie`);
-        const response = await axios
+        await axios
             .post(`/register`, request_data)
             .then(function(response) {
                 console.log(response);

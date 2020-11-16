@@ -7,12 +7,6 @@ const Beerpost_ingredients = ({
   beerpostIngredients,
   setBeerpostIngredients,
 }) => {
-  // const [maltList, setMaltList] = useState([{
-  //     ingredient_id: 1,
-  //     ingredient_name: '',
-  //     quantity: '',
-  // }])
-
   const addIngredient = (ingredient_id) => {
     setBeerpostIngredients((beerpostIngredients) => [
       ...beerpostIngredients,
@@ -25,47 +19,12 @@ const Beerpost_ingredients = ({
     ])
   }
 
-  const handleQuantity = (e, key) => {
-    setBeerpostIngredients((prev) =>
-      prev.map((item) => {
-        if (item.key === key) {
-          return {
-            ...item,
-            quantity: e.target.value,
-          }
-        } else {
-          return {
-            ...item,
-          }
-        }
-      })
-    )
-  }
-
-  const handleName = (e, key) => {
-    setBeerpostIngredients((prev) =>
-      prev.map((item) => {
-        if (item.key === key) {
-          return {
-            ...item,
-            ingredient_name: e.target.value,
-          }
-        } else {
-          return { ...item }
-        }
-      })
-    )
-  }
-
-  console.log(beerpostIngredients)
-
   return (
     <>
       <Ingredient
         ingredient_id={1}
         name='Malt'
-        handleName={handleName}
-        handleQuantity={handleQuantity}
+        setBeerpostIngredients={setBeerpostIngredients}
         beerpostIngredients={beerpostIngredients.filter((item) => {
           return item.ingredient_id == 1
         })}
@@ -75,8 +34,7 @@ const Beerpost_ingredients = ({
       <Ingredient
         ingredient_id={2}
         name='Hop'
-        handleName={handleName}
-        handleQuantity={handleQuantity}
+        setBeerpostIngredients={setBeerpostIngredients}
         beerpostIngredients={beerpostIngredients.filter((item) => {
           return item.ingredient_id == 2
         })}
@@ -85,8 +43,7 @@ const Beerpost_ingredients = ({
       <Ingredient
         ingredient_id={3}
         name='Yeast'
-        handleName={handleName}
-        handleQuantity={handleQuantity}
+        setBeerpostIngredients={setBeerpostIngredients}
         beerpostIngredients={beerpostIngredients.filter((item) => {
           return item.ingredient_id == 3
         })}

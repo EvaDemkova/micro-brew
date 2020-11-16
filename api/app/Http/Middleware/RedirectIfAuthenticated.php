@@ -23,7 +23,10 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                //it has something to do with already locked in ...
+                return $request->wantsJson()
+                ? new JsonResponse('Authenticated', 422)
+                : redirect(config('fortify.home'));
             }
         }
 

@@ -7,8 +7,7 @@ import "./styles/likeBtn.scss";
 const LikeBtn = ({ likes, beerpost_id }) => {
     const [isLiked, setIsLiked] = useState(false);
     const [nbLikes, setNbLikes] = useState(likes.length);
-    const user = useGlobalContext();
-    console.log(user);
+    const { user } = useGlobalContext();
 
     //create array of all user_id who liked the post
     const user_id_like = [];

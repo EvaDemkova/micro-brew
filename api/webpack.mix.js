@@ -21,18 +21,14 @@ if (!mix.inProduction()) {
     }).sourceMaps();
 }
 
-mix
-    // .sass("resources/scss/app.scss", "public/css")
-    //     .sass("resources/scss/react-app.scss", "public/css")
-    .react("resources/js/frontend/index.js", "public/js/frontend.js")
-
-    .browserSync({
-        host: "localhost",
-        port: 3000,
-        proxy: {
-            target: process.env.APP_URL
-        }
-    });
+mix.react("resources/js/frontend/index.js", "public/js/frontend.js")
+.browserSync({
+    host: "localhost",
+    port: 3000,
+    proxy: {
+        target: process.env.APP_URL
+    }
+});
 
 // add versioning (creates mix.manifest.json)
 mix.version();

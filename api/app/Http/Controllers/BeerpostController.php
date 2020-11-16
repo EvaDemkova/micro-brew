@@ -37,10 +37,8 @@ class BeerpostController extends Controller
      */
     public function store(Request $request)
     {  
-      dd($request);
-       // This will line to be deleted after using users. now just for testing purpose
-      $request['user_id']=1;
 
+      dd($request);
       $beerpost = new Beerpost;
       $beerpost->create($request->all());
       
@@ -103,7 +101,7 @@ class BeerpostController extends Controller
         ->with('ingredients')
         ->with('beerpost_sections')
         ->with('likes')
-        ->with('comments')
+        ->with('comments.user')
         ->with('user')
         ->where('user_id', $user->id)
         ->get();
@@ -126,7 +124,7 @@ class BeerpostController extends Controller
         ->with('ingredients')
         ->with('beerpost_sections')
         ->with('likes')
-        ->with('comments')
+        ->with('comments.user')
         ->with('user')
         ->whereIn('user_id', $user_follows_id)
         ->get();

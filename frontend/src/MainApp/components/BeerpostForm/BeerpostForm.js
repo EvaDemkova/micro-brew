@@ -25,7 +25,11 @@ const BeerpostForm = ({ isBeerpostForm, setIsBeerpostForm }) => {
     batch_volume: '',
   })
   const [beerpostIngredients, setBeerpostIngredients] = useState([{
-    ingredient_id: '',
+    ingredient_id: 1,
+    ingredient_name: '',
+    quantity: '',
+  }, {
+    ingredient_id: 2,
     ingredient_name: '',
     quantity: '',
   }])

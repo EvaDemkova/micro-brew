@@ -11,7 +11,7 @@ const Ingredient = ({ handleQuantity, handleName, beerpostIngredients, addIngred
                          <div className="ingredient-item">
                             <label htmlFor={name}>{name}</label>
                             <input type="text" name="ingredient_name" value={item.ingredient_name} onChange={(e)=> handleName(e, index)}/>
-                            <input type="text" name="quantity" value={item.quantity} onChange={(e)=> handleQuantity(e, index) } />
+                            <input type="text" name="quantity" value={item.quantity} onChange={(e)=> handleQuantity(e, index, ingredient_id) } />
                             <BsFillPlusCircleFill onClick={()=>addIngredient(ingredient_id)}/>
                         </div>
                     </div>

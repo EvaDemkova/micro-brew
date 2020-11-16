@@ -21,9 +21,10 @@ const Beerpost_ingredients = ({ beerpostIngredients, setBeerpostIngredients }) =
     }
 
 
-    const handleQuantity = (e, index) => {
+    const handleQuantity = (e, index, ingredient_id) => {
+        console.log(index, ingredient_id);
         setBeerpostIngredients(prev => (prev.map((item, i) => {
-            if (i === index) {
+            if (i === index && ingredient_id === item.ingredient_id) {
                 return {
                     ...item,
                     quantity: e.target.value
@@ -32,6 +33,7 @@ const Beerpost_ingredients = ({ beerpostIngredients, setBeerpostIngredients }) =
                 return {...item}
             }
         })))
+        
     }
 
     const handleName = (e, index) => {
@@ -47,12 +49,20 @@ const Beerpost_ingredients = ({ beerpostIngredients, setBeerpostIngredients }) =
         })))
     }
 
-    console.log(beerpostIngredients)   
+     console.log(beerpostIngredients)   
+
 
     return (
         <>
-        <Ingredient ingredient_id={1} name='Malt' handleName={handleName} handleQuantity={handleQuantity} beerpostIngredients={beerpostIngredients} addIngredient={addIngredient} />
-        <Ingredient ingredient_id={2} name='Hop' handleName={handleName} handleQuantity={handleQuantity} beerpostIngredients={beerpostIngredients} addIngredient={addIngredient} />
+            <Ingredient ingredient_id={1} name='Malt' handleName={handleName} handleQuantity={handleQuantity}
+                beerpostIngredients={beerpostIngredients.filter((item) => {
+                return item.ingredient_id == 1
+            })} addIngredient={addIngredient} />
+            
+            <Ingredient ingredient_id={2} name='Hop' handleName={handleName} handleQuantity={handleQuantity} 
+                beerpostIngredients={beerpostIngredients.filter((item) => {
+                return item.ingredient_id == 2
+            })} addIngredient={addIngredient}/>
             
 
         </>

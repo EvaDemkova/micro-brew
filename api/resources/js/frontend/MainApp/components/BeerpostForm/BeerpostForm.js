@@ -169,7 +169,6 @@ const BeerpostForm = ({setIsBeerpostForm }) => {
             console.log(response.config.data)
             if (response.status === 200) {
               console.log('Beerpost saved')
-              
             }
         })
     .catch(function (error) {

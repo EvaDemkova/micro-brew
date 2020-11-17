@@ -18,7 +18,6 @@ Route::get('/api/beerposts/feed/{id}', 'BeerpostController@show_feed');
 Route::post('/api/beerposts/{id}/like/','BeerpostController@like');
 Route::post('/api/beerposts/{id}/unlike/','BeerpostController@unlike');
 Route::post('/api/beerposts/store','BeerpostController@store');
-// Route::get('/api/beerposts/store','BeerpostController@store');
 Route::post('/api/beerposts/savePhotos','BeerpostController@savePhotos');
 
 Route::post('/api/beerposts/comment','BeerpostCommentController@store');
@@ -26,6 +25,7 @@ Route::post('/api/beerposts/comment','BeerpostCommentController@store');
 //users related
 Route::get('/api/users/follow_list_proposal', 'UserController@follow_list_proposal');
 Route::get('/api/users/{id}', 'UserController@show');
+Route::get('/api/profile', 'UserController@getProfile');
 
 Route::post('/api/users/add_follow', 'FollowerController@store');
 Route::post('/api/users/delete_follow', 'FollowerController@destroy');

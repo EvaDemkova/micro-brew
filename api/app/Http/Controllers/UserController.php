@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Equipment;
 
 class UserController extends Controller
 {
@@ -106,6 +107,15 @@ class UserController extends Controller
         ->whereNotIn('id', $user_follows_id)
         ->get();
         return $follow_list_proposal;
+    }
+
+    public function getProfile()
+    {
+        $id = Auth::id();
+        $user = User::findOrFail($id);
+        $equipment = Equipment::query()->where('user_id', $id)->get();
+
+        return compact('user', 'equipment');
     }
 
 }

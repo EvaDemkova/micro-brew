@@ -12,29 +12,24 @@ const Dashboard = () => {
     const { user } = useGlobalContext();
     const { id } = useParams();
 
-    if (isBeerpostForm === false) {
-        return (
-            <div className="dashboard">
-                <ProfileCard id={id} />
-                <ListBeerpost url={`/api/beerposts/users/${id}`} />
-                {user.id == id && (
-                    <BsFillPlusCircleFill
-                        className="plus-btn"
-                        onClick={() => setIsBeerpostForm(true)}
-                    />
-                )}
-            </div>
-        );
-    }
-
-    if (isBeerpostForm) {
-        return (
-            <BeerpostForm
-                isBeerpostForm={isBeerpostForm}
-                setIsBeerpostForm={setIsBeerpostForm}
-            />
-        );
-    }
+    return (
+        <div className="dashboard">
+            <ProfileCard id={id} />
+            <ListBeerpost url={`/api/beerposts/users/${id}`} />
+            {user.id == id && (
+                <BsFillPlusCircleFill
+                    className="plus-btn"
+                    onClick={() => setIsBeerpostForm(true)}
+                />
+            )}
+            {isBeerpostForm && (
+                <BeerpostForm
+                    isBeerpostForm={isBeerpostForm}
+                    setIsBeerpostForm={setIsBeerpostForm}
+                />
+            )}
+        </div>
+    );
 };
 
 export default Dashboard;

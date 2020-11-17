@@ -5,6 +5,7 @@
 /public/img
 /public/homepage
 /public/mix-manifest.json
+/storage/media
 /storage/*.key
 /vendor
 .env

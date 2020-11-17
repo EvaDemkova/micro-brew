@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use App\Models\Follower;
 
-class UserController extends Controller
+class FollowerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,7 +36,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id_followed = $request->input('id_to_follow');
+        $id = Auth::id();
+        $data = new Follower;
+        $data->user_id_follower = $id;
+        $data->user_id_followed = $id_followed;
+        $data->save();
+
     }
 
     /**
@@ -47,13 +53,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::query()
-        ->findOrFail($id);
-
-        $user->follows;
-        $user->followed_by;
-
-        return $user;
+        //
     }
 
     /**
@@ -85,27 +85,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $user_id_followed = $request->input('id_to_unfollow');
+        $user_id_follower = Auth::id();
+        
+        $follow_data = Follower::query()
+        ->where('user_id_follower',$user_id_follower)
+        ->where('user_id_followed',$user_id_followed)
+        ->first();
+
+        $follow_data->delete();
+
+        return [
+            'status' => 'success'
+        ];
     }
-
-    public function follow_list_proposal() 
-    {
-        $id = Auth::id();
-        $user = User::findOrFail($id);
-        $user_follows = $user->follows()->get();
-        $user_follows_id = [$id];
-
-        //get the list of all id of users that you follow 
-        foreach($user_follows as $item) {
-            $user_follows_id[] = $item->id;
-        };
-
-        $follow_list_proposal = User::query()
-        ->whereNotIn('id', $user_follows_id)
-        ->get();
-        return $follow_list_proposal;
-    }
-
 }

@@ -5,20 +5,24 @@ import ProfileCard from "./components/ProfileCard";
 import BeerpostForm from "./components/BeerpostForm/BeerpostForm";
 import "./styles/dashboard.scss";
 import { useGlobalContext } from "../context";
+import { useParams } from "react-router-dom";
 
 const Dashboard = () => {
     const [isBeerpostForm, setIsBeerpostForm] = useState(false);
-    const user = useGlobalContext();
+    const { user } = useGlobalContext();
+    const { id } = useParams();
 
     if (isBeerpostForm === false) {
         return (
             <div className="dashboard">
-                <ProfileCard />
-                <ListBeerpost url={`/api/beerposts/users/${user.user.id}`} />
-                <BsFillPlusCircleFill
-                    className="plus-btn"
-                    onClick={() => setIsBeerpostForm(true)}
-                />
+                <ProfileCard id={id} />
+                <ListBeerpost url={`/api/beerposts/users/${id}`} />
+                {user.id == id && (
+                    <BsFillPlusCircleFill
+                        className="plus-btn"
+                        onClick={() => setIsBeerpostForm(true)}
+                    />
+                )}
             </div>
         );
     }

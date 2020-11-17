@@ -6,11 +6,11 @@ import ProfileCard from "./components/ProfileCard";
 import "./styles/feed.scss";
 
 const Feed = () => {
-    const user = useGlobalContext();
+    const { user } = useGlobalContext();
     return (
         <div className="feed">
-            <ProfileCard />
-            <ListBeerpost url={`/api/beerposts/feed/${user.user.id}`} />
+            <ProfileCard id={user.id} />
+            <ListBeerpost url={`/api/beerposts/feed/${user.id}`} />
             <ListFollow />
         </div>
     );

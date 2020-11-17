@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import "./styles/listFollow.scss";
 
 const ListFollow = () => {
@@ -9,10 +11,24 @@ const ListFollow = () => {
         const data = await response.json();
         setFollowList(data);
     };
-    console.log(followList);
+
     useEffect(() => {
         fetchFollowList();
     }, []);
+
+    const addFollow = async id => {
+        await axios.get(`/sanctum/csrf-cookie`);
+        await axios
+            .post(`/api/users/add_follow`, {
+                id_to_follow: id
+            })
+            .then(function(response) {
+                console.log(response);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    };
 
     return (
         <div className="list-follow">
@@ -22,8 +38,12 @@ const ListFollow = () => {
                     <div key={user.id} className="user-card">
                         <div className="user-card__infos">{user.name}</div>
                         <div className="button-list">
-                            <button>View Profile</button>
-                            <button>Follow</button>
+                            <Link to={`/dashboard/${user.id}`}>
+                                View Profile
+                            </Link>
+                            <button onClick={() => addFollow(user.id)}>
+                                Follow
+                            </button>
                         </div>
                     </div>
                 );

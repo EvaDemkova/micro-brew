@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class UserController extends Controller
@@ -91,7 +92,7 @@ class UserController extends Controller
 
     public function follow_list_proposal() 
     {
-        $id = 2;
+        $id = Auth::id();
         $user = User::findOrFail($id);
         $user_follows = $user->follows()->get();
         $user_follows_id = [$id];

@@ -1,15 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useGlobalContext } from "../context";
 import Logout from "./Logout";
 
 import "./styles/header.scss";
 
 const Header = () => {
+    const { user } = useGlobalContext();
     return (
         <nav>
             <ul>
                 <li>
-                    <Link to="/dashboard">Dashboard</Link>
+                    <Link to={`/dashboard/${user.id}`}>Dashboard</Link>
                 </li>
                 <li>
                     <Link to="/feed">Feed</Link>

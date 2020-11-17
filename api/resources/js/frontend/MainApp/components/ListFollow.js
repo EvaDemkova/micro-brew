@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./styles/listFollow.scss";
 
 const ListFollow = () => {
@@ -22,6 +23,9 @@ const ListFollow = () => {
                     <div key={user.id} className="user-card">
                         <div className="user-card__infos">{user.name}</div>
                         <div className="button-list">
+                            <Link to={`/dashboard/${user.id}`}>
+                                View Profile
+                            </Link>
                             <button>View Profile</button>
                             <button>Follow</button>
                         </div>

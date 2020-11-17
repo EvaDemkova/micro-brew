@@ -9,10 +9,12 @@ import Map from "./MainApp/Map";
 import Profile from "./MainApp/Profile";
 import Header from "./MainApp/Header";
 import ErrorPage from "./MainApp/ErrorPage";
+import Alert from "./MainApp/components/Alert";
 
 function App() {
     return (
         <Router>
+            <Alert />
             <Switch>
                 <Route exact path="/">
                     <Homepage />

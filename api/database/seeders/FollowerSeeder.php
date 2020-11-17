@@ -23,10 +23,28 @@ class FollowerSeeder extends Seeder
                 "user_id_followed"=>"3"
             ], [
                 "user_id_follower" => "1", 
-                "user_id_followed"=>"3"
+                "user_id_followed"=>"5"
             ], [
                 "user_id_follower" => "3", 
                 "user_id_followed"=>"1"
+            ], [
+                "user_id_follower" => "5", 
+                "user_id_followed"=>"1"
+            ], [
+                "user_id_follower" => "4", 
+                "user_id_followed"=>"6"
+            ], [
+                "user_id_follower" => "2", 
+                "user_id_followed"=>"6"
+            ], [
+                "user_id_follower" => "3", 
+                "user_id_followed"=>"6"
+            ], [
+                "user_id_follower" => "3", 
+                "user_id_followed"=>"4"
+            ], [
+                "user_id_follower" => "5", 
+                "user_id_followed"=>"3"
             ]
         ]);
     }

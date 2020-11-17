@@ -30,7 +30,7 @@ class BeerpostSeeder extends Seeder
                 "ibu"=>"30",
                 "batch_volume"=>"23",
         ], [
-                "user_id" => "3",
+                "user_id" => "5",
                 "beer_name" => "Bohemian Pilsner", 
                 "type"=>"lager",
                 "description"=>"
@@ -46,7 +46,7 @@ class BeerpostSeeder extends Seeder
                 "ibu"=>"36",
                 "batch_volume"=>"25",
         ], [    
-                "user_id" => "3",
+                "user_id" => "2",
                 "beer_name" => "Singlehop Citra IPA", 
                 "type"=>"ale",
                 "description"=>"
@@ -60,7 +60,7 @@ class BeerpostSeeder extends Seeder
                 "ibu"=>"77",
                 "batch_volume"=>"23",
         ], [
-                "user_id" => "3",
+                "user_id" => "4",
                 "beer_name" => "Vienna Lager", 
                 "type"=>"lager",
                 "description"=>null,
@@ -73,7 +73,7 @@ class BeerpostSeeder extends Seeder
                 "ibu"=>"29",
                 "batch_volume"=>"21",
         ], [
-                "user_id" => "2",
+                "user_id" => "4",
                 "beer_name" => "Pilsner Lager", 
                 "type"=>"lager",
                 "description"=>"
@@ -88,7 +88,7 @@ class BeerpostSeeder extends Seeder
                 "ibu"=>"50",
                 "batch_volume"=>"20",
         ], [
-                "user_id" => "1",
+                "user_id" => "5",
                 "beer_name" => "Mango Lassi IPA", 
                 "type"=>"ale",
                 "description"=>"

@@ -1,52 +1,52 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import './homepage.scss'
-import LoginForm from './LoginForm'
-import RegisterForm from './RegisterForm'
+import React, { useState, useEffect } from "react";
+import "./homepage.scss";
+import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 
 const Homepage = () => {
-  const [isLoginForm, setIsLoginForm] = useState(false)
-  const [isRegisterForm, setIsRegisterForm] = useState(false)
+    const [isLoginForm, setIsLoginForm] = useState(false);
+    const [isRegisterForm, setIsRegisterForm] = useState(false);
 
-  useEffect(() => {
-    if (isLoginForm || isRegisterForm) {
-      const filter = document.querySelector('.filter')
-      filter.addEventListener('click', () => {
-        setIsLoginForm(false)
-        setIsRegisterForm(false)
-      })
-      return () => {
-        filter.removeEventListener('click', () => {
-          setIsLoginForm(false)
-          setIsRegisterForm(false)
-        })
-      }
-    }
-  }, [isLoginForm, isRegisterForm])
+    useEffect(() => {
+        if (isLoginForm || isRegisterForm) {
+            const filter = document.querySelector(".filter");
+            filter.addEventListener("click", () => {
+                setIsLoginForm(false);
+                setIsRegisterForm(false);
+            });
+            return () => {
+                filter.removeEventListener("click", () => {
+                    setIsLoginForm(false);
+                    setIsRegisterForm(false);
+                });
+            };
+        }
+    }, [isLoginForm, isRegisterForm]);
 
-  return (
-    <div className='homepage'>
-      <img src="homepage/beer4.jpg" alt=""/>
-      <div className='interface'>
-        
-        <h3>Micro Brew</h3>
-        <h4>Brew, Enjoy, Empty, Repeat !</h4>
-        <Link to='/feed'>Go to FEED !</Link>
-        <button className='btn btn-login' onClick={() => setIsLoginForm(true)}>
-          Login
-        </button>
-        <button
-          className='btn btn-register'
-          onClick={() => setIsRegisterForm(true)}
-        >
-          Register
-        </button>
-      </div>
-      {(isLoginForm || isRegisterForm) && <div className='filter'></div>}
-      {isLoginForm && <LoginForm />}
-      {isRegisterForm && <RegisterForm />}
-    </div>
-  )
-}
+    return (
+        <div className="homepage">
+            <img src="homepage/beer4.jpg" alt="" />
+            <div className="interface">
+                <h3>Micro Brew</h3>
+                <h4>Brew, Enjoy, Empty, Repeat !</h4>
+                <button
+                    className="btn btn-login"
+                    onClick={() => setIsLoginForm(true)}
+                >
+                    Login
+                </button>
+                <button
+                    className="btn btn-register"
+                    onClick={() => setIsRegisterForm(true)}
+                >
+                    Register
+                </button>
+            </div>
+            {(isLoginForm || isRegisterForm) && <div className="filter"></div>}
+            {isLoginForm && <LoginForm />}
+            {isRegisterForm && <RegisterForm />}
+        </div>
+    );
+};
 
-export default Homepage
+export default Homepage;

@@ -23,7 +23,7 @@ const BeerpostForm = ({setIsBeerpostForm }) => {
     status: '',
     ebc: '',
     ibu: '',
-    batch_volume: ''   
+    batch_volume: ''
   })
 
   console.log(values.user_id)
@@ -143,8 +143,8 @@ const BeerpostForm = ({setIsBeerpostForm }) => {
       "/api/beerposts/store",
       {
         values: values,
-        // beerpostIngredients: beerpostIngredients,
-        // beerpostSections: beerpostSections
+        beerpostIngredients: beerpostIngredients,
+        beerpostSections: beerpostSections
       }
     ).then(function (response) {
             console.log(response.config.data)

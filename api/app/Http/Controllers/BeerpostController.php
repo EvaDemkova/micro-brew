@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Beerpost;
 use App\Models\User;
 use App\Models\Beerpost_like;
+use App\Models\Beerpost_ingredient;
+use App\Moedls\Beerpost_section;
 
 class BeerpostController extends Controller
 {
@@ -37,14 +39,18 @@ class BeerpostController extends Controller
      */
     public function store(Request $request)
     {  
-     
-      $beerpost = new Beerpost;
-    //   $beerpost['user_id'] = $request['values']->input('user_id');
-      $beerpost->create($request['values']->all());
+      //beerpost general info is working and saving data to database 
 
-      return $beerpost;
+      $values = collect($request['values']);
+      $beerpost = new Beerpost;
+      $beerpost->create($values->all());
       
+      //
       $beerpost_id = Beerpost::all() -> last()->id;
+
+      $ingredients = $request['beerpostIngredients'];
+      $sections = $request['beerpostSections'];
+
     
       return [
             'status' => 'success'

@@ -10,7 +10,7 @@ const ListFollow = () => {
         const data = await response.json();
         setFollowList(data);
     };
-    console.log(followList);
+
     useEffect(() => {
         fetchFollowList();
     }, []);

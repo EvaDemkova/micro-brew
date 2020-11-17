@@ -12,11 +12,10 @@ const Dashboard = () => {
     const { user } = useGlobalContext();
     const { id } = useParams();
 
-    console.log(user.id, id);
     if (isBeerpostForm === false) {
         return (
             <div className="dashboard">
-                <ProfileCard />
+                <ProfileCard id={id} />
                 <ListBeerpost url={`/api/beerposts/users/${id}`} />
                 {user.id == id && (
                     <BsFillPlusCircleFill

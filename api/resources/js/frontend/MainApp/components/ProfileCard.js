@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useGlobalContext } from "../../context";
 import "./styles/profileCard.scss";
 
@@ -21,8 +22,18 @@ const ProfileCard = ({ id }) => {
         fetchDatas();
     }, []);
 
-    const unFollow = () => {
-        console.log("you are unfollowed");
+    const unFollow = async id => {
+        await axios.get(`/sanctum/csrf-cookie`);
+        await axios
+            .post(`/api/users/delete_follow`, {
+                id_to_unfollow: id
+            })
+            .then(function(response) {
+                console.log(response);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
     };
 
     return (
@@ -48,7 +59,9 @@ const ProfileCard = ({ id }) => {
                     <p>8</p>
                 </div>
             </div>
-            {user.id != id && <button onClick={unFollow}>Unfollow :*</button>}
+            {user.id != id && (
+                <button onClick={() => unFollow(id)}>Unfollow :*</button>
+            )}
         </div>
     );
 };

@@ -85,8 +85,20 @@ class FollowerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $user_id_followed = $request->input('id_to_unfollow');
+        $user_id_follower = Auth::id();
+        
+        $follow_data = Follower::query()
+        ->where('user_id_follower',$user_id_follower)
+        ->where('user_id_followed',$user_id_followed)
+        ->first();
+
+        $follow_data->delete();
+
+        return [
+            'status' => 'success'
+        ];
     }
 }

@@ -27,6 +27,7 @@ Route::get('/api/users/follow_list_proposal', 'UserController@follow_list_propos
 Route::get('/api/users/{id}', 'UserController@show');
 
 Route::post('/api/users/add_follow', 'FollowerController@store');
+Route::post('/api/users/delete_follow', 'FollowerController@destroy');
 
 
 

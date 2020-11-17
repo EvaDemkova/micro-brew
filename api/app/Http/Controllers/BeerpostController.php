@@ -73,7 +73,7 @@ class BeerpostController extends Controller
     public function savePhotos(Request $request) {
 
         return $request;
-        
+
         // $file =  $request->file['fileName'];
         // return $file;
         // $files = collect($request['files']);
@@ -84,7 +84,7 @@ class BeerpostController extends Controller
         //         $image->storeAs('img', $image->getClientOriginalName(), 'img');
         //         return $image;
         //     }
-      }
+      
     }
 
     /**
@@ -93,7 +93,7 @@ class BeerpostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+        public function show($id)
     {
         //
     }

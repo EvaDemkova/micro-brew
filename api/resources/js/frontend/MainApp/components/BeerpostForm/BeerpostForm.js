@@ -5,6 +5,7 @@ import axios from 'axios'
 import './BeerpostForm.scss'
 import Beerpost_ingredients from './Beerpost_ingredients'
 import Beerpost_sections from './Beerpost_sections';
+import Dropzone from './Dropzone';
 
 const BeerpostForm = ({setIsBeerpostForm }) => {
   
@@ -26,7 +27,7 @@ const BeerpostForm = ({setIsBeerpostForm }) => {
     batch_volume: ''
   })
 
-  console.log(values.user_id)
+  const [files, setFiles] = useState([]);
   const [beerpostIngredients, setBeerpostIngredients] = useState([
     {
       key: 1,
@@ -135,16 +136,15 @@ const BeerpostForm = ({setIsBeerpostForm }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    //token to be used !!
     await axios.get("/sanctum/csrf-cookie");
-
 
     await axios.post(
       "/api/beerposts/store",
       {
         values: values,
         beerpostIngredients: beerpostIngredients,
-        beerpostSections: beerpostSections
+        beerpostSections: beerpostSections, 
+        files: files
       }
     ).then(function (response) {
             console.log(response.config.data)
@@ -248,7 +248,7 @@ const BeerpostForm = ({setIsBeerpostForm }) => {
               onChange={handleChange}
             />
           </div>
-          <div className='image-loader'></div>
+          <Dropzone files={files} setFiles={ setFiles}/>
           <div className='input-item'>
             <label htmlFor='gravity'>Gravity:</label>
             <input

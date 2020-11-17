@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Beerpost_like;
 use App\Models\Beerpost_ingredient;
 use App\Models\Beerpost_section;
+use App\Models\Beerpost_photo;
 
 class BeerpostController extends Controller
 {
@@ -72,19 +73,17 @@ class BeerpostController extends Controller
 
     public function savePhotos(Request $request) {
 
-        return $request;
-
-        // $file =  $request->file['fileName'];
-        // return $file;
-        // $files = collect($request['files']);
-      
-        // if($files) {
-        //     foreach($files as $one_file) {
-        //         $image = collect($one_file);
-        //         $image->storeAs('img', $image->getClientOriginalName(), 'img');
-        //         return $image;
-        //     }
-      
+        // var_dump($request->file('image'));
+        $files = $request->file('image');
+        for ($i = 0; $i < count($files); $i++) {
+            $files[$i]->storeAs('beerpost-images', $files[$i]->getClientOriginalName(), 'uploads');
+            $relative_url = '/uploads/beerpost-images/'. $files[$i]->getClientOriginalName();
+            $beerpost_id = Beerpost::all() -> last()->id;
+            $img = new Beerpost_photo;
+            $img['beerpost_id']= $beerpost_id;
+            $img['image']=$relative_url;
+            $img->save();
+        }
     }
 
     /**

@@ -17,61 +17,61 @@ class Beerpost_photosSeeder extends Seeder
         DB::table('beerpost_photos')->insert([
             [
                 "beerpost_id"=>1, 
-                "image"=>"img/beerpost_photo2.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo2.jpg"
             ], [
                 "beerpost_id"=>1, 
-                "image"=>"img/beerpost_photo4.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo4.jpg"
             ], [
                 "beerpost_id"=>1, 
-                "image"=>"img/beerpost_photo14.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo14.jpg"
             ], [
                 "beerpost_id"=>2, 
-                "image"=>"img/beerpost_photo3.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo3.jpg"
             ], [
                 "beerpost_id"=>2, 
-                "image"=>"img/beerpost_photo6.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo6.jpg"
             ], [
                 "beerpost_id"=>3, 
-                "image"=>"img/beerpost_photo5.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo5.jpg"
             ], [
                 "beerpost_id"=>3, 
-                "image"=>"img/beerpost_photo9.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo9.jpg"
             ], [
                 "beerpost_id"=>3, 
-                "image"=>"img/beerpost_photo13.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo13.jpg"
             ], [
                 "beerpost_id"=>4, 
-                "image"=>"img/beerpost_photo17.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo17.jpg"
             ], [
                 "beerpost_id"=>5, 
-                "image"=>"img/beerpost_photo10.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo10.jpg"
             ], [
                 "beerpost_id"=>5, 
-                "image"=>"img/beerpost_photo11.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo11.jpg"
             ], [
                 "beerpost_id"=>5, 
-                "image"=>"img/beerpost_photo20.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo20.jpg"
             ], [
                 "beerpost_id"=>5, 
-                "image"=>"img/beerpost_photo19.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo19.jpg"
             ], [
                 "beerpost_id"=>6, 
-                "image"=>"img/beerpost_photo15.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo15.jpg"
             ], [
                 "beerpost_id"=>6, 
-                "image"=>"img/beerpost_photo8.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo8.jpg"
             ], [
                 "beerpost_id"=>7, 
-                "image"=>"img/beerpost_photo7.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo7.jpg"
             ], [
                 "beerpost_id"=>7, 
-                "image"=>"img/beerpost_photo21.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo21.jpg"
             ], [
                 "beerpost_id"=>8, 
-                "image"=>"img/beerpost_photo16.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo16.jpg"
             ], [
                 "beerpost_id"=>8, 
-                "image"=>"img/beerpost_photo18.jpg"
+                "image"=>"/uploads/beerpost-images/beerpost_photo18.jpg"
             ]
         ]);
     }

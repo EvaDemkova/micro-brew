@@ -34,7 +34,8 @@ const img = {
 };
 
 
-function Previews({files, setFiles}) {
+function Previews(props) {
+    const { files, setFiles } = props;
     
   const {getRootProps, getInputProps} = useDropzone({
     accept: 'image/*',
@@ -66,9 +67,9 @@ function Previews({files, setFiles}) {
       <div {...getRootProps({className: 'dropzone'})}>
         <input {...getInputProps()} />
         <p>Drag 'n' drop some files here, or click to select files</p>
-        <p style={thumbsContainer}>
+        <div style={thumbsContainer}>
         {thumbs}
-        </p>
+        </div>
       </div>
     </section>
   );

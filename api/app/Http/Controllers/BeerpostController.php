@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; 
 use App\Models\Beerpost;
 use App\Models\User;
 use App\Models\Beerpost_like;
 use App\Models\Beerpost_ingredient;
-use App\Moedls\Beerpost_section;
+use App\Models\Beerpost_section;
 
 class BeerpostController extends Controller
 {
@@ -39,22 +39,52 @@ class BeerpostController extends Controller
      */
     public function store(Request $request)
     {  
-      //beerpost general info is working and saving data to database 
-
+       return $request;
+      //saving general information about beer
       $values = collect($request['values']);
       $beerpost = new Beerpost;
       $beerpost->create($values->all());
+
+      //saving all ingredients related to beerpost
+      $ingredients = collect($request['beerpostIngredients']);
+      foreach($ingredients as $ingredient) {
+            $ing = new Beerpost_ingredient;
+            $beerpost_id = Beerpost::all() -> last()->id;
+            $values = collect($ingredient);
+            $values['beerpost_id'] = $beerpost_id;
+            $ing->create($values->all());
+      }
       
-      //
-      $beerpost_id = Beerpost::all() -> last()->id;
+      //saving beerpost sections
+      $sections = collect($request['beerpostSections']);
+      foreach($sections as $section) {
+          $sec = new Beerpost_section;
+          $beerpost_id = Beerpost::all() -> last()->id;
+          $values = collect($section);
+          $values['beerpost_id'] = $beerpost_id;
+          $sec->create($values->all());
+      }
 
-      $ingredients = $request['beerpostIngredients'];
-      $sections = $request['beerpostSections'];
-
-    
       return [
             'status' => 'success'
         ];
+    }
+
+    public function savePhotos(Request $request) {
+
+        return $request;
+        
+        // $file =  $request->file['fileName'];
+        // return $file;
+        // $files = collect($request['files']);
+      
+        // if($files) {
+        //     foreach($files as $one_file) {
+        //         $image = collect($one_file);
+        //         $image->storeAs('img', $image->getClientOriginalName(), 'img');
+        //         return $image;
+        //     }
+      }
     }
 
     /**

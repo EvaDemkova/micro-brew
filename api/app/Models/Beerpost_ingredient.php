@@ -10,6 +10,10 @@ class Beerpost_ingredient extends Model
 {
     use HasFactory;
 
+
+    protected $fillable = ['beerpost_id', 'ingredient_id', 'ingredient_name', 'quantity'];
+
+
     public function beerpost() {
         return $this->belongsTo(Beerpost::class);
     }

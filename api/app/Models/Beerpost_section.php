@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Beerpost_section extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['beerpost_id', 'section_name', 'description', 'date', 
+'duration'];
 }

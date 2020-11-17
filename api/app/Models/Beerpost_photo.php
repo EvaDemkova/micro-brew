@@ -10,6 +10,8 @@ class Beerpost_photo extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['beerpost_id', 'image'];
+
     public function beerposts()
     {
         return $this->belongsTo(Beerpost::class);

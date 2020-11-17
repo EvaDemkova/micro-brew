@@ -28,6 +28,7 @@ const BeerpostForm = ({setIsBeerpostForm }) => {
   })
 
   const [files, setFiles] = useState([]);
+
   const [beerpostIngredients, setBeerpostIngredients] = useState([
     {
       key: 1,
@@ -133,29 +134,48 @@ const BeerpostForm = ({setIsBeerpostForm }) => {
     }
   }
 
+  const handlePhotos = async (files) => {
+    console.log(files);
+
+    const data = new FormData();
+      files.forEach(file => {
+        data.append('image', file);
+    });
+    await axios.get("/sanctum/csrf-cookie");
+    await axios.post("/api/beerposts/savePhotos", data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+      .then(response => {
+        console.log(response)
+      })
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await axios.get("/sanctum/csrf-cookie");
+    // await axios.get("/sanctum/csrf-cookie");
 
-    await axios.post(
-      "/api/beerposts/store",
-      {
-        values: values,
-        beerpostIngredients: beerpostIngredients,
-        beerpostSections: beerpostSections, 
-        files: files
-      }
-    ).then(function (response) {
-            console.log(response.config.data)
-            if (response.status === 200) {
-              console.log('Beerpost saved')
+    // await axios.post(
+    //   "/api/beerposts/store",
+    //   {
+    //     values: values,
+    //     beerpostIngredients: beerpostIngredients,
+    //     beerpostSections: beerpostSections, 
+    //   }
+    // ).then(function (response) {
+    //         console.log(response.config.data)
+    //         if (response.status === 200) {
+    //           console.log('Beerpost saved')
               
-            }
-        })
-    .catch(function (error) {
-      console.log(error)
-    })
+    //         }
+    //     })
+    // .catch(function (error) {
+    //   console.log(error)
+    // })
+
+    handlePhotos(files);
   }
 
   return (

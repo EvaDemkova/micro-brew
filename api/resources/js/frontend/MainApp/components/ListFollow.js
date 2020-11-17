@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./styles/listFollow.scss";
 
 const ListFollow = () => {
@@ -15,6 +16,20 @@ const ListFollow = () => {
         fetchFollowList();
     }, []);
 
+    const addFollow = async id => {
+        await axios.get(`/sanctum/csrf-cookie`);
+        await axios
+            .post(`/api/users/add_follow`, {
+                id_to_follow: id
+            })
+            .then(function(response) {
+                console.log(response);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    };
+
     return (
         <div className="list-follow">
             <h2>Who to follow</h2>
@@ -26,8 +41,9 @@ const ListFollow = () => {
                             <Link to={`/dashboard/${user.id}`}>
                                 View Profile
                             </Link>
-                            <button>View Profile</button>
-                            <button>Follow</button>
+                            <button onClick={() => addFollow(user.id)}>
+                                Follow
+                            </button>
                         </div>
                     </div>
                 );

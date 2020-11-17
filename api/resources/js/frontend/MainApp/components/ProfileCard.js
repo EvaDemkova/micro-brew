@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useGlobalContext } from "../../context";
 import "./styles/profileCard.scss";
 
 const ProfileCard = ({ id }) => {
     const [name, setName] = useState("");
     const [follows, setFollows] = useState("");
     const [followedBy, setFollowedBy] = useState("");
+    const { user } = useGlobalContext();
 
     const fetchDatas = async () => {
         const response = await fetch(`/api/users/${id}`);
@@ -18,6 +20,10 @@ const ProfileCard = ({ id }) => {
     useEffect(() => {
         fetchDatas();
     }, []);
+
+    const unFollow = () => {
+        console.log("you are unfollowed");
+    };
 
     return (
         <div className="profile-card">
@@ -42,6 +48,7 @@ const ProfileCard = ({ id }) => {
                     <p>8</p>
                 </div>
             </div>
+            {user.id != id && <button onClick={unFollow}>Unfollow :*</button>}
         </div>
     );
 };

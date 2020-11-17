@@ -22,8 +22,12 @@ Route::post('/api/beerposts/store','BeerpostController@store');
 
 Route::post('/api/beerposts/comment','BeerpostCommentController@store');
 
+//users related
 Route::get('/api/users/follow_list_proposal', 'UserController@follow_list_proposal');
 Route::get('/api/users/{id}', 'UserController@show');
+
+Route::post('/api/users/add_follow', 'FollowerController@store');
+
 
 
 //if no other route was matched yet

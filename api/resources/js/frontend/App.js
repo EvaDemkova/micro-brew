@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import Homepage from "./Homepage/Homepage";
-import MainApp from "./MainApp";
 import Dashboard from "./MainApp/Dashboard";
 import Feed from "./MainApp/Feed";
 import Map from "./MainApp/Map";
 import Profile from "./MainApp/Profile";
 import Header from "./MainApp/Header";
+import ErrorPage from "./MainApp/ErrorPage";
 
 function App() {
     return (
@@ -33,9 +33,9 @@ function App() {
                     <Header />
                     <Profile />
                 </Route>
-                {/* <Route path="*">
-                  <MainApp />
-              </Route> */}
+                <Route path="*">
+                    <ErrorPage />
+                </Route>
             </Switch>
         </Router>
     );

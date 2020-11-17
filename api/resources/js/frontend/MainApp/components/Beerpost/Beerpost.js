@@ -35,10 +35,7 @@ const Beerpost = ({ data }) => {
             <div className="beerpost__preview">
                 <div className="left-menu">
                     <div className="user-info">
-                        <img
-                            src="https://vignette.wikia.nocookie.net/heros/images/4/42/Alice_Disney_Infobox.jpg/revision/latest/scale-to-width-down/310?cb=20200622124942&path-prefix=fr"
-                            alt=""
-                        />
+                        <img src={`/public${user.profile_photo}`} alt="" />
                         <p>
                             <Link to={`/dashboard/${user.id}`}>
                                 {user.name}

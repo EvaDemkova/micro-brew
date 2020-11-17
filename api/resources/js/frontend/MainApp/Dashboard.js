@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import ListBeerpost from "./components/ListBeerpost";
 import ProfileCard from "./components/ProfileCard";

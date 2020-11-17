@@ -19,7 +19,7 @@ const ListFollow = () => {
             <h2>Who to follow</h2>
             {followList.map(user => {
                 return (
-                    <div className="user-card">
+                    <div key={user.id} className="user-card">
                         <div className="user-card__infos">{user.name}</div>
                         <div className="button-list">
                             <button>View Profile</button>

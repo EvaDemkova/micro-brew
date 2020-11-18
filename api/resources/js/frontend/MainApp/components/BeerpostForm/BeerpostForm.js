@@ -8,7 +8,7 @@ import Beerpost_sections from "./Beerpost_sections";
 import Dropzone from "./Dropzone";
 import { templateIngredients, templateSections } from "./datas";
 
-const BeerpostForm = ({ setIsBeerpostForm }) => {
+const BeerpostForm = ({ setIsBeerpostForm, isUpdating }) => {
     const { user } = useGlobalContext();
 
     const [values, setValues] = useState({
@@ -86,7 +86,6 @@ const BeerpostForm = ({ setIsBeerpostForm }) => {
         e.preventDefault();
 
         await axios.get("/sanctum/csrf-cookie");
-
         await axios
             .post("/api/beerposts/store", {
                 values: values,

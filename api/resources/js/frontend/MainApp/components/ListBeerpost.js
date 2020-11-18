@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Beerpost from "./Beerpost/Beerpost";
 import "./styles/listBeerpost.scss";
 
-const ListBeerpost = ({ url }) => {
+const ListBeerpost = ({ url, setIsBeerpostForm, setIsFormUpdating }) => {
     const [beerposts, setBeerposts] = useState([]);
 
     const fetchDatas = async () => {

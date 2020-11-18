@@ -23,10 +23,7 @@ const Dashboard = () => {
                 />
             )}
             {isBeerpostForm && (
-                <BeerpostForm
-                    isBeerpostForm={isBeerpostForm}
-                    setIsBeerpostForm={setIsBeerpostForm}
-                />
+                <BeerpostForm setIsBeerpostForm={setIsBeerpostForm} />
             )}
         </div>
     );

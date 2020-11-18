@@ -35,7 +35,7 @@ const Beerpost = ({ data }) => {
             <div className="beerpost__preview">
                 <div className="left-menu">
                     <div className="user-info">
-                        <img src={`/public${user.profile_photo}`} alt="" />
+                        <img src={`${user.profile_photo}`} alt="" />
                         <p>
                             <Link to={`/dashboard/${user.id}`}>
                                 {user.name}

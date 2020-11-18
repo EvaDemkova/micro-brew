@@ -40,7 +40,7 @@ class BeerpostController extends Controller
      */
     public function store(Request $request)
     {  
-       return $request;
+      
       //saving general information about beer
       $values = collect($request['values']);
       $beerpost = new Beerpost;

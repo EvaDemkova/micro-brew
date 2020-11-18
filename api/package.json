@@ -28,6 +28,7 @@
     "dependencies": {
         "@material-ui/core": "^4.11.0",
         "@material-ui/lab": "^4.0.0-alpha.56",
+        "moment": "^2.29.1",
         "react-dropzone": "^11.2.4"
     }
 }

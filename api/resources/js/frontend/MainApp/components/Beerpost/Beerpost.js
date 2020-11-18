@@ -6,10 +6,12 @@ import BeerpostExtend from "./BeerpostExtend";
 import LikeBtn from "../LikeBtn";
 import { ebcToColor } from "./ebcToColor";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 const Beerpost = ({ data }) => {
     const {
         id,
+        updated_at,
         beer_name,
         type,
         abv,
@@ -25,11 +27,12 @@ const Beerpost = ({ data }) => {
         likes
     } = data;
     const [isExtended, setIsExtended] = useState(false);
-
+    const jojo = moment(updated_at).fromNow();
+    console.log(jojo);
     const extendsBeerpost = () => {
         setIsExtended(!isExtended);
     };
-
+    console.log(updated_at);
     return (
         <div className="beerpost">
             <div className="beerpost__preview">
@@ -42,7 +45,9 @@ const Beerpost = ({ data }) => {
                             </Link>
                         </p>
                     </div>
-                    <div className="updated-time">Posted : 3 hours ago</div>
+                    <div className="updated-time">
+                        Posted : {moment(updated_at).fromNow()}
+                    </div>
                     <LikeBtn likes={likes} beerpost_id={id} />
                 </div>
                 <div className="preview-info">

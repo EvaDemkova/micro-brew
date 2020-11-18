@@ -21,8 +21,10 @@ if (!mix.inProduction()) {
     }).sourceMaps();
 }
 
-mix.react("resources/js/frontend/index.js", "public/js/frontend.js")
-.browserSync({
+mix.react(
+    "resources/js/frontend/index.js",
+    "public/js/frontend.js"
+).browserSync({
     host: "localhost",
     port: 3000,
     proxy: {

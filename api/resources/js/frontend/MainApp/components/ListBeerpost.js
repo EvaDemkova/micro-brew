@@ -10,7 +10,6 @@ const ListBeerpost = ({ url }) => {
         const data = await response.json();
         setBeerposts(data);
     };
-    console.log(beerposts);
 
     useEffect(() => {
         fetchDatas();

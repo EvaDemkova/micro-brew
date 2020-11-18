@@ -29,11 +29,10 @@ const LoginForm = () => {
             .get("/api/user")
             .then(function(response) {
                 if (response.status === 200) {
-                    console.log("setting user");
+                    //The user is authenticated, redirect to /feed
                     fetchUser(response);
                     history.push("/feed");
                 }
-                console.log(response);
             })
             .catch(function(error) {
                 console.log(error);

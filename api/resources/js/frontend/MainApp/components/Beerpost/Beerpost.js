@@ -27,12 +27,11 @@ const Beerpost = ({ data }) => {
         likes
     } = data;
     const [isExtended, setIsExtended] = useState(false);
-    const jojo = moment(updated_at).fromNow();
-    console.log(jojo);
+
     const extendsBeerpost = () => {
         setIsExtended(!isExtended);
     };
-    console.log(updated_at);
+
     return (
         <div className="beerpost">
             <div className="beerpost__preview">

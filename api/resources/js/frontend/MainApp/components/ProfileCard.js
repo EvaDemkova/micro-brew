@@ -54,7 +54,7 @@ const ProfileCard = ({ id }) => {
                 </div>
                 <div className="profile-card__item">
                     <h5>Posts</h5>
-                    <p>8</p>
+                    <p>9</p>
                 </div>
             </div>
             {user.id != id && (

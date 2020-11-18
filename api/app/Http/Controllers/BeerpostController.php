@@ -141,6 +141,7 @@ class BeerpostController extends Controller
         ->with('comments.user')
         ->with('user')
         ->where('user_id', $user->id)
+        ->orderByDesc('updated_at')
         ->get();
 
         return $beerposts;
@@ -164,6 +165,7 @@ class BeerpostController extends Controller
         ->with('comments.user')
         ->with('user')
         ->whereIn('user_id', $user_follows_id)
+        ->orderByDesc('updated_at')
         ->get();
 
         return $beerposts;

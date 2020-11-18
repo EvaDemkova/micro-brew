@@ -25,12 +25,9 @@ const AlertPop = () => {
         return () => clearTimeout(timeout);
     }, []);
 
-    console.log(alert);
     return (
         <div className={classes.root}>
-            {alert.isAlert && (
-                <Alert severity={alert.type}>{alert.message}</Alert>
-            )}
+            <Alert severity={alert.type}>{alert.message}</Alert>
         </div>
     );
 };

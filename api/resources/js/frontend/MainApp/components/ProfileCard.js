@@ -8,7 +8,7 @@ const ProfileCard = ({ id }) => {
     const [follows, setFollows] = useState("");
     const [followedBy, setFollowedBy] = useState("");
     const { user } = useGlobalContext();
-    const [photo, setPhoto] = useState('');
+    const [photo, setPhoto] = useState("");
 
     const fetchDatas = async () => {
         const response = await fetch(`/api/users/${id}`);
@@ -21,7 +21,7 @@ const ProfileCard = ({ id }) => {
 
     useEffect(() => {
         fetchDatas();
-    }, []);
+    }, [id]);
 
     const unFollow = async id => {
         await axios.get(`/sanctum/csrf-cookie`);
@@ -40,10 +40,7 @@ const ProfileCard = ({ id }) => {
     return (
         <div className="profile-card">
             <div className="profile-card__photo">
-                <img
-                    src={photo}
-                    alt=""
-                />
+                <img src={photo} alt="" />
             </div>
             <div className="profile-card__name">{name}</div>
             <div className="profile-card__stats">

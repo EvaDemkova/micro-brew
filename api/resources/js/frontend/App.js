@@ -10,11 +10,13 @@ import Profile from "./MainApp/Profile";
 import Header from "./MainApp/Header";
 import ErrorPage from "./MainApp/ErrorPage";
 import Alert from "./MainApp/components/Alert";
+import { useGlobalContext } from "./context";
 
 function App() {
+    const { alert } = useGlobalContext();
     return (
         <Router>
-            <Alert />
+            {alert.isAlert && <Alert />}
             <Switch>
                 <Route exact path="/">
                     <Homepage />

@@ -21,7 +21,6 @@ const AlertPop = () => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             resetAlert();
-            console.log("reset");
         }, 3000);
         return () => clearTimeout(timeout);
     }, []);

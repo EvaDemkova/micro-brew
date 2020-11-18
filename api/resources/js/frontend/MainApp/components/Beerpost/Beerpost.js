@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IoMdBeer } from "react-icons/io";
+import { MdEdit } from "react-icons/md";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import "./beerpost.scss";
 import BeerpostExtend from "./BeerpostExtend";
@@ -7,6 +8,7 @@ import LikeBtn from "../LikeBtn";
 import { ebcToColor } from "./ebcToColor";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { useGlobalContext } from "../../../context";
 
 const Beerpost = ({ data }) => {
     const {
@@ -23,10 +25,10 @@ const Beerpost = ({ data }) => {
         ibu,
         og,
         status,
-        user,
         likes
     } = data;
     const [isExtended, setIsExtended] = useState(false);
+    const { user } = useGlobalContext();
 
     const extendsBeerpost = () => {
         setIsExtended(!isExtended);
@@ -37,10 +39,10 @@ const Beerpost = ({ data }) => {
             <div className="beerpost__preview">
                 <div className="left-menu">
                     <div className="user-info">
-                        <img src={`${user.profile_photo}`} alt="" />
+                        <img src={`${data.user.profile_photo}`} alt="" />
                         <p>
-                            <Link to={`/dashboard/${user.id}`}>
-                                {user.name}
+                            <Link to={`/dashboard/${data.user.id}`}>
+                                {data.user.name}
                             </Link>
                         </p>
                     </div>
@@ -58,6 +60,9 @@ const Beerpost = ({ data }) => {
                             <h3>{beer_name}</h3>
                             <p>{description}</p>
                         </div>
+                        {data.user.id == user.id && (
+                            <MdEdit className="edit-icon" />
+                        )}
                     </div>
                     <div className="status">Status {status}</div>
                     <div className="type">Type - {type}</div>

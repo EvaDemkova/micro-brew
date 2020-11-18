@@ -8,6 +8,7 @@ const ProfileCard = ({ id }) => {
     const [follows, setFollows] = useState("");
     const [followedBy, setFollowedBy] = useState("");
     const { user } = useGlobalContext();
+    const [photo, setPhoto] = useState('');
 
     const fetchDatas = async () => {
         const response = await fetch(`/api/users/${id}`);
@@ -15,6 +16,7 @@ const ProfileCard = ({ id }) => {
         setName(data.name);
         setFollows(data.follows.length);
         setFollowedBy(data.followed_by.length);
+        setPhoto(data.profile_photo);
     };
 
     useEffect(() => {
@@ -39,7 +41,7 @@ const ProfileCard = ({ id }) => {
         <div className="profile-card">
             <div className="profile-card__photo">
                 <img
-                    src="https://vignette.wikia.nocookie.net/heros/images/4/42/Alice_Disney_Infobox.jpg/revision/latest/scale-to-width-down/310?cb=20200622124942&path-prefix=fr"
+                    src={photo}
                     alt=""
                 />
             </div>

@@ -29,6 +29,9 @@ class BeerpostSeeder extends Seeder
                 "ebc"=>"20.5",
                 "ibu"=>"30",
                 "batch_volume"=>"23",
+                'created_at'=> '2020-11-10 11:13:24', 
+                'updated_at'=> '2020-11-11 16:13:24', 
+
         ], [
                 "user_id" => "5",
                 "beer_name" => "Bohemian Pilsner", 
@@ -45,6 +48,8 @@ class BeerpostSeeder extends Seeder
                 "ebc"=>"10.8",
                 "ibu"=>"36",
                 "batch_volume"=>"25",
+                'created_at'=> '2020-11-14 11:13:24', 
+                'updated_at'=> '2020-11-16 16:13:24',
         ], [    
                 "user_id" => "2",
                 "beer_name" => "Singlehop Citra IPA", 
@@ -59,6 +64,8 @@ class BeerpostSeeder extends Seeder
                 "ebc"=>"17.9",
                 "ibu"=>"77",
                 "batch_volume"=>"23",
+                'created_at'=> '2020-11-08 11:13:24', 
+                'updated_at'=> '2020-11-10 16:13:24',
         ], [
                 "user_id" => "4",
                 "beer_name" => "Vienna Lager", 
@@ -72,6 +79,8 @@ class BeerpostSeeder extends Seeder
                 "ebc"=>"31.5",
                 "ibu"=>"29",
                 "batch_volume"=>"21",
+                'created_at'=> '2020-11-17 11:13:24', 
+                'updated_at'=> '2020-11-17 16:13:24',
         ], [
                 "user_id" => "4",
                 "beer_name" => "Pilsner Lager", 
@@ -87,6 +96,8 @@ class BeerpostSeeder extends Seeder
                 "ebc"=>"8.3",
                 "ibu"=>"50",
                 "batch_volume"=>"20",
+                'created_at'=> '2020-10-10 11:13:24', 
+                'updated_at'=> '2020-11-11 16:13:24',
         ], [
                 "user_id" => "5",
                 "beer_name" => "Mango Lassi IPA", 
@@ -101,6 +112,8 @@ class BeerpostSeeder extends Seeder
                 "ebc"=>"15.2",
                 "ibu"=>"32",
                 "batch_volume"=>"24.42",
+                'created_at'=> '2020-11-02 11:13:24', 
+                'updated_at'=> '2020-11-11 16:13:24',
         ], [
                 "user_id" => "2",
                 "beer_name" => "New England IPA", 
@@ -115,6 +128,8 @@ class BeerpostSeeder extends Seeder
                 "ebc"=>"15.210",
                 "ibu"=>"33",
                 "batch_volume"=>"20",
+                'created_at'=> '2020-10-30 11:13:24', 
+                'updated_at'=> '2020-11-01 10:13:24',
         ], [    
                 "user_id" => "3",
                 "beer_name" => "Merry Christmas Ale", 
@@ -129,6 +144,8 @@ class BeerpostSeeder extends Seeder
                 "ebc"=>"23",
                 "ibu"=>"37",
                 "batch_volume"=>"15",
+                'created_at'=> '2020-11-08 11:13:24', 
+                'updated_at'=> '2020-11-13 16:13:24',
         ]]);
     }
 }

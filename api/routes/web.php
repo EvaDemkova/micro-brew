@@ -18,6 +18,7 @@ Route::get('/api/beerposts/feed/{id}', 'BeerpostController@show_feed');
 Route::post('/api/beerposts/{id}/like/','BeerpostController@like');
 Route::post('/api/beerposts/{id}/unlike/','BeerpostController@unlike');
 Route::post('/api/beerposts/store','BeerpostController@store');
+Route::post('/api/beerposts/update/{id}', 'BeerpostController@update');
 Route::post('/api/beerposts/savePhotos','BeerpostController@savePhotos');
 
 Route::post('/api/beerposts/comment','BeerpostCommentController@store');

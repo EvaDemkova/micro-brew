@@ -17,6 +17,7 @@ const BeerpostForm = () => {
         BeerpostToModify
     } = useDashboardContext();
     const {
+        id,
         beer_name,
         type,
         description,
@@ -151,21 +152,42 @@ const BeerpostForm = () => {
         e.preventDefault();
 
         await axios.get("/sanctum/csrf-cookie");
-        await axios
-            .post("/api/beerposts/store", {
-                values: values,
-                beerpostIngredients: beerpostIngredients,
-                beerpostSections: beerpostSections
-            })
-            .then(function(response) {
-                console.log(response.config.data);
-                if (response.status === 200) {
-                    console.log("Beerpost saved");
-                }
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
+
+        if (!isFormUpdating) {
+            // we create a new beerpost
+            await axios
+                .post("/api/beerposts/store", {
+                    values: values,
+                    beerpostIngredients: beerpostIngredients,
+                    beerpostSections: beerpostSections
+                })
+                .then(function(response) {
+                    console.log(response.config.data);
+                    if (response.status === 200) {
+                        console.log("Beerpost saved");
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        } else {
+            // we update existing beerpost
+            await axios
+                .post(`/api/beerposts/update/${id}`, {
+                    values: values,
+                    beerpostIngredients: beerpostIngredients,
+                    beerpostSections: beerpostSections
+                })
+                .then(function(response) {
+                    console.log(response.config.data);
+                    if (response.status === 200) {
+                        console.log("Beerpost updated");
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        }
 
         if (files.length !== 0) {
             handlePhotos(files);

@@ -14,7 +14,8 @@ const BeerpostForm = () => {
     const {
         closeBeerpostForm,
         isFormUpdating,
-        BeerpostToModify
+        BeerpostToModify,
+        setIsBeerListRender
     } = useDashboardContext();
     const {
         id,
@@ -192,6 +193,9 @@ const BeerpostForm = () => {
         if (files.length !== 0) {
             handlePhotos(files);
         }
+        setIsBeerListRender(true);
+        closeBeerpostForm();
+        createAlert("success", "You new receipe was successfully added !");
     };
 
     return (

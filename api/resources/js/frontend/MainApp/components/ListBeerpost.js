@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useDashboardContext } from "../dashboardContext";
 import Beerpost from "./Beerpost/Beerpost";
 import "./styles/listBeerpost.scss";
 
-const ListBeerpost = ({ url, setIsBeerpostForm, setIsFormUpdating }) => {
+const ListBeerpost = ({ url }) => {
     const [beerposts, setBeerposts] = useState([]);
+    const { isBeerListRender, setIsBeerListRender } = useDashboardContext();
 
     const fetchDatas = async () => {
         const response = await fetch(url);
@@ -13,7 +15,8 @@ const ListBeerpost = ({ url, setIsBeerpostForm, setIsFormUpdating }) => {
 
     useEffect(() => {
         fetchDatas();
-    }, [url]);
+        setIsBeerListRender(false);
+    }, [url, isBeerListRender]);
 
     return (
         <div className="listBeerpost">

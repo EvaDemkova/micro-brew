@@ -20,6 +20,7 @@ const DashboardProvider = ({ children }) => {
     };
 
     const [BeerpostToModify, setBeerpostToModify] = useState([]);
+    const [isBeerListRender, setIsBeerListRender] = useState(false);
 
     return (
         <DashboardContext.Provider
@@ -31,7 +32,9 @@ const DashboardProvider = ({ children }) => {
                 openBeerpostForm,
                 closeBeerpostForm,
                 BeerpostToModify,
-                setBeerpostToModify
+                setBeerpostToModify,
+                isBeerListRender,
+                setIsBeerListRender
             }}
         >
             {children}

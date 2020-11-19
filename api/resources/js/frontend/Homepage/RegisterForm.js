@@ -25,20 +25,18 @@ const RegisterForm = () => {
                 console.log(error);
             });
 
-        // const response = await fetch('http://www.microbrew.test/register', {
-        //   method: 'POST',
-        //   body: JSON.stringify(request_data),
-        //   headers: {
-        //     Accept: 'application/json',
-        //     'Content-type': 'application/json',
-        //   },
-        // })
-        // const response_data = await response.json()
-        // console.log(response_data)
-
-        //here comes fetchUser function.
-
-        history.push("/feed");
+        await axios
+            .get("/api/user")
+            .then(function(response) {
+                if (response.status === 200) {
+                    //The user is authenticated, redirect to /feed
+                    fetchUser(response);
+                    history.push("/feed");
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
     };
 
     return (

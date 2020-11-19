@@ -53,6 +53,7 @@ const BeerpostForm = () => {
     const [beerpostSections, setBeerpostSections] = useState([]);
 
     console.log(beerpostSections);
+
     useEffect(() => {
         if (!isFormUpdating) {
             // we create a new post

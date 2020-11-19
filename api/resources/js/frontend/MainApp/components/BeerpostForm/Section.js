@@ -3,7 +3,6 @@ import { MdLabel } from "react-icons/md";
 
 const Section = ({ setBeerpostSections, section }) => {
     const { key, section_name, description, duration, date } = section;
-    console.log(section);
 
     const handleDate = (e, key) => {
         setBeerpostSections(prev =>
@@ -60,7 +59,7 @@ const Section = ({ setBeerpostSections, section }) => {
                         type="date"
                         name="date"
                         id=""
-                        value={date}
+                        value={date || ""}
                         onChange={e => handleDate(e, key)}
                     />
                 </div>
@@ -73,7 +72,7 @@ const Section = ({ setBeerpostSections, section }) => {
                         name="duration"
                         id=""
                         placeholder="Days"
-                        value={duration}
+                        value={duration || ""}
                         onChange={e => handleDuration(e, key)}
                     />
                 </div>
@@ -86,7 +85,7 @@ const Section = ({ setBeerpostSections, section }) => {
                 id=""
                 cols="80"
                 rows="8"
-                value={description}
+                value={description || ""}
                 onChange={e => handleDescription(e, key)}
             ></textarea>
         </div>

@@ -149,6 +149,24 @@ const BeerpostForm = () => {
             });
     };
 
+    const deleteBeerpost = async () => {
+        await axios.get("/sanctum/csrf-cookie");
+        await axios
+            .post(`/api/beerposts/delete/${id}`)
+            .then(function(response) {
+                console.log(response.config.data);
+                if (response.status === 200) {
+                    console.log("Beerpost deleted");
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+        setIsBeerListRender(true);
+        closeBeerpostForm();
+        createAlert("success", "This receipe has been deleted");
+    };
+
     const handleSubmit = async e => {
         e.preventDefault();
 
@@ -201,7 +219,7 @@ const BeerpostForm = () => {
     return (
         <form method="post" className="beerpost-form" onSubmit={handleSubmit}>
             <div className="form-heading">
-                <MdDelete className="delete-icon" />
+                <MdDelete className="delete-icon" onClick={deleteBeerpost} />
                 {/* <MdEdit className="edit-icon" /> */}
                 <h1>New Beer Post</h1>
                 <MdCancel

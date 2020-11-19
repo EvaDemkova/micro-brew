@@ -134,7 +134,7 @@ class BeerpostController extends Controller
             $values = collect($ingredient);
             $values['beerpost_id'] = $id;
             $ing->create($values->all());
-      }
+        }
       
         //updating beerpost sections
         $sections = collect($request['beerpostSections']);
@@ -154,7 +154,21 @@ class BeerpostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $beerpost = Beerpost::findOrFail($id);
+        $beerpost->delete();
+
+        Beerpost_ingredient::query()
+        ->where('beerpost_id',$id)
+        ->delete();
+
+        Beerpost_section::query()
+        ->where('beerpost_id',$id)
+        ->delete();
+
+        Beerpost_like::query()
+        ->where('beerpost_id',$id)
+        ->delete();
+
     }
 
     public function show_by_user_id($id)

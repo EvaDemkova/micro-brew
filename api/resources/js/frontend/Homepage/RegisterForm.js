@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { useGlobalContext } from "../context";
 
 const RegisterForm = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [password_confirmation, setPasswordConfirm] = useState("");
+    const { fetchUser } = useGlobalContext();
 
     const history = useHistory();
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './styles/profile.scss';
 import { MdEdit } from "react-icons/md";
 import Dropzone from './components/BeerpostForm/Dropzone';
+import Uploader from './components/Uploader';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import SaveBtn from './components/SaveBtn';
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Profile = () => {
-  const [files, setFiles] = useState([]);
+  const [file, setFile] = useState([]);
   const [user, setUser] = useState({
     name: "", 
     email: "", 
@@ -44,7 +45,7 @@ const Profile = () => {
       photo: data.user.profile_photo, 
       equipment: data.equipment[0].name
     }))
-    setFiles([data.user.profile_photo]);
+    setFile([data.user.profile_photo]);
   };
   
   useEffect(() => {
@@ -52,25 +53,25 @@ const Profile = () => {
   }, [])
 
   const handleSubmit = async (e) => { 
-    console.log('hello')
-    e.preventDefault();
-    await axios.get("/sanctum/csrf-cookie");
-    await axios
-      .post('/api/users/update', user)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-    setEdit(false)
+    console.log(file)
+    // e.preventDefault();
+    // await axios.get("/sanctum/csrf-cookie");
+    // await axios
+    //   .post('/api/users/update', user)
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   })
+    // setEdit(false)
   }
 
   if (edit) {
     return (
       <main>
-        <form className={classes.root} noValidate autoComplete="off" onSubmit={ handleSubmit}>
-        <Dropzone className="prof-card__dropzone" files={files} setFiles={ setFiles}/>
+        <form className={classes.root} noValidate autoComplete="off">
+        <Uploader file={file} setFile={setFile} image={user.photo}/>
           <div className="prof-card__row">
             <TextField
               id="outlined-helperText"

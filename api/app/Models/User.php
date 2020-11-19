@@ -28,7 +28,8 @@ class User extends Authenticatable
         'password',
         'street', 
         'city', 
-        'country'
+        'country',
+        'profile_photo'
     ];
 
     /**

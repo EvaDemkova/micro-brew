@@ -82,8 +82,14 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update($request->all());
 
-        $user = $user->fresh();
-        return $user;
+        $equipment = Equipment::updateOrCreate(
+            ['user_id'=> $id],
+            ['name'=> $request->input('equipment')]
+        );
+
+        return $request->input('equipment');
+
+        // $file = $request->file('image');
 
         // return $user;
         // $user->save();

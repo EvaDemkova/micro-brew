@@ -12,7 +12,7 @@ const Dashboard = () => {
     const {
         isBeerpostForm,
         openBeerpostForm,
-        formIsNotModifying
+        formIsNotUpdating
     } = useDashboardContext();
     const { user } = useGlobalContext();
     const { id } = useParams();
@@ -26,7 +26,7 @@ const Dashboard = () => {
                     className="plus-btn"
                     onClick={() => {
                         openBeerpostForm();
-                        formIsNotModifying();
+                        formIsNotUpdating();
                     }}
                 />
             )}

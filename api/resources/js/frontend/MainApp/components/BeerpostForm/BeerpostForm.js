@@ -11,7 +11,25 @@ import { useDashboardContext } from "../../dashboardContext.js";
 
 const BeerpostForm = () => {
     const { user } = useGlobalContext();
-    const { closeBeerpostForm } = useDashboardContext();
+    const {
+        closeBeerpostForm,
+        isFormUpdating,
+        BeerpostToModify
+    } = useDashboardContext();
+    const {
+        beer_name,
+        type,
+        description,
+        abv,
+        og,
+        carbonation,
+        gravity,
+        status,
+        ebc,
+        ibu,
+        batch_volume
+    } = BeerpostToModify;
+    console.log(BeerpostToModify);
 
     const [values, setValues] = useState({
         user_id: user.id,
@@ -33,8 +51,27 @@ const BeerpostForm = () => {
     const [beerpostSections, setBeerpostSections] = useState([]);
 
     useEffect(() => {
-        setBeerpostIngredients(templateIngredients);
-        setBeerpostSections(templateSections);
+        if (!isFormUpdating) {
+            // we create a new post
+            setBeerpostIngredients(templateIngredients);
+            setBeerpostSections(templateSections);
+        } else {
+            // we update existing post
+            setValues({
+                ...values,
+                beer_name: beer_name || "",
+                type: type || "",
+                description: description || "",
+                abv: abv || "",
+                og: og || "",
+                carbonation: carbonation || "",
+                gravity: gravity || "",
+                status: status || "",
+                ebc: ebc || "",
+                ibu: ibu || "",
+                batch_volume: batch_volume || ""
+            });
+        }
     }, []);
 
     const handleChange = event => {

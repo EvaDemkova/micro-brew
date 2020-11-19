@@ -4,10 +4,10 @@ const DashboardContext = React.createContext();
 
 const DashboardProvider = ({ children }) => {
     const [isFormUpdating, setIsFormUpdating] = useState(false);
-    const formIsModifying = () => {
+    const formIsUpdating = () => {
         setIsFormUpdating(true);
     };
-    const formIsNotModifying = () => {
+    const formIsNotUpdating = () => {
         setIsFormUpdating(false);
     };
 
@@ -19,15 +19,19 @@ const DashboardProvider = ({ children }) => {
         setIsBeerpostForm(false);
     };
 
+    const [BeerpostToModify, setBeerpostToModify] = useState([]);
+
     return (
         <DashboardContext.Provider
             value={{
                 isFormUpdating,
-                formIsModifying,
-                formIsNotModifying,
+                formIsUpdating,
+                formIsNotUpdating,
                 isBeerpostForm,
                 openBeerpostForm,
-                closeBeerpostForm
+                closeBeerpostForm,
+                BeerpostToModify,
+                setBeerpostToModify
             }}
         >
             {children}

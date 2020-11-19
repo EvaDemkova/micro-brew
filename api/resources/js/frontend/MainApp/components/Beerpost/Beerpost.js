@@ -9,6 +9,7 @@ import { ebcToColor } from "./ebcToColor";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useGlobalContext } from "../../../context";
+import { useDashboardContext } from "../../dashboardContext";
 
 const Beerpost = ({ data }) => {
     const {
@@ -29,6 +30,11 @@ const Beerpost = ({ data }) => {
     } = data;
     const [isExtended, setIsExtended] = useState(false);
     const { user } = useGlobalContext();
+    const {
+        openBeerpostForm,
+        formIsUpdating,
+        setBeerpostToModify
+    } = useDashboardContext();
 
     const extendsBeerpost = () => {
         setIsExtended(!isExtended);
@@ -61,7 +67,14 @@ const Beerpost = ({ data }) => {
                             <p>{description}</p>
                         </div>
                         {data.user.id == user.id && (
-                            <MdEdit className="edit-icon" />
+                            <MdEdit
+                                className="edit-icon"
+                                onClick={() => {
+                                    openBeerpostForm();
+                                    formIsUpdating();
+                                    setBeerpostToModify(data);
+                                }}
+                            />
                         )}
                     </div>
                     <div className="status">Status {status}</div>

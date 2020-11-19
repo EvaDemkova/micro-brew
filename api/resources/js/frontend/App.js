@@ -30,7 +30,9 @@ function App() {
                 </Route>
                 <Route path="/feed">
                     <Header />
-                    <Feed />
+                    <DashboardProvider>
+                        <Feed />
+                    </DashboardProvider>
                 </Route>
                 <Route path="/map">
                     <Header />

@@ -10,7 +10,7 @@ import { templateIngredients, templateSections } from "./datas";
 import { useDashboardContext } from "../../dashboardContext.js";
 
 const BeerpostForm = () => {
-    const { user } = useGlobalContext();
+    const { user, createAlert } = useGlobalContext();
     const {
         closeBeerpostForm,
         isFormUpdating,

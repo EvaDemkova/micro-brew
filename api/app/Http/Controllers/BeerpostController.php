@@ -117,9 +117,34 @@ class BeerpostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //updating general section
         $beerpost = Beerpost::findOrFail($id);
         $values = collect($request['values']);
         $beerpost->update($values->all());
+
+        //saving all ingredients related to beerpost
+        //first delete all ingredients
+        $old_ingredients = Beerpost_ingredient::query()
+        ->where('beerpost_id',$id)
+        ->delete();
+
+        $ingredients = collect($request['beerpostIngredients']);
+        foreach($ingredients as $ingredient) {
+            $ing = new Beerpost_ingredient;
+            $values = collect($ingredient);
+            $values['beerpost_id'] = $id;
+            $ing->create($values->all());
+      }
+      
+      //saving beerpost sections
+    //   $sections = collect($request['beerpostSections']);
+    //   foreach($sections as $section) {
+    //       $sec = new Beerpost_section;
+    //       $beerpost_id = Beerpost::all() -> last()->id;
+    //       $values = collect($section);
+    //       $values['beerpost_id'] = $beerpost_id;
+    //       $sec->create($values->all());
+    //   }
     }
 
     /**

@@ -11,6 +11,7 @@ import Header from "./MainApp/Header";
 import ErrorPage from "./MainApp/ErrorPage";
 import Alert from "./MainApp/components/Alert";
 import { useGlobalContext } from "./context";
+import { DashboardProvider } from "./MainApp/dashboardContext";
 
 function App() {
     const { alert } = useGlobalContext();
@@ -23,7 +24,9 @@ function App() {
                 </Route>
                 <Route path="/dashboard/:id">
                     <Header />
-                    <Dashboard />
+                    <DashboardProvider>
+                        <Dashboard />
+                    </DashboardProvider>
                 </Route>
                 <Route path="/feed">
                     <Header />

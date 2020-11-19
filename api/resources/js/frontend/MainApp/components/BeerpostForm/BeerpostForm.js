@@ -7,9 +7,11 @@ import Beerpost_ingredients from "./Beerpost_ingredients";
 import Beerpost_sections from "./Beerpost_sections";
 import Dropzone from "./Dropzone";
 import { templateIngredients, templateSections } from "./datas";
+import { useDashboardContext } from "../../dashboardContext.js";
 
-const BeerpostForm = ({ setIsBeerpostForm, isUpdating }) => {
+const BeerpostForm = () => {
     const { user } = useGlobalContext();
+    const { closeBeerpostForm } = useDashboardContext();
 
     const [values, setValues] = useState({
         user_id: user.id,
@@ -101,11 +103,10 @@ const BeerpostForm = ({ setIsBeerpostForm, isUpdating }) => {
             .catch(function(error) {
                 console.log(error);
             });
-        
+
         if (files.length !== 0) {
             handlePhotos(files);
         }
-
     };
 
     return (
@@ -116,7 +117,7 @@ const BeerpostForm = ({ setIsBeerpostForm, isUpdating }) => {
                 <h1>New Beer Post</h1>
                 <MdCancel
                     className="cancel-icon"
-                    onClick={() => setIsBeerpostForm(false)}
+                    onClick={() => closeBeerpostForm()}
                 />
             </div>
             <div className="general-section">

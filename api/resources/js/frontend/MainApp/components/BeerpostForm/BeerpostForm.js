@@ -63,7 +63,7 @@ const BeerpostForm = ({ setIsBeerpostForm, isUpdating }) => {
     };
 
     const handlePhotos = async files => {
-        console.log(files);
+        // console.log(files);
 
         const data = new FormData();
         files.forEach(file => {
@@ -101,15 +101,18 @@ const BeerpostForm = ({ setIsBeerpostForm, isUpdating }) => {
             .catch(function(error) {
                 console.log(error);
             });
+        
+        if (files.length !== 0) {
+            handlePhotos(files);
+        }
 
-        handlePhotos(files);
     };
 
     return (
         <form method="post" className="beerpost-form" onSubmit={handleSubmit}>
             <div className="form-heading">
                 <MdDelete className="delete-icon" />
-                <MdEdit className="edit-icon" />
+                {/* <MdEdit className="edit-icon" /> */}
                 <h1>New Beer Post</h1>
                 <MdCancel
                     className="cancel-icon"

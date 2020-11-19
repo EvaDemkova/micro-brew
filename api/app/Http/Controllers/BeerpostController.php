@@ -117,7 +117,9 @@ class BeerpostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $beerpost = Beerpost::findOrFail($id);
+        $values = collect($request['values']);
+        $beerpost->update($values->all());
     }
 
     /**

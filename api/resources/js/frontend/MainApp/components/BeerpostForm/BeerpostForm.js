@@ -7,9 +7,32 @@ import Beerpost_ingredients from "./Beerpost_ingredients";
 import Beerpost_sections from "./Beerpost_sections";
 import Dropzone from "./Dropzone";
 import { templateIngredients, templateSections } from "./datas";
+import { useDashboardContext } from "../../dashboardContext.js";
 
-const BeerpostForm = ({ setIsBeerpostForm, isUpdating }) => {
+const BeerpostForm = () => {
     const { user } = useGlobalContext();
+    const {
+        closeBeerpostForm,
+        isFormUpdating,
+        BeerpostToModify
+    } = useDashboardContext();
+    const {
+        id,
+        beer_name,
+        type,
+        description,
+        abv,
+        og,
+        carbonation,
+        gravity,
+        status,
+        ebc,
+        ibu,
+        batch_volume,
+        ingredients,
+        beerpost_sections
+    } = BeerpostToModify;
+    console.log(BeerpostToModify);
 
     const [values, setValues] = useState({
         user_id: user.id,
@@ -30,9 +53,52 @@ const BeerpostForm = ({ setIsBeerpostForm, isUpdating }) => {
     const [beerpostIngredients, setBeerpostIngredients] = useState([]);
     const [beerpostSections, setBeerpostSections] = useState([]);
 
+    console.log(beerpostSections);
+
     useEffect(() => {
-        setBeerpostIngredients(templateIngredients);
-        setBeerpostSections(templateSections);
+        if (!isFormUpdating) {
+            // we create a new post
+            setBeerpostIngredients(templateIngredients);
+            setBeerpostSections(templateSections);
+        } else {
+            // we update existing post
+            setValues({
+                ...values,
+                beer_name: beer_name || "",
+                type: type || "",
+                description: description || "",
+                abv: abv || "",
+                og: og || "",
+                carbonation: carbonation || "",
+                gravity: gravity || "",
+                status: status || "",
+                ebc: ebc || "",
+                ibu: ibu || "",
+                batch_volume: batch_volume || ""
+            });
+            const ingredientsData = [];
+            ingredients.map((ingredient, index) => {
+                ingredientsData.push({
+                    key: index,
+                    ingredient_id: ingredient.id,
+                    ingredient_name: ingredient.pivot.ingredient_name || "",
+                    quantity: ingredient.pivot.quantity || ""
+                });
+            });
+            setBeerpostIngredients(ingredientsData);
+
+            const sectionsData = [];
+            beerpost_sections.map(section => {
+                sectionsData.push({
+                    key: section.id,
+                    section_name: section.section_name,
+                    description: section.description || "",
+                    duration: section.duration || "",
+                    date: section.date || ""
+                });
+            });
+            setBeerpostSections(sectionsData);
+        }
     }, []);
 
     const handleChange = event => {
@@ -86,26 +152,46 @@ const BeerpostForm = ({ setIsBeerpostForm, isUpdating }) => {
         e.preventDefault();
 
         await axios.get("/sanctum/csrf-cookie");
-        await axios
-            .post("/api/beerposts/store", {
-                values: values,
-                beerpostIngredients: beerpostIngredients,
-                beerpostSections: beerpostSections
-            })
-            .then(function(response) {
-                console.log(response.config.data);
-                if (response.status === 200) {
-                    console.log("Beerpost saved");
-                }
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
-        
+
+        if (!isFormUpdating) {
+            // we create a new beerpost
+            await axios
+                .post("/api/beerposts/store", {
+                    values: values,
+                    beerpostIngredients: beerpostIngredients,
+                    beerpostSections: beerpostSections
+                })
+                .then(function(response) {
+                    console.log(response.config.data);
+                    if (response.status === 200) {
+                        console.log("Beerpost saved");
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        } else {
+            // we update existing beerpost
+            await axios
+                .post(`/api/beerposts/update/${id}`, {
+                    values: values,
+                    beerpostIngredients: beerpostIngredients,
+                    beerpostSections: beerpostSections
+                })
+                .then(function(response) {
+                    console.log(response.config.data);
+                    if (response.status === 200) {
+                        console.log("Beerpost updated");
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        }
+
         if (files.length !== 0) {
             handlePhotos(files);
         }
-
     };
 
     return (
@@ -116,7 +202,7 @@ const BeerpostForm = ({ setIsBeerpostForm, isUpdating }) => {
                 <h1>New Beer Post</h1>
                 <MdCancel
                     className="cancel-icon"
-                    onClick={() => setIsBeerpostForm(false)}
+                    onClick={() => closeBeerpostForm()}
                 />
             </div>
             <div className="general-section">

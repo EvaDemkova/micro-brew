@@ -6,36 +6,31 @@ import BeerpostForm from "./components/BeerpostForm/BeerpostForm";
 import "./styles/dashboard.scss";
 import { useGlobalContext } from "../context";
 import { useParams } from "react-router-dom";
+import { useDashboardContext } from "./dashboardContext";
 
 const Dashboard = () => {
-    const [isBeerpostForm, setIsBeerpostForm] = useState(false);
-    const [isFormUpdating, setIsFormUpdating] = useState(false);
+    const {
+        isBeerpostForm,
+        openBeerpostForm,
+        formIsNotUpdating
+    } = useDashboardContext();
     const { user } = useGlobalContext();
     const { id } = useParams();
 
     return (
         <div className="dashboard">
             <ProfileCard id={id} />
-            <ListBeerpost
-                url={`/api/beerposts/users/${id}`}
-                setIsBeerpostForm={setIsBeerpostForm}
-                setIsFormUpdating={setIsFormUpdating}
-            />
+            <ListBeerpost url={`/api/beerposts/users/${id}`} />
             {user.id == id && (
                 <BsFillPlusCircleFill
                     className="plus-btn"
                     onClick={() => {
-                        setIsBeerpostForm(true);
-                        setIsFormUpdating(false);
+                        openBeerpostForm();
+                        formIsNotUpdating();
                     }}
                 />
             )}
-            {isBeerpostForm && (
-                <BeerpostForm
-                    setIsBeerpostForm={setIsBeerpostForm}
-                    isUpdating={isFormUpdating}
-                />
-            )}
+            {isBeerpostForm && <BeerpostForm />}
         </div>
     );
 };

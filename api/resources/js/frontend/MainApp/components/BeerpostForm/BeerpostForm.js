@@ -27,7 +27,8 @@ const BeerpostForm = () => {
         status,
         ebc,
         ibu,
-        batch_volume
+        batch_volume,
+        ingredients
     } = BeerpostToModify;
     console.log(BeerpostToModify);
 
@@ -49,7 +50,7 @@ const BeerpostForm = () => {
     const [files, setFiles] = useState([]);
     const [beerpostIngredients, setBeerpostIngredients] = useState([]);
     const [beerpostSections, setBeerpostSections] = useState([]);
-
+    console.log(beerpostIngredients);
     useEffect(() => {
         if (!isFormUpdating) {
             // we create a new post
@@ -71,6 +72,16 @@ const BeerpostForm = () => {
                 ibu: ibu || "",
                 batch_volume: batch_volume || ""
             });
+            const ingredientsData = [];
+            ingredients.map((ingredient, index) => {
+                ingredientsData.push({
+                    key: index,
+                    ingredient_id: ingredient.id,
+                    ingredient_name: ingredient.pivot.ingredient_name || "",
+                    quantity: ingredient.pivot.quantity || ""
+                });
+            });
+            setBeerpostIngredients(ingredientsData);
         }
     }, []);
 

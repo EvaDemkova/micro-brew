@@ -1,10 +1,10 @@
-.profile-picture {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-}
-
 .prof-card {
     width: 500px;
     border: 2px solid black;
+
+    &__picture {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+    }
 }

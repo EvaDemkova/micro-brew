@@ -46,8 +46,8 @@ function Previews(props) {
     }
   });
   
-  const thumbs = files.map(file => (
-    <div style={thumb} key={file.name}>
+  const thumbs = files.map((file, index )=> (
+    <div style={thumb} key={(file.name) ? (file.name): index}>
       <div style={thumbInner}>
         <img
           src={file.preview}

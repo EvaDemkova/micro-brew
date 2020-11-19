@@ -37,15 +37,16 @@ const Profile = () => {
     const data = await response.json();
     setUser((prev) => ({
       ...prev,
-      name: data.user.name, 
-      email: data.user.email, 
-      street: data.user.street, 
-      city: data.user.city, 
-      country: data.user.country, 
-      photo: data.user.profile_photo, 
-      equipment: data.equipment[0].name
+      name: data.user.name,
+      email: data.user.email,
+      street: data.user.street,
+      city: data.user.city,
+      country: data.user.country,
+      photo: ((data.user.profile_photo)? (data.user.profile_photo) : '/uploads/profile-photos/user.png'),
+      equipment: ((data.equipment.legth === 0) ? (data.equipment[0].name) : "NA" )
     }))
     setFile([data.user.profile_photo]);
+    console.log(data.equipment);
   };
   
   useEffect(() => {
@@ -54,17 +55,18 @@ const Profile = () => {
 
   const handleSubmit = async (e) => { 
     console.log(file)
-    // e.preventDefault();
-    // await axios.get("/sanctum/csrf-cookie");
-    // await axios
-    //   .post('/api/users/update', user)
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   })
-    // setEdit(false)
+    console.log(user.equipment);
+    e.preventDefault();
+    await axios.get("/sanctum/csrf-cookie");
+    await axios
+      .post('/api/users/update', user)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    setEdit(false)
   }
 
   if (edit) {

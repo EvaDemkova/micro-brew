@@ -40,7 +40,7 @@ const ProfileCard = ({ id }) => {
     return (
         <div className="profile-card">
             <div className="profile-card__photo">
-                <img src={photo} alt="" />
+                <img src={(photo) ? photo : '/uploads/profile-photos/user.png'} alt={name}  />
             </div>
             <div className="profile-card__name">{name}</div>
             <div className="profile-card__stats">

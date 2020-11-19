@@ -4,6 +4,9 @@ import { MdEdit } from "react-icons/md";
 import Dropzone from './components/BeerpostForm/Dropzone';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import SaveBtn from './components/SaveBtn';
+import axios from 'axios';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,27 +19,31 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = () => {
   const [files, setFiles] = useState([]);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [street, setStreet] = useState(null);
-  const [city, setCity] = useState(null);
-  const [country, setCountry] = useState(null);
-  const [equipment, setEquipment] = useState('');
-  const [photo, setPhoto] = useState('');
-  const [edit, setEdit] = useState(true);
+  const [user, setUser] = useState({
+    name: "", 
+    email: "", 
+    street: "", 
+    city: "", 
+    country: "", 
+    photo: "", 
+    equipment: ""
+  })
+  const [edit, setEdit] = useState(false);
   const classes = useStyles();
 
   const fetchDatas = async () => {
-        const response = await fetch(`/api/profile`);
+    const response = await fetch(`/api/profile`);
     const data = await response.json();
-    console.log(data);
-    setName(data.user.name);
-    setEmail(data.user.email);
-    setStreet(data.user.street);
-    setCity(data.user.city);
-    setCountry(data.user.country);
-    setPhoto(data.user.profile_photo);
-    setEquipment(data.equipment[0].name);
+    setUser((prev) => ({
+      ...prev,
+      name: data.user.name, 
+      email: data.user.email, 
+      street: data.user.street, 
+      city: data.user.city, 
+      country: data.user.country, 
+      photo: data.user.profile_photo, 
+      equipment: data.equipment[0].name
+    }))
     setFiles([data.user.profile_photo]);
   };
   
@@ -44,67 +51,116 @@ const Profile = () => {
     fetchDatas();
   }, [])
 
-  if (edit) {
+  const handleSubmit = async (e) => { 
+    console.log('hello')
+    e.preventDefault();
+    await axios.get("/sanctum/csrf-cookie");
+    await axios
+      .post('/api/users/update', user)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    setEdit(false)
+  }
 
+  if (edit) {
     return (
       <main>
-        <form className={classes.root} noValidate autoComplete="off">
+        <form className={classes.root} noValidate autoComplete="off" onSubmit={ handleSubmit}>
         <Dropzone className="prof-card__dropzone" files={files} setFiles={ setFiles}/>
-        <TextField
-          id="outlined-helperText"
-          label="Name"
-          defaultValue="Name"
-          value={ name}
-          variant="outlined"
-          />
+          <div className="prof-card__row">
+            <TextField
+              id="outlined-helperText"
+              label="Name"
+              value={user.name}
+              variant="outlined"
+              onChange={(e) => setUser((prev) => ({ ...prev, name: e.target.value }))} 
+            />
+        </div>
         <div className="prof-card__row">
            <TextField
           id="outlined-helperText"
           label="Email"
-          defaultValue="Email"
-          value={email}
           variant="outlined"
+          value={user.email}
+          onChange={(e) => setUser((prev) => ({ ...prev, email: e.target.value }))} 
           />
-        </div>
-
-        
+          </div>
+          <div className="prof-card__row">
+           <TextField
+          id="outlined-helperText"
+          label="Street"
+          value={user.street}
+          variant="outlined"
+          onChange={(e) => setUser((prev) => ({ ...prev, street: e.target.value }))} 
+          />
+          </div>
+          <div className="prof-card__row">
+           <TextField
+          id="outlined-helperText"
+          label="City"
+          value={user.city}
+          variant="outlined"
+          onChange={(e) => setUser((prev) => ({ ...prev, city: e.target.value }))} 
+          />
+          </div>
+          <div className="prof-card__row">
+           <TextField
+          id="outlined-helperText"
+          label="Country"
+          value={user.country}
+          variant="outlined"
+          onChange={(e) => setUser((prev) => ({ ...prev, country: e.target.value }))} 
+          />
+          </div>
+          <div className="prof-card__row">
+           <TextField
+          id="outlined-helperText"
+          label="Equipment"
+          value={user.equipment}
+          variant="outlined"
+          onChange={(e) => setUser((prev) => ({ ...prev, equipment: e.target.value }))} 
+          />
+          </div>
+          <SaveBtn handleSubmit={handleSubmit }/>
         </form>
       </main>
     )
-    
   } else {
     return (
       <main className="prof-card">
-        <img className="prof-card__picture" src={photo} alt="" />
+        <img className="prof-card__picture" src={(user.photo)? (user.photo): '/uploads/profile-photos/user.png'} alt={user.name} />
         {/* here comes dropzone or input for file */}
-          <h2>{ name}</h2>
+          <h2>{ user.name}</h2>
         <div className="prof-card__row">
           <h3>Email:</h3>
-          <p>{ email}</p>
+          <p>{ user.email}</p>
         </div>
         <div className="prof-car__row">
           <h3>Address:</h3>
         {
-          (( street  && city && country) === null)
+          (( user.street  && user.city && user.country) === null)
           ?
           <p>NA</p>
           :
           <p>
-            {street}<br />
-            {city}<br />
-            {country}<br/>
+            {user.street}<br />
+            {user.city}<br />
+            {user.country}<br/>
             </p>   
         }
         </div>
         <div className="prof-card__row">
           <h3>Eqipment:</h3>
-          <p>{equipment}</p>
+          <p>{user.equipment}</p>
         </div>
-        <MdEdit/>
+        <MdEdit className="edit-icon" onClick={()=>setEdit(true)}/>
       </main>
     )
   }
-  
 }
 
 export default Profile

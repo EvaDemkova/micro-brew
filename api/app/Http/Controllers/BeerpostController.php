@@ -124,10 +124,10 @@ class BeerpostController extends Controller
 
         //saving all ingredients related to beerpost
         //first delete all ingredients
-        $old_ingredients = Beerpost_ingredient::query()
+        Beerpost_ingredient::query()
         ->where('beerpost_id',$id)
         ->delete();
-
+        //then create new entries for the ingredients
         $ingredients = collect($request['beerpostIngredients']);
         foreach($ingredients as $ingredient) {
             $ing = new Beerpost_ingredient;
@@ -136,15 +136,14 @@ class BeerpostController extends Controller
             $ing->create($values->all());
       }
       
-      //saving beerpost sections
-    //   $sections = collect($request['beerpostSections']);
-    //   foreach($sections as $section) {
-    //       $sec = new Beerpost_section;
-    //       $beerpost_id = Beerpost::all() -> last()->id;
-    //       $values = collect($section);
-    //       $values['beerpost_id'] = $beerpost_id;
-    //       $sec->create($values->all());
-    //   }
+        //updating beerpost sections
+        $sections = collect($request['beerpostSections']);
+        foreach($sections as $section) {
+            $values = collect($section);
+            $sec = Beerpost_section::findOrFail($values['key']);
+            $values['beerpost_id'] = $id;
+            $sec->update($values->all());
+        }
     }
 
     /**

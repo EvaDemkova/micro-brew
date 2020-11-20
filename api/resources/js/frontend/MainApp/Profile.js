@@ -48,11 +48,13 @@ const Profile = () => {
                 : "/uploads/profile-photos/user.png",
             lat: data.user.lat || "",
             lng: data.user.lng || "",
-            equipment:
-                data.equipment.legth === 0 ? data.equipment[0].name : "NA"
+            equipment: ((data.equipment.length === 0)? "NA": data.equipment[0].name )
         }));
-        setFile([data.user.profile_photo]);
-    };
+      setFile([data.user.profile_photo]);
+      console.log(data);
+      console.log(data.equipment)
+  };
+
 
     useEffect(() => {
         fetchDatas();
@@ -212,7 +214,7 @@ const Profile = () => {
                 </div>
                 <div className="prof-car__row">
                     <h3>Address:</h3>
-                    {(user.street && user.city && user.country) === null ? (
+                    {(user.street && user.city && user.country) === "" ? (
                         <p>NA</p>
                     ) : (
                         <p>

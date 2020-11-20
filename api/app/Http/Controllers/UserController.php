@@ -83,6 +83,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update($request->all());
 
+        return $user;
+
         $equipment = Equipment::updateOrCreate(
             ['user_id'=> $id],
             ['name'=> $request->input('equipment')]

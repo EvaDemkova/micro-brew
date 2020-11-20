@@ -29,7 +29,9 @@ class User extends Authenticatable
         'street', 
         'city', 
         'country',
-        'profile_photo'
+        'profile_photo',
+        'lat', 
+        'lng'
     ];
 
     /**

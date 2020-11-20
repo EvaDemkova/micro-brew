@@ -26,6 +26,8 @@ const Profile = () => {
         city: "",
         country: "",
         photo: "",
+        lat: "", 
+        lng: "", 
         equipment: ""
     });
     const [edit, setEdit] = useState(false);
@@ -43,12 +45,13 @@ const Profile = () => {
             country: data.user.country || "",
             photo: data.user.profile_photo
                 ? data.user.profile_photo
-                : "/uploads/profile-photos/user.png",
+            : "/uploads/profile-photos/user.png",
+            lat: data.user.lat || "", 
+            lng: data.user.lng || "",
             equipment:
                 data.equipment.legth === 0 ? data.equipment[0].name : "NA"
         }));
         setFile([data.user.profile_photo]);
-        console.log(data.equipment);
     };
 
     useEffect(() => {
@@ -56,19 +59,33 @@ const Profile = () => {
     }, []);
 
     const handleSubmit = async e => {
-        console.log(file);
-        console.log(user.equipment);
-        e.preventDefault();
-        await axios.get("/sanctum/csrf-cookie");
-        await axios
-            .post("/api/users/update", user)
-            .then(function(response) {
-                console.log(response);
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
-        setEdit(false);
+      e.preventDefault();
+      // console.log(file);
+      const key = "AIzaSyB-pSa870-NrS2xwdl0Lc2GvPFmPJcAGLQ";
+      const encStreet = encodeURIComponent((user.street).trim())
+      const encCity = encodeURIComponent((user.city).trim());
+      const encCountry = encodeURIComponent((user.country).trim())
+
+      await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encStreet},${encCity},${encCountry}&key=${key}`)
+        .then(function (response) {
+          console.log(response);
+          setUser(prev => ({
+            ...prev,
+            lat: response.data.results[0].geometry.location.lat, 
+            lng: response.data.results[0].geometry.location.lng,
+        }));
+        }) 
+      
+      await axios.get("/sanctum/csrf-cookie");
+      await axios
+        .post("/api/users/update", user)
+          .then(function(response) {
+              console.log(response);
+          })
+          .catch(function(error) {
+              console.log(error);
+          });
+      setEdit(false);
     };
 
     if (edit) {

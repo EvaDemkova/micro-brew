@@ -54,8 +54,8 @@ class UserSeeder extends Seeder
             "street"=>"Máchova 4",
             'city'=>'Beroun', 
             'country'=>'Czech Republic', 
-            'lat'=>null, 
-            'lng'=>null
+            'lat'=>49.971924, 
+            'lng'=>14.080394
         ], [
             'name'=>"Jan Tomko", 
             'email'=> "jan@gmail.com",
@@ -64,19 +64,19 @@ class UserSeeder extends Seeder
             "street"=>"U Dubu 520",
             'city'=>'Všenory', 
             'country'=>'Czech Republic', 
-            'lat'=>null, 
-            'lng'=>null
+            'lat'=>49.93168, 
+            'lng'=>14.305609
         ], [
             
             'name'=>"Teresa Moore", 
             'email'=> "teresa@gmail.com",
             "password"=> Hash::make('123456789'), 
             "profile_photo"=>"/uploads/profile-photos/Teresa.jpg", 
-            "street"=>"Janáčkova 993",
-            'city'=>'Úvaly', 
+            "street"=>"Cukrovarnická 5",
+            'city'=>'Praha', 
             'country'=>'Czech Republic', 
-            'lat'=>null, 
-            'lng'=>null
+            'lat'=>50.094123, 
+            'lng'=>14.384637
         ]
         ]);
     }    

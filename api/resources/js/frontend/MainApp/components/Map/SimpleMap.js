@@ -163,7 +163,9 @@ const exampleMapStyles =
       }
     ]
   }
-]
+    ]
+
+
 
 const SimpleMap = () => {
     const [center, setCenter] = useState({ lat: 50.102872, lng: 14.450079 });
@@ -204,17 +206,15 @@ const SimpleMap = () => {
                 >
                     {users.map((user) => {
                         return (
-                        <Marker
-                            key={user.id}
-                            lat={user.lat}
-                            lng={user.lng}
-                            name="My Marker"
-                            color="blue"
+                            <Marker
+                                key={user.id}
+                                lat={user.lat}
+                                lng={user.lng}
+                                name="My Marker"
+                                color="blue"
                             />
                         )
-                    })
-
-                    }
+                    })}
                    
                     {/* <Marker
                     key="marker_1"

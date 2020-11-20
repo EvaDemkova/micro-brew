@@ -61,7 +61,7 @@ const Profile = () => {
     const handleSubmit = async e => {
         e.preventDefault();
         // console.log(file);
-        const key = "AIzaSyB-pSa870-NrS2xwdl0Lc2GvPFmPJcAGLQ";
+        const key = process.env.MIX_GOOGLE_API_KEY;
         const encStreet = encodeURIComponent(user.street.trim());
         const encCity = encodeURIComponent(user.city.trim());
         const encCountry = encodeURIComponent(user.country.trim());

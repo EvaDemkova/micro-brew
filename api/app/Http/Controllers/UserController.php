@@ -16,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::whereNotNull('lat')->whereNotNull('lng')->get();
+        return $users;
     }
 
     /**

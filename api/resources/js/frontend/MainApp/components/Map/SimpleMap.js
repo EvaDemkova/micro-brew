@@ -1,26 +1,222 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import Marker from "./Marker";
+import axios from 'axios';
+
+const exampleMapStyles =
+[
+  {
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#f5f5f5"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#f5f5f5"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#bdbdbd"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#ffffff"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#dadada"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.line",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.station",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#c9c9c9"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  }
+]
 
 const SimpleMap = () => {
-    const [center, setCenter] = useState({ lat: 11.0168, lng: 76.9558 });
-    const [zoom, setZoom] = useState(11);
-    return (
-        <div style={{ height: "100vh", width: "100%" }}>
-            <GoogleMapReact
-                bootstrapURLKeys={{
-                    key: "AIzaSyB-pSa870-NrS2xwdl0Lc2GvPFmPJcAGLQ"
-                }}
-                defaultCenter={center}
-                defaultZoom={zoom}
-            >
-                <Marker
-                    lat={11.0168}
-                    lng={76.9558}
-                    name="My Marker"
-                    color="blue"
-                />
-                {/* <Marker
+    const [center, setCenter] = useState({ lat: 50.102872, lng: 14.450079 });
+    const [zoom, setZoom] = useState(12);
+    const [users, setUsers] = useState();
+
+    const fetchUsers = async () => {
+        await axios.get(`/sanctum/csrf-cookie`);
+        await axios
+            .get(`/api/users`)
+            .then(function(response) {
+                console.log(response);
+                setUsers(response.data)
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }
+
+    useEffect(() => {
+        fetchUsers();        
+    }, [])
+    
+    console.log(users);
+
+    if (users) {
+        return (
+            <div style={{ height: "80vh", width: "80%" }}>
+                <GoogleMapReact
+                    bootstrapURLKeys={{
+                        key: "AIzaSyB-pSa870-NrS2xwdl0Lc2GvPFmPJcAGLQ"
+                    }}
+                    options={{
+                    styles: exampleMapStyles,
+                    }}
+                    defaultCenter={center}
+                    defaultZoom={zoom}
+                >
+                    {users.map((user) => {
+                        return (
+                        <Marker
+                            key={user.id}
+                            lat={user.lat}
+                            lng={user.lng}
+                            name="My Marker"
+                            color="blue"
+                            />
+                        )
+                    })
+
+                    }
+                   
+                    {/* <Marker
                     key="marker_1"
                     icon={{
                         url: "https://cdn.mindbowser.com/custom_marker_pin.svg",
@@ -32,9 +228,12 @@ const SimpleMap = () => {
                         lng: -122.176
                     }}
                 /> */}
-            </GoogleMapReact>
-        </div>
-    );
+                </GoogleMapReact>
+            </div>
+        );
+    } else {
+        return <h1>...loading</h1>
+    }
 };
 
 export default SimpleMap;

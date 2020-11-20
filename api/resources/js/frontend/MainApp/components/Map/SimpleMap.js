@@ -211,7 +211,7 @@ const SimpleMap = () => {
                                 lat={user.lat}
                                 lng={user.lng}
                                 name="My Marker"
-                                color="blue"
+                                color="black"
                             />
                         )
                     })}

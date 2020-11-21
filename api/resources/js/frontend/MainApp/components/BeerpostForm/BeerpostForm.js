@@ -219,8 +219,13 @@ const BeerpostForm = () => {
     return (
         <form method="post" className="beerpost-form" onSubmit={handleSubmit}>
             <div className="form-heading">
-                <MdDelete className="delete-icon" onClick={deleteBeerpost} />
-                {/* <MdEdit className="edit-icon" /> */}
+                {isFormUpdating && (
+                    <MdDelete
+                        className="delete-icon"
+                        onClick={deleteBeerpost}
+                    />
+                )}
+
                 <h1>New Beer Post</h1>
                 <MdCancel
                     className="cancel-icon"

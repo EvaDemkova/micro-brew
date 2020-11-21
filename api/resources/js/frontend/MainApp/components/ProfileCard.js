@@ -16,7 +16,7 @@ const ProfileCard = ({ id }) => {
     const fetchDatas = async () => {
         const response = await fetch(`/api/users/${id}`);
         const data = await response.json();
-        setName(data.user.name);
+        setName(data.user.name || "");
         setFollows(data.user.follows.length);
         setFollowedBy(data.user.followed_by.length);
         setPhoto(data.user.profile_photo);

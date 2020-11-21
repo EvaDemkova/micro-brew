@@ -31,6 +31,7 @@
         "google-map-react": "^2.1.9",
         "moment": "^2.29.1",
         "react-dropzone": "^11.2.4",
-        "react-google-maps": "^9.4.5"
+        "react-google-maps": "^9.4.5",
+        "react-loader-spinner": "^3.1.14"
     }
 }

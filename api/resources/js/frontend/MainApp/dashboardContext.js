@@ -21,6 +21,7 @@ const DashboardProvider = ({ children }) => {
 
     const [BeerpostToModify, setBeerpostToModify] = useState([]);
     const [isBeerListRender, setIsBeerListRender] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     return (
         <DashboardContext.Provider
@@ -34,7 +35,9 @@ const DashboardProvider = ({ children }) => {
                 BeerpostToModify,
                 setBeerpostToModify,
                 isBeerListRender,
-                setIsBeerListRender
+                setIsBeerListRender,
+                isLoading,
+                setIsLoading
             }}
         >
             {children}

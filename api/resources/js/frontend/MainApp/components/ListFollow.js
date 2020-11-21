@@ -8,7 +8,7 @@ import { useDashboardContext } from "../dashboardContext";
 const ListFollow = () => {
     const [followList, setFollowList] = useState([]);
     const { createAlert } = useGlobalContext();
-    const { setIsBeerListRender } = useDashboardContext();
+    const { setIsBeerListRender, isLoading } = useDashboardContext();
 
     const fetchFollowList = async () => {
         const response = await fetch(`/api/users/follow_list_proposal`);
@@ -36,6 +36,9 @@ const ListFollow = () => {
             });
     };
 
+    if (isLoading) {
+        return <div></div>;
+    }
     return (
         <div className="list-follow">
             <h2>Who to follow</h2>

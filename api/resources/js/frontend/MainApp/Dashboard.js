@@ -7,6 +7,7 @@ import "./styles/dashboard.scss";
 import { useGlobalContext } from "../context";
 import { useParams } from "react-router-dom";
 import { useDashboardContext } from "./dashboardContext";
+import Loader from "./Loader";
 
 const Dashboard = () => {
     const {
@@ -20,6 +21,7 @@ const Dashboard = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [isBeerpostForm]);
+
     return (
         <div className="dashboard">
             <ProfileCard id={id} />

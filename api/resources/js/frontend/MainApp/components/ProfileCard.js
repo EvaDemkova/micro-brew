@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useGlobalContext } from "../../context";
 import "./styles/profileCard.scss";
+import { useDashboardContext } from "../dashboardContext";
 
 const ProfileCard = ({ id }) => {
     const [name, setName] = useState("");
@@ -10,6 +11,7 @@ const ProfileCard = ({ id }) => {
     const [photo, setPhoto] = useState("");
     const [nbPosts, setNbPosts] = useState(0);
     const { user } = useGlobalContext();
+    const { isLoading } = useDashboardContext();
 
     const fetchDatas = async () => {
         const response = await fetch(`/api/users/${id}`);
@@ -39,6 +41,9 @@ const ProfileCard = ({ id }) => {
             });
     };
 
+    if (isLoading) {
+        return <div></div>;
+    }
     return (
         <div className="profile-card">
             <div className="profile-card__photo">

@@ -21,8 +21,8 @@ const AppProvider = ({ children }) => {
         setUser({
             id: response.data.id,
             name: response.data.name,
-            lat: response.data.lat || 50.073658,
-            lng: response.data.lng || 14.41854
+            lat: response.data.lat,
+            lng: response.data.lng
         });
     };
 

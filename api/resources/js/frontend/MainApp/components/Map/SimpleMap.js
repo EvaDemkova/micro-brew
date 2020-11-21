@@ -168,7 +168,7 @@ import { useGlobalContext } from "../../../context";
 // ];
 
 const SimpleMap = () => {
-    const [center, setCenter] = useState({ lat: "", lng: "" });
+    const [center, setCenter] = useState({ lat: 50.073658, lng: 14.41854 });
     const [zoom, setZoom] = useState(12);
     const [users, setUsers] = useState();
     const [infosWindow, setInfosWindow] = useState({
@@ -195,7 +195,9 @@ const SimpleMap = () => {
     };
 
     useEffect(() => {
-        setCenter({ lat: user.lat, lng: user.lng });
+        if (user.lat) {
+            setCenter({ lat: user.lat, lng: user.lng });
+        }
         fetchUsers();
     }, []);
 

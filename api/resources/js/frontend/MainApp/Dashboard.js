@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import ListBeerpost from "./components/ListBeerpost";
 import ProfileCard from "./components/ProfileCard";
@@ -17,6 +17,9 @@ const Dashboard = () => {
     const { user } = useGlobalContext();
     const { id } = useParams();
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [isBeerpostForm]);
     return (
         <div className="dashboard">
             <ProfileCard id={id} />

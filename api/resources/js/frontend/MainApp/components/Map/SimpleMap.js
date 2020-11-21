@@ -3,6 +3,8 @@ import axios from "axios";
 import Marker from "./Marker";
 import GoogleMapReact from "google-map-react";
 import InfoWindow from "./InfoWindow";
+import { findLastKey } from "lodash";
+import { useGlobalContext } from "../../../context";
 
 // const exampleMapStyles = [
 //     {
@@ -169,11 +171,19 @@ const SimpleMap = () => {
     const [center, setCenter] = useState({ lat: 50.102872, lng: 14.450079 });
     const [zoom, setZoom] = useState(12);
     const [users, setUsers] = useState();
+    const [infosWindow, setInfosWindow] = useState({
+        display: false,
+        lat: 50.102872,
+        lng: 14.450079,
+        name: "",
+        id: ""
+    });
+    const { user } = useGlobalContext();
 
     const fetchUsers = async () => {
         await axios.get(`/sanctum/csrf-cookie`);
         await axios
-            .get(`/api/users`)
+            .get(`/api/users/map`)
             .then(function(response) {
                 console.log(response);
                 setUsers(response.data);
@@ -189,9 +199,17 @@ const SimpleMap = () => {
 
     const handleClick = user => {
         console.log(user);
+        setInfosWindow({
+            display: true,
+            lat: user.lat,
+            lng: user.lng,
+            name: user.name,
+            id: user.id
+        });
     };
 
     console.log(users);
+    console.log(user);
 
     if (users) {
         return (
@@ -206,9 +224,24 @@ const SimpleMap = () => {
                     defaultCenter={center}
                     defaultZoom={zoom}
                 >
-                    <InfoWindow lat={50.102872} lng={14.450079} />
-
-                    {users.map(user => {
+                    {infosWindow.display && (
+                        <InfoWindow
+                            lat={infosWindow.lat}
+                            lng={infosWindow.lng}
+                            name={infosWindow.name}
+                            id={infosWindow.id}
+                        />
+                    )}
+                    <Marker
+                        key={user.id}
+                        lat={user.lat}
+                        lng={user.lng}
+                        user={user}
+                        name="My Marker"
+                        color="red"
+                        handleClick={handleClick}
+                    />
+                    {users.follow_list_proposal.map(user => {
                         return (
                             <Marker
                                 key={user.id}
@@ -217,6 +250,19 @@ const SimpleMap = () => {
                                 user={user}
                                 name="My Marker"
                                 color="black"
+                                handleClick={handleClick}
+                            />
+                        );
+                    })}
+                    {users.friend_list.map(user => {
+                        return (
+                            <Marker
+                                key={user.id}
+                                lat={user.lat}
+                                lng={user.lng}
+                                user={user}
+                                name="My Marker"
+                                color="blue"
                                 handleClick={handleClick}
                             />
                         );

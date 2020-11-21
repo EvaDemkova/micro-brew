@@ -26,10 +26,11 @@ Route::post('/api/beerposts/comment','BeerpostCommentController@store');
 
 //users related
 Route::get('/api/users/follow_list_proposal', 'UserController@follow_list_proposal');
-Route::get('/api/users/{id}', 'UserController@show');
 Route::get('/api/profile', 'UserController@getProfile');
 Route::post('/api/users/update', 'UserController@update');
 Route::get('/api/users', 'UserController@index');
+Route::get('/api/users/map', 'UserController@users_for_map');
+Route::get('/api/users/{id}', 'UserController@show');
 
 Route::post('/api/users/add_follow', 'FollowerController@store');
 Route::post('/api/users/delete_follow', 'FollowerController@destroy');

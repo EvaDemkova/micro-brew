@@ -137,4 +137,32 @@ class UserController extends Controller
         return compact('user', 'equipment');
     }
 
+    public function users_for_map()
+    {
+        $id = Auth::id();
+        $user = User::findOrFail($id);
+        $user_follows = $user->follows()->get();
+        $user_follows_id = [$id];
+        //get the list of all id of users that you follow 
+        foreach($user_follows as $item) {
+            $user_follows_id[] = $item->id;
+        };
+
+        $follow_list_proposal = User::query()
+        ->whereNotIn('id', $user_follows_id)
+        ->whereNotNull('lat')
+        ->whereNotNull('lng')
+        ->get();
+        
+        $friend_list = User::query()
+        ->whereIn('id', $user_follows_id)
+        ->where('id','!=',$id)
+        ->whereNotNull('lat')
+        ->whereNotNull('lng')
+        ->get();
+        
+        return compact('follow_list_proposal','friend_list');
+        
+    }
+
 }

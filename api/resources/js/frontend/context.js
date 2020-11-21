@@ -18,7 +18,12 @@ const AppProvider = ({ children }) => {
     };
 
     const fetchUser = response => {
-        setUser({ id: response.data.id, name: response.data.name });
+        setUser({
+            id: response.data.id,
+            name: response.data.name,
+            lat: response.data.lat,
+            lng: response.data.lng
+        });
     };
 
     return (

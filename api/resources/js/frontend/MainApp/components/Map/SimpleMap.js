@@ -168,13 +168,13 @@ import { useGlobalContext } from "../../../context";
 // ];
 
 const SimpleMap = () => {
-    const [center, setCenter] = useState({ lat: 50.102872, lng: 14.450079 });
+    const [center, setCenter] = useState({ lat: "", lng: "" });
     const [zoom, setZoom] = useState(12);
     const [users, setUsers] = useState();
     const [infosWindow, setInfosWindow] = useState({
         display: false,
-        lat: 50.102872,
-        lng: 14.450079,
+        lat: "",
+        lng: "",
         name: "",
         id: ""
     });
@@ -186,6 +186,7 @@ const SimpleMap = () => {
             .get(`/api/users/map`)
             .then(function(response) {
                 console.log(response);
+
                 setUsers(response.data);
             })
             .catch(function(error) {
@@ -194,6 +195,7 @@ const SimpleMap = () => {
     };
 
     useEffect(() => {
+        setCenter({ lat: user.lat, lng: user.lng });
         fetchUsers();
     }, []);
 

@@ -20,9 +20,15 @@ const ListBeerpost = ({ url }) => {
 
     return (
         <div className="listBeerpost">
-            {beerposts.map(beerpost => (
-                <Beerpost key={beerpost.id} data={beerpost} />
-            ))}
+            {beerposts.length === 0 ? (
+                <h3>No Beerpost Available</h3>
+            ) : (
+                <>
+                    {beerposts.map(beerpost => (
+                        <Beerpost key={beerpost.id} data={beerpost} />
+                    ))}
+                </>
+            )}
         </div>
     );
 };

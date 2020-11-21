@@ -9,6 +9,7 @@ const ListFollow = () => {
     const [followList, setFollowList] = useState([]);
     const { createAlert } = useGlobalContext();
     const { setIsBeerListRender } = useDashboardContext();
+
     const fetchFollowList = async () => {
         const response = await fetch(`/api/users/follow_list_proposal`);
         const data = await response.json();
@@ -41,6 +42,15 @@ const ListFollow = () => {
             {followList.map(user => {
                 return (
                     <div key={user.id} className="user-card">
+                        <div className="user-card__photo">
+                            <img
+                                src={
+                                    user.profile_photo ||
+                                    "/uploads/profile-photos/user.png"
+                                }
+                                alt={name}
+                            />
+                        </div>
                         <div className="user-card__infos">{user.name}</div>
                         <div className="button-list">
                             <Link to={`/dashboard/${user.id}`}>

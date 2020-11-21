@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Equipment;
+use App\Models\Beerpost;
 
 class UserController extends Controller
 {
@@ -55,7 +56,12 @@ class UserController extends Controller
         $user->follows;
         $user->followed_by;
 
-        return $user;
+        $list_beerpost = Beerpost::query()
+        ->where('user_id',$id)
+        ->get();
+        $nb_beerposts = $list_beerpost->count();
+
+        return compact('user', 'nb_beerposts');
     }
 
     /**

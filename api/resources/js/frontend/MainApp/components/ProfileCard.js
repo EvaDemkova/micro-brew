@@ -7,16 +7,18 @@ const ProfileCard = ({ id }) => {
     const [name, setName] = useState("");
     const [follows, setFollows] = useState("");
     const [followedBy, setFollowedBy] = useState("");
-    const { user } = useGlobalContext();
     const [photo, setPhoto] = useState("");
+    const [nbPosts, setNbPosts] = useState(0);
+    const { user } = useGlobalContext();
 
     const fetchDatas = async () => {
         const response = await fetch(`/api/users/${id}`);
         const data = await response.json();
-        setName(data.name);
-        setFollows(data.follows.length);
-        setFollowedBy(data.followed_by.length);
-        setPhoto(data.profile_photo);
+        setName(data.user.name);
+        setFollows(data.user.follows.length);
+        setFollowedBy(data.user.followed_by.length);
+        setPhoto(data.user.profile_photo);
+        setNbPosts(data.nb_beerposts);
     };
 
     useEffect(() => {
@@ -40,7 +42,10 @@ const ProfileCard = ({ id }) => {
     return (
         <div className="profile-card">
             <div className="profile-card__photo">
-                <img src={(photo) ? photo : '/uploads/profile-photos/user.png'} alt={name}  />
+                <img
+                    src={photo ? photo : "/uploads/profile-photos/user.png"}
+                    alt={name}
+                />
             </div>
             <div className="profile-card__name">{name}</div>
             <div className="profile-card__stats">
@@ -54,7 +59,7 @@ const ProfileCard = ({ id }) => {
                 </div>
                 <div className="profile-card__item">
                     <h5>Posts</h5>
-                    <p>9</p>
+                    <p>{nbPosts}</p>
                 </div>
             </div>
             {user.id != id && (

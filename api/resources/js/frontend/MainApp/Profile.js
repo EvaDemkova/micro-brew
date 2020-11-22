@@ -6,8 +6,8 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import SaveBtn from "./components/SaveBtn";
 import axios from "axios";
-import { Paper } from '@material-ui/core';
-import Loader from './Loader';
+import { Paper } from "@material-ui/core";
+import Loader from "./components/Loader";
 import { useGlobalContext } from "../context.js";
 
 const useStyles = makeStyles(theme => ({
@@ -41,7 +41,7 @@ const Profile = () => {
 
     //useStyles
     const classes = useStyles();
-    
+
     //data fetching function
     const fetchDatas = async () => {
         setIsLoading(true);
@@ -59,21 +59,21 @@ const Profile = () => {
                 : "/uploads/profile-photos/user.png",
             lat: data.user.lat || "",
             lng: data.user.lng || "",
-            equipment: ((data.equipment.length === 0)? "": data.equipment[0].name )
+            equipment: data.equipment.length === 0 ? "" : data.equipment[0].name
         }));
         setFile([data.user.profile_photo]);
-        setIsLoading(false)
-  };
+        setIsLoading(false);
+    };
 
     //first data fetch
     useEffect(() => {
         fetchDatas();
     }, []);
 
-    const handlePhoto = async (file) => {
+    const handlePhoto = async file => {
         console.log(file);
         const data = new FormData();
-        data.append('image', file, file.name);
+        data.append("image", file, file.name);
         await axios.get("/sanctum/csrf-cookie");
         await axios
             .post("/api/users/savePhoto", data, {
@@ -89,8 +89,13 @@ const Profile = () => {
                 console.log(error);
             });
         fetchDatas();
+<<<<<<< HEAD
     }
     
+=======
+    };
+
+>>>>>>> f6aaf3d54fd779c668c4311bee0988f5fa30a8f3
     const handleSubmit = async e => {
         e.preventDefault();
         setIsLoading(true);
@@ -100,13 +105,13 @@ const Profile = () => {
         const encCountry = encodeURIComponent(user.country.trim());
         let lat = user.lat;
         let lng = user.lng;
-        
-        if ((user.street !== "") && (user.street !== "") && (user.country !== "")) {
+
+        if (user.street !== "" && user.street !== "" && user.country !== "") {
             await axios
                 .get(
                     `https://maps.googleapis.com/maps/api/geocode/json?address=${encStreet},${encCity},${encCountry}&key=${key}`
-                    )
-                .then(function (response) {
+                )
+                .then(function(response) {
                     console.log(response);
                     lat = response.data.results[0].geometry.location.lat;
                     lng = response.data.results[0].geometry.location.lng;
@@ -117,27 +122,27 @@ const Profile = () => {
                     }));
                 });
         }
-        
+
         await axios.get("/sanctum/csrf-cookie");
         await axios
-        .post("/api/users/update", { ...user, lat: lat, lng: lng })
-            .then(function (response) {
-            createAlert("success", `Changes saved`);
-            console.log(response);
-        })
+            .post("/api/users/update", { ...user, lat: lat, lng: lng })
+            .then(function(response) {
+                createAlert("success", `Changes saved`);
+                console.log(response);
+            })
             .catch(function(error) {
                 console.log(error);
             });
         console.log(file[0]);
         console.log([`${user.photo}`]);
-        
-        if (file[0] != user.photo) {    
+
+        if (file[0] != user.photo) {
             handlePhoto(file);
-        } 
+        }
 
         setTimeout(() => {
             setIsLoading(false);
-        }, 2000)
+        }, 2000);
         setEdit(false);
     };
 
@@ -149,13 +154,17 @@ const Profile = () => {
         return (
             <main>
                 <Paper className="profile-form" elevation={3}>
-                     <form className={classes.root} noValidate autoComplete="off">
+                    <form
+                        className={classes.root}
+                        noValidate
+                        autoComplete="off"
+                    >
                         <Uploader
                             className="profile-form__uploader"
                             file={file}
                             setFile={setFile}
                             image={user.photo}
-                            />
+                        />
                         <div className="profile-form__name">
                             <h3>NAME</h3>
                             <TextField
@@ -201,8 +210,9 @@ const Profile = () => {
                                         setUser(prev => ({
                                             ...prev,
                                             equipment: e.target.value
-                                        }))}
-                                    />
+                                        }))
+                                    }
+                                />
                             </div>
                             <div className="profile-form__content__row">
                                 <h3>ADDRESS</h3>
@@ -251,9 +261,9 @@ const Profile = () => {
                                 />
                             </div>
                         </div>
-                        <SaveBtn  handleSubmit={handleSubmit} />
-                        </form>
-                    </Paper>
+                        <SaveBtn handleSubmit={handleSubmit} />
+                    </form>
+                </Paper>
             </main>
         );
     } else {
@@ -275,21 +285,20 @@ const Profile = () => {
                             <h3>EMAIL</h3>
                             <p>{user.email}</p>
                         </div>
-                        <div  className="prof-card__content__row">
+                        <div className="prof-card__content__row">
                             <h3>EQUIPMENT</h3>
                             <p>
-                                {(user.equipment === "" ) ? (
-                                <p>NA</p>
-                            ) : (
-                                <p>
-                                    {user.equipment}
-                                </p>
-                                    )}
+                                {user.equipment === "" ? (
+                                    <p>NA</p>
+                                ) : (
+                                    <p>{user.equipment}</p>
+                                )}
                             </p>
                         </div>
-                        <div  className="prof-card__content__row">
+                        <div className="prof-card__content__row">
                             <h3>ADDRESS</h3>
-                            {(user.street && user.city && user.country) === "" ? (
+                            {(user.street && user.city && user.country) ===
+                            "" ? (
                                 <p>NA</p>
                             ) : (
                                 <p>
@@ -303,7 +312,10 @@ const Profile = () => {
                             )}
                         </div>
                     </div>
-                    <MdEdit className="edit-icon" onClick={() => setEdit(true)} />
+                    <MdEdit
+                        className="edit-icon"
+                        onClick={() => setEdit(true)}
+                    />
                 </Paper>
             </main>
         );

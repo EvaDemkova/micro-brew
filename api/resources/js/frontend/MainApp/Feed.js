@@ -3,7 +3,7 @@ import { useGlobalContext } from "../context";
 import ListBeerpost from "./components/ListBeerpost";
 import ListFollow from "./components/ListFollow";
 import ProfileCard from "./components/ProfileCard";
-import Loader from "./Loader";
+
 import "./styles/feed.scss";
 
 const Feed = () => {

@@ -217,9 +217,13 @@ const SimpleMap = () => {
     const handleSubmit = e => {
         e.preventDefault();
         const regex = new RegExp(`${searchValue}`, "i");
-        const result = users.friend_list.filter(({ name }) =>
-            name.match(regex)
-        );
+        const result = users.friend_list
+            .filter(({ name }) => name.match(regex))
+            .concat(
+                users.follow_list_proposal.filter(({ name }) =>
+                    name.match(regex)
+                )
+            );
         console.log(result);
         if (result.length !== 0) {
             setCenter({ lat: result[0].lat, lng: result[0].lng });

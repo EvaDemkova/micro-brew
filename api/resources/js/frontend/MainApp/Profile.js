@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles/profile.scss";
 import { MdEdit } from "react-icons/md";
-import Dropzone from "./components/BeerpostForm/Dropzone";
 import Uploader from "./components/Uploader";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -51,18 +50,33 @@ const Profile = () => {
             equipment: ((data.equipment.length === 0)? "NA": data.equipment[0].name )
         }));
       setFile([data.user.profile_photo]);
-      console.log(data);
-      console.log(data.equipment)
   };
-
 
     useEffect(() => {
         fetchDatas();
     }, []);
 
+    const handlePhoto = async (file) => {
+        const data = new FormData();
+        data.append('image', file, file.name);
+        await axios.get("/sanctum/csrf-cookie");
+        await axios
+            .post("/api/users/savePhoto", data, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+        fetchDatas();
+    }
+
     const handleSubmit = async e => {
         e.preventDefault();
-        // console.log(file);
         const key = process.env.MIX_GOOGLE_API_KEY;
         const encStreet = encodeURIComponent(user.street.trim());
         const encCity = encodeURIComponent(user.city.trim());
@@ -83,7 +97,6 @@ const Profile = () => {
                     lng: lng
                 }));
             });
-        console.log(user);
 
         await axios.get("/sanctum/csrf-cookie");
         await axios
@@ -94,6 +107,8 @@ const Profile = () => {
             .catch(function(error) {
                 console.log(error);
             });
+        handlePhoto(file);
+        
         setEdit(false);
     };
 
@@ -206,7 +221,6 @@ const Profile = () => {
                     }
                     alt={user.name}
                 />
-                {/* here comes dropzone or input for file */}
                 <h2>{user.name}</h2>
                 <div className="prof-card__row">
                     <h3>Email:</h3>

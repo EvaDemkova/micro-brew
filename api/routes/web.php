@@ -28,6 +28,7 @@ Route::post('/api/beerposts/comment','BeerpostCommentController@store');
 Route::get('/api/users/follow_list_proposal', 'UserController@follow_list_proposal');
 Route::get('/api/profile', 'UserController@getProfile');
 Route::post('/api/users/update', 'UserController@update');
+Route::post('/api/users/savePhoto', 'UserController@savePhoto');
 Route::get('/api/users', 'UserController@index');
 Route::get('/api/users/map', 'UserController@users_for_map');
 Route::get('/api/users/{id}', 'UserController@show');

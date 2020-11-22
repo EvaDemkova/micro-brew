@@ -105,6 +105,18 @@ class UserController extends Controller
         
     }
 
+    public function savePhoto(Request $request) 
+    {
+        // var_dump($request->file('image'));
+        $file = $request->file('image');
+        $file->storeAs('profile-photos', $file->getClientOriginalName(), 'uploads');
+        $relative_url = '/uploads/profile-photos/'. $file->getClientOriginalName();
+        $id = Auth::id();
+        $user = User::findOrFail($id);
+        $user['profile_photo'] =$relative_url;
+        $user->save();
+    }
+
     /**
      * Remove the specified resource from storage.
      *

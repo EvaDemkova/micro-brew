@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { useGlobalContext } from "../../../context";
 import { useDashboardContext } from "../../dashboardContext";
+import BeerpostCarousel from './BeerpostCarousel';
 
 const Beerpost = ({ data }) => {
     const {
@@ -26,7 +27,8 @@ const Beerpost = ({ data }) => {
         ibu,
         og,
         status,
-        likes
+        likes, 
+        beerpost_photos
     } = data;
     const [isExtended, setIsExtended] = useState(false);
     const { user } = useGlobalContext();
@@ -91,7 +93,13 @@ const Beerpost = ({ data }) => {
                         </ul>
                     </div>
                 </div>
-                <div className="beerpost__photos"></div>
+                <div className="beerpost__photos">
+                    {
+                        (beerpost_photos.length !== 0) ? <BeerpostCarousel photos={beerpost_photos} /> : 
+                        <div className="beerpost__photos__na"></div>
+                    } 
+                </div>
+                
             </div>
             <div className="arrow_down" onClick={extendsBeerpost}>
                 {isExtended ? <FaArrowUp /> : <FaArrowDown />}

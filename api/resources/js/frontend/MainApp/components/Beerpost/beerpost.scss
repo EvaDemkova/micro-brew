@@ -61,11 +61,23 @@
     }
 
     &__photos {
-        min-width: 16em;
-        background-color: grey;
+        width: 220px;
+        height: 220px;
+        margin-right: 0.2em;
+
         img {
-            height: 100%;
-            width: 100%;
+            margin-top: 0.2em;
+            height: 220px;
+            width: 220px;
+        }
+
+        &__na {
+            width: 220px;
+            height: 220px;
+            background-image: url("../../../../../../public/uploads/beerpost-images/default.svg");
+            background-repeat: no-repeat;
+            background-size: contain;
+            // background-color: black;
         }
     }
 

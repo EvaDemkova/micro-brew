@@ -3,9 +3,10 @@ import axios from "axios";
 import Marker from "./Marker";
 import GoogleMapReact from "google-map-react";
 import InfoWindow from "./InfoWindow";
-import { findLastKey } from "lodash";
 import { useGlobalContext } from "../../../context";
 import Loader from "../Loader";
+import "./simpleMap.scss";
+import { Button, TextField } from "@material-ui/core";
 
 // const exampleMapStyles = [
 //     {
@@ -244,19 +245,20 @@ const SimpleMap = () => {
 
     if (users) {
         return (
-            <div>
-                <form className="" onSubmit={handleSubmit}>
-                    <label htmlFor="search">
-                        <input
-                            type="text"
-                            name="search"
-                            value={searchValue}
-                            onChange={e => setSearchValue(e.target.value)}
-                        />
-                    </label>
-                    <button>Search</button>
+            <div className="simpleMap">
+                <form className="form-search" onSubmit={handleSubmit}>
+                    <TextField
+                        id="standard-basic"
+                        label="Type a name here"
+                        value={searchValue}
+                        onChange={e => setSearchValue(e.target.value)}
+                    />
+
+                    <Button variant="outlined" type="submit">
+                        SEARCH
+                    </Button>
                 </form>
-                <div style={{ height: "80vh", width: "80%" }}>
+                <div style={{ height: "80vh", width: "100%" }}>
                     <GoogleMapReact
                         bootstrapURLKeys={{
                             key: process.env.MIX_GOOGLE_API_KEY

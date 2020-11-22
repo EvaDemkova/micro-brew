@@ -7,11 +7,8 @@ import "./styles/dashboard.scss";
 import { useGlobalContext } from "../context";
 import { useParams } from "react-router-dom";
 import { useDashboardContext } from "./dashboardContext";
-<<<<<<< HEAD
-import Loader from "./Loader";
 import Statistics from './components/Statistics';
-=======
->>>>>>> f6aaf3d54fd779c668c4311bee0988f5fa30a8f3
+
 
 const Dashboard = () => {
     const {

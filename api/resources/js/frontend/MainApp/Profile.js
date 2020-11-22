@@ -89,13 +89,10 @@ const Profile = () => {
                 console.log(error);
             });
         fetchDatas();
-<<<<<<< HEAD
-    }
     
-=======
+    
     };
 
->>>>>>> f6aaf3d54fd779c668c4311bee0988f5fa30a8f3
     const handleSubmit = async e => {
         e.preventDefault();
         setIsLoading(true);

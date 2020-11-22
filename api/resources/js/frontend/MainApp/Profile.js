@@ -90,7 +90,6 @@ const Profile = () => {
             });
         fetchDatas();
     }
-
     
     const handleSubmit = async e => {
         e.preventDefault();
@@ -140,7 +139,6 @@ const Profile = () => {
             setIsLoading(false);
         }, 2000)
         setEdit(false);
-
     };
 
     if (isLoading) {

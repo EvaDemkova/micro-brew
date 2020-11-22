@@ -209,7 +209,6 @@ class BeerpostController extends Controller
         ->whereIn('user_id', $user_follows_id)
         ->orderByDesc('updated_at')
         ->get();
-
         return $beerposts;
     }
 

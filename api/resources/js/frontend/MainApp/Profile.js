@@ -48,7 +48,7 @@ const Profile = () => {
                 : "/uploads/profile-photos/user.png",
             lat: data.user.lat || "",
             lng: data.user.lng || "",
-            equipment: ((data.equipment.length === 0)? "NA": data.equipment[0].name )
+            equipment: ((data.equipment.length === 0)? "": data.equipment[0].name )
         }));
       setFile([data.user.profile_photo]);
   };
@@ -76,28 +76,36 @@ const Profile = () => {
         fetchDatas();
     }
 
+    const getCoordinates = async () => {
+        
+    }
+
     const handleSubmit = async e => {
         e.preventDefault();
+
         const key = process.env.MIX_GOOGLE_API_KEY;
         const encStreet = encodeURIComponent(user.street.trim());
         const encCity = encodeURIComponent(user.city.trim());
         const encCountry = encodeURIComponent(user.country.trim());
         let lat = user.lat;
         let lng = user.lng;
-        await axios
-            .get(
-                `https://maps.googleapis.com/maps/api/geocode/json?address=${encStreet},${encCity},${encCountry}&key=${key}`
-            )
-            .then(function(response) {
-                console.log(response);
-                lat = response.data.results[0].geometry.location.lat;
-                lng = response.data.results[0].geometry.location.lng;
-                setUser(prev => ({
-                    ...prev,
-                    lat: lat,
-                    lng: lng
-                }));
-            });
+
+        if ((user.street !== "") && (user.street !== "") && (user.country !== "")) {
+            await axios
+                .get(
+                    `https://maps.googleapis.com/maps/api/geocode/json?address=${encStreet},${encCity},${encCountry}&key=${key}`
+                )
+                .then(function (response) {
+                    console.log(response);
+                    lat = response.data.results[0].geometry.location.lat;
+                    lng = response.data.results[0].geometry.location.lng;
+                    setUser(prev => ({
+                        ...prev,
+                        lat: lat,
+                        lng: lng
+                    }));
+                });
+        }
 
         await axios.get("/sanctum/csrf-cookie");
         await axios
@@ -119,16 +127,19 @@ const Profile = () => {
                 <Paper className="profile-form" elevation={3}>
                      <form className={classes.root} noValidate autoComplete="off">
                         <Uploader
+                            className="profile-form__uploader"
                             file={file}
                             setFile={setFile}
                             image={user.photo}
                         />
-                        <div className="prof-card__row">
+                        <div className="profile-form__name">
+                            <h3>NAME</h3>
                             <TextField
                                 id="outlined-helperText"
                                 label="Name"
                                 value={user.name}
                                 variant="outlined"
+                                size="small"
                                 onChange={e =>
                                     setUser(prev => ({
                                         ...prev,
@@ -137,77 +148,86 @@ const Profile = () => {
                                 }
                             />
                         </div>
-                        <div className="prof-card__row">
-                            <TextField
-                                id="outlined-helperText"
-                                label="Email"
-                                variant="outlined"
-                                value={user.email}
-                                onChange={e =>
-                                    setUser(prev => ({
-                                        ...prev,
-                                        email: e.target.value
-                                    }))
-                                }
-                            />
+                        <div className="profile-form__content">
+                            <div className="profile-form__content__row">
+                                <h3>EMAIL</h3>
+                                <TextField
+                                    id="outlined-helperText"
+                                    label="Email"
+                                    variant="outlined"
+                                    value={user.email}
+                                    size="small"
+                                    onChange={e =>
+                                        setUser(prev => ({
+                                            ...prev,
+                                            email: e.target.value
+                                        }))
+                                    }
+                                />
+                            </div>
+                            <div className="profile-form__content__row">
+                                <h3>EQUIPMENT</h3>
+                                <TextField
+                                    id="outlined-helperText"
+                                    label="Equipment"
+                                    value={user.equipment}
+                                    variant="outlined"
+                                    size="small"
+                                    onChange={e =>
+                                        setUser(prev => ({
+                                            ...prev,
+                                            equipment: e.target.value
+                                        }))}
+                                    />
+                            </div>
+                            <div className="profile-form__content__row">
+                                <h3>ADDRESS</h3>
+                                <TextField
+                                    id="outlined-helperText"
+                                    label="Street"
+                                    value={user.street}
+                                    variant="outlined"
+                                    size="small"
+                                    onChange={e =>
+                                        setUser(prev => ({
+                                            ...prev,
+                                            street: e.target.value
+                                        }))
+                                    }
+                                />
+                            </div>
+                            <div className="profile-form__content__row">
+                                <TextField
+                                    id="outlined-helperText"
+                                    label="City"
+                                    value={user.city}
+                                    variant="outlined"
+                                    size="small"
+                                    onChange={e =>
+                                        setUser(prev => ({
+                                            ...prev,
+                                            city: e.target.value
+                                        }))
+                                    }
+                                />
+                            </div>
+                            <div className="profile-form__content__row">
+                                <TextField
+                                    id="outlined-helperText"
+                                    label="Country"
+                                    value={user.country}
+                                    variant="outlined"
+                                    size="small"
+                                    onChange={e =>
+                                        setUser(prev => ({
+                                            ...prev,
+                                            country: e.target.value
+                                        }))
+                                    }
+                                />
+                            </div>
                         </div>
-                        <div className="prof-card__row">
-                            <TextField
-                                id="outlined-helperText"
-                                label="Street"
-                                value={user.street}
-                                variant="outlined"
-                                onChange={e =>
-                                    setUser(prev => ({
-                                        ...prev,
-                                        street: e.target.value
-                                    }))
-                                }
-                            />
-                        </div>
-                        <div className="prof-card__row">
-                            <TextField
-                                id="outlined-helperText"
-                                label="City"
-                                value={user.city}
-                                variant="outlined"
-                                onChange={e =>
-                                    setUser(prev => ({
-                                        ...prev,
-                                        city: e.target.value
-                                    }))
-                                }
-                            />
-                        </div>
-                        <div className="prof-card__row">
-                            <TextField
-                                id="outlined-helperText"
-                                label="Country"
-                                value={user.country}
-                                variant="outlined"
-                                onChange={e =>
-                                    setUser(prev => ({
-                                        ...prev,
-                                        country: e.target.value
-                                    }))
-                                }
-                            />
-                        </div>
-                        <div className="prof-card__row">
-                        <TextField
-                            id="outlined-helperText"
-                            label="Equipment"
-                            value={user.equipment}
-                            variant="outlined"
-                            onChange={e =>
-                                setUser(prev => ({
-                                    ...prev,
-                                    equipment: e.target.value
-                                }))
-                            }
-                             />
-                        </div>
-                        <SaveBtn handleSubmit={handleSubmit} />
+                        <SaveBtn  handleSubmit={handleSubmit} />
                         </form>
                     </Paper>
             </main>
@@ -233,7 +253,15 @@ const Profile = () => {
                         </div>
                         <div  className="prof-card__content__row">
                             <h3>EQUIPMENT</h3>
-                            <p>{user.equipment}</p>
+                            <p>
+                                {(user.equipment === "" ) ? (
+                                <p>NA</p>
+                            ) : (
+                                <p>
+                                    {user.equipment}
+                                </p>
+                                    )}
+                            </p>
                         </div>
                         <div  className="prof-card__content__row">
                             <h3>ADDRESS</h3>

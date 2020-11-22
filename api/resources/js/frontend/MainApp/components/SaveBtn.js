@@ -63,7 +63,7 @@ export default function SaveBtn({handleSubmit}) {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className="save-btn">
           <ColorButton variant="contained" color="primary" className={classes.margin} onClick={ handleSubmit}>
         Save
       </ColorButton>

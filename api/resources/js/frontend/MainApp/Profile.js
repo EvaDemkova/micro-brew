@@ -8,6 +8,7 @@ import SaveBtn from "./components/SaveBtn";
 import axios from "axios";
 import { Paper } from '@material-ui/core';
 import Loader from './Loader';
+import { useGlobalContext } from "../context.js";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -19,6 +20,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Profile = () => {
+    //context
+    const { createAlert } = useGlobalContext();
+
+    //useStates
     const [file, setFile] = useState([]);
     const [user, setUser] = useState({
         name: "",
@@ -33,9 +38,11 @@ const Profile = () => {
     });
     const [edit, setEdit] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+
+    //useStyles
     const classes = useStyles();
     
-
+    //data fetching function
     const fetchDatas = async () => {
         setIsLoading(true);
         const response = await fetch(`/api/profile`);
@@ -58,11 +65,13 @@ const Profile = () => {
         setIsLoading(false)
   };
 
+    //first data fetch
     useEffect(() => {
         fetchDatas();
     }, []);
 
     const handlePhoto = async (file) => {
+        console.log(file);
         const data = new FormData();
         data.append('image', file, file.name);
         await axios.get("/sanctum/csrf-cookie");
@@ -74,6 +83,7 @@ const Profile = () => {
             })
             .then(response => {
                 console.log(response);
+                createAlert("success", `Profile photo saved`);
             })
             .catch(function(error) {
                 console.log(error);
@@ -84,7 +94,7 @@ const Profile = () => {
     
     const handleSubmit = async e => {
         e.preventDefault();
-        
+        setIsLoading(true);
         const key = process.env.MIX_GOOGLE_API_KEY;
         const encStreet = encodeURIComponent(user.street.trim());
         const encCity = encodeURIComponent(user.city.trim());
@@ -112,15 +122,25 @@ const Profile = () => {
         await axios.get("/sanctum/csrf-cookie");
         await axios
         .post("/api/users/update", { ...user, lat: lat, lng: lng })
-        .then(function(response) {
+            .then(function (response) {
+            createAlert("success", `Changes saved`);
             console.log(response);
         })
             .catch(function(error) {
                 console.log(error);
             });
-        handlePhoto(file);
-        setIsLoading(true);
+        console.log(file[0]);
+        console.log([`${user.photo}`]);
+        
+        if (file[0] != user.photo) {    
+            handlePhoto(file);
+        } 
+
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2000)
         setEdit(false);
+
     };
 
     if (isLoading) {

@@ -179,6 +179,7 @@ const SimpleMap = () => {
         name: "",
         id: ""
     });
+    const [searchValue, setSearchValue] = useState("");
     const { user } = useGlobalContext();
 
     const fetchUsers = async () => {
@@ -213,67 +214,100 @@ const SimpleMap = () => {
         });
     };
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        const regex = new RegExp(`${searchValue}`, "i");
+        const result = users.friend_list.filter(({ name }) =>
+            name.match(regex)
+        );
+        console.log(result);
+        if (result.length !== 0) {
+            setCenter({ lat: result[0].lat, lng: result[0].lng });
+            setInfosWindow({
+                display: true,
+                lat: result[0].lat,
+                lng: result[0].lng,
+                name: result[0].name,
+                id: result[0].id
+            });
+        } else {
+            console.log("no result found");
+        }
+    };
+
     console.log(users);
     console.log(user);
 
     if (users) {
         return (
-            <div style={{ height: "80vh", width: "80%" }}>
-                <GoogleMapReact
-                    bootstrapURLKeys={{
-                        key: process.env.MIX_GOOGLE_API_KEY
-                    }}
-                    // options={{
-                    //     styles: exampleMapStyles
-                    // }}
-                    defaultCenter={center}
-                    defaultZoom={zoom}
-                >
-                    {infosWindow.display && (
-                        <InfoWindow
-                            lat={infosWindow.lat}
-                            lng={infosWindow.lng}
-                            name={infosWindow.name}
-                            id={infosWindow.id}
+            <div>
+                <form className="" onSubmit={handleSubmit}>
+                    <label htmlFor="search">
+                        <input
+                            type="text"
+                            name="search"
+                            value={searchValue}
+                            onChange={e => setSearchValue(e.target.value)}
                         />
-                    )}
-                    <Marker
-                        key={user.id}
-                        lat={user.lat}
-                        lng={user.lng}
-                        user={user}
-                        name="My Marker"
-                        color="red"
-                        handleClick={handleClick}
-                    />
-                    {users.follow_list_proposal.map(user => {
-                        return (
-                            <Marker
-                                key={user.id}
-                                lat={user.lat}
-                                lng={user.lng}
-                                user={user}
-                                name="My Marker"
-                                color="black"
-                                handleClick={handleClick}
+                    </label>
+                    <button>Search</button>
+                </form>
+                <div style={{ height: "80vh", width: "80%" }}>
+                    <GoogleMapReact
+                        bootstrapURLKeys={{
+                            key: process.env.MIX_GOOGLE_API_KEY
+                        }}
+                        // options={{
+                        //     styles: exampleMapStyles
+                        // }}
+                        center={center}
+                        defaultZoom={zoom}
+                    >
+                        {infosWindow.display && (
+                            <InfoWindow
+                                lat={infosWindow.lat}
+                                lng={infosWindow.lng}
+                                name={infosWindow.name}
+                                id={infosWindow.id}
                             />
-                        );
-                    })}
-                    {users.friend_list.map(user => {
-                        return (
-                            <Marker
-                                key={user.id}
-                                lat={user.lat}
-                                lng={user.lng}
-                                user={user}
-                                name="My Marker"
-                                color="blue"
-                                handleClick={handleClick}
-                            />
-                        );
-                    })}
+                        )}
+                        <Marker
+                            key={user.id}
+                            lat={user.lat}
+                            lng={user.lng}
+                            user={user}
+                            name="My Marker"
+                            color="red"
+                            handleClick={handleClick}
+                        />
+                        {users.follow_list_proposal.map(user => {
+                            return (
+                                <Marker
+                                    key={user.id}
+                                    lat={user.lat}
+                                    lng={user.lng}
+                                    user={user}
+                                    name="My Marker"
+                                    color="black"
+                                    handleClick={handleClick}
+                                />
+                            );
+                        })}
+                        {users.friend_list.map(user => {
+                            return (
+                                <Marker
+                                    key={user.id}
+                                    lat={user.lat}
+                                    lng={user.lng}
+                                    user={user}
+                                    name="My Marker"
+                                    color="blue"
+                                    handleClick={handleClick}
+                                />
+                            );
+                        })}
 
-                    {/* <Marker
+                        {/* <Marker
                     key="marker_1"
                     icon={{
                         url: "https://cdn.mindbowser.com/custom_marker_pin.svg",
@@ -285,7 +319,8 @@ const SimpleMap = () => {
                         lng: -122.176
                     }}
                 /> */}
-                </GoogleMapReact>
+                    </GoogleMapReact>
+                </div>
             </div>
         );
     } else {

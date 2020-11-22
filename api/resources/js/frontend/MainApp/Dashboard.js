@@ -7,7 +7,6 @@ import "./styles/dashboard.scss";
 import { useGlobalContext } from "../context";
 import { useParams } from "react-router-dom";
 import { useDashboardContext } from "./dashboardContext";
-import Loader from "./Loader";
 
 const Dashboard = () => {
     const {

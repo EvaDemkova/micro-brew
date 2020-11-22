@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDashboardContext } from "../dashboardContext";
-import Loader from "../Loader";
+import Loader from "./Loader";
 import Beerpost from "./Beerpost/Beerpost";
 import "./styles/listBeerpost.scss";
 

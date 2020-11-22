@@ -5,6 +5,7 @@ import GoogleMapReact from "google-map-react";
 import InfoWindow from "./InfoWindow";
 import { findLastKey } from "lodash";
 import { useGlobalContext } from "../../../context";
+import Loader from "../Loader";
 
 // const exampleMapStyles = [
 //     {
@@ -288,7 +289,7 @@ const SimpleMap = () => {
             </div>
         );
     } else {
-        return <h1>...loading</h1>;
+        return <Loader />;
     }
 };
 

@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import SaveBtn from "./components/SaveBtn";
 import axios from "axios";
 import { Paper } from '@material-ui/core';
+import Loader from './Loader';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -31,9 +32,12 @@ const Profile = () => {
         equipment: ""
     });
     const [edit, setEdit] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const classes = useStyles();
+    
 
     const fetchDatas = async () => {
+        setIsLoading(true);
         const response = await fetch(`/api/profile`);
         const data = await response.json();
         setUser(prev => ({
@@ -50,7 +54,8 @@ const Profile = () => {
             lng: data.user.lng || "",
             equipment: ((data.equipment.length === 0)? "": data.equipment[0].name )
         }));
-      setFile([data.user.profile_photo]);
+        setFile([data.user.profile_photo]);
+        setIsLoading(false)
   };
 
     useEffect(() => {
@@ -76,25 +81,22 @@ const Profile = () => {
         fetchDatas();
     }
 
-    const getCoordinates = async () => {
-        
-    }
-
+    
     const handleSubmit = async e => {
         e.preventDefault();
-
+        
         const key = process.env.MIX_GOOGLE_API_KEY;
         const encStreet = encodeURIComponent(user.street.trim());
         const encCity = encodeURIComponent(user.city.trim());
         const encCountry = encodeURIComponent(user.country.trim());
         let lat = user.lat;
         let lng = user.lng;
-
+        
         if ((user.street !== "") && (user.street !== "") && (user.country !== "")) {
             await axios
                 .get(
                     `https://maps.googleapis.com/maps/api/geocode/json?address=${encStreet},${encCity},${encCountry}&key=${key}`
-                )
+                    )
                 .then(function (response) {
                     console.log(response);
                     lat = response.data.results[0].geometry.location.lat;
@@ -106,20 +108,24 @@ const Profile = () => {
                     }));
                 });
         }
-
+        
         await axios.get("/sanctum/csrf-cookie");
         await axios
-            .post("/api/users/update", { ...user, lat: lat, lng: lng })
-            .then(function(response) {
-                console.log(response);
-            })
+        .post("/api/users/update", { ...user, lat: lat, lng: lng })
+        .then(function(response) {
+            console.log(response);
+        })
             .catch(function(error) {
                 console.log(error);
             });
         handlePhoto(file);
-        
+        setIsLoading(true);
         setEdit(false);
     };
+
+    if (isLoading) {
+        return <Loader />;
+    }
 
     if (edit) {
         return (
@@ -131,7 +137,7 @@ const Profile = () => {
                             file={file}
                             setFile={setFile}
                             image={user.photo}
-                        />
+                            />
                         <div className="profile-form__name">
                             <h3>NAME</h3>
                             <TextField

@@ -14,7 +14,7 @@ const LoaderComp = () => {
         <div style={style}>
             <Loader
                 type="Circles"
-                color="#00BFFF"
+                color="lightgrey"
                 height={100}
                 width={100}
                 timeout={10000} //10 secs

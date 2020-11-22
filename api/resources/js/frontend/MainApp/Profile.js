@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import SaveBtn from "./components/SaveBtn";
 import axios from "axios";
+import { Paper } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -115,83 +116,84 @@ const Profile = () => {
     if (edit) {
         return (
             <main>
-                <form className={classes.root} noValidate autoComplete="off">
-                    <Uploader
-                        file={file}
-                        setFile={setFile}
-                        image={user.photo}
-                    />
-                    <div className="prof-card__row">
-                        <TextField
-                            id="outlined-helperText"
-                            label="Name"
-                            value={user.name}
-                            variant="outlined"
-                            onChange={e =>
-                                setUser(prev => ({
-                                    ...prev,
-                                    name: e.target.value
-                                }))
-                            }
+                <Paper className="profile-form" elevation={3}>
+                     <form className={classes.root} noValidate autoComplete="off">
+                        <Uploader
+                            file={file}
+                            setFile={setFile}
+                            image={user.photo}
                         />
-                    </div>
-                    <div className="prof-card__row">
-                        <TextField
-                            id="outlined-helperText"
-                            label="Email"
-                            variant="outlined"
-                            value={user.email}
-                            onChange={e =>
-                                setUser(prev => ({
-                                    ...prev,
-                                    email: e.target.value
-                                }))
-                            }
-                        />
-                    </div>
-                    <div className="prof-card__row">
-                        <TextField
-                            id="outlined-helperText"
-                            label="Street"
-                            value={user.street}
-                            variant="outlined"
-                            onChange={e =>
-                                setUser(prev => ({
-                                    ...prev,
-                                    street: e.target.value
-                                }))
-                            }
-                        />
-                    </div>
-                    <div className="prof-card__row">
-                        <TextField
-                            id="outlined-helperText"
-                            label="City"
-                            value={user.city}
-                            variant="outlined"
-                            onChange={e =>
-                                setUser(prev => ({
-                                    ...prev,
-                                    city: e.target.value
-                                }))
-                            }
-                        />
-                    </div>
-                    <div className="prof-card__row">
-                        <TextField
-                            id="outlined-helperText"
-                            label="Country"
-                            value={user.country}
-                            variant="outlined"
-                            onChange={e =>
-                                setUser(prev => ({
-                                    ...prev,
-                                    country: e.target.value
-                                }))
-                            }
-                        />
-                    </div>
-                    <div className="prof-card__row">
+                        <div className="prof-card__row">
+                            <TextField
+                                id="outlined-helperText"
+                                label="Name"
+                                value={user.name}
+                                variant="outlined"
+                                onChange={e =>
+                                    setUser(prev => ({
+                                        ...prev,
+                                        name: e.target.value
+                                    }))
+                                }
+                            />
+                        </div>
+                        <div className="prof-card__row">
+                            <TextField
+                                id="outlined-helperText"
+                                label="Email"
+                                variant="outlined"
+                                value={user.email}
+                                onChange={e =>
+                                    setUser(prev => ({
+                                        ...prev,
+                                        email: e.target.value
+                                    }))
+                                }
+                            />
+                        </div>
+                        <div className="prof-card__row">
+                            <TextField
+                                id="outlined-helperText"
+                                label="Street"
+                                value={user.street}
+                                variant="outlined"
+                                onChange={e =>
+                                    setUser(prev => ({
+                                        ...prev,
+                                        street: e.target.value
+                                    }))
+                                }
+                            />
+                        </div>
+                        <div className="prof-card__row">
+                            <TextField
+                                id="outlined-helperText"
+                                label="City"
+                                value={user.city}
+                                variant="outlined"
+                                onChange={e =>
+                                    setUser(prev => ({
+                                        ...prev,
+                                        city: e.target.value
+                                    }))
+                                }
+                            />
+                        </div>
+                        <div className="prof-card__row">
+                            <TextField
+                                id="outlined-helperText"
+                                label="Country"
+                                value={user.country}
+                                variant="outlined"
+                                onChange={e =>
+                                    setUser(prev => ({
+                                        ...prev,
+                                        country: e.target.value
+                                    }))
+                                }
+                            />
+                        </div>
+                        <div className="prof-card__row">
                         <TextField
                             id="outlined-helperText"
                             label="Equipment"
@@ -203,49 +205,54 @@ const Profile = () => {
                                     equipment: e.target.value
                                 }))
                             }
-                        />
-                    </div>
-                    <SaveBtn handleSubmit={handleSubmit} />
-                </form>
+                             />
+                        </div>
+                        <SaveBtn handleSubmit={handleSubmit} />
+                        </form>
+                    </Paper>
             </main>
         );
     } else {
         return (
-            <main className="prof-card">
-                <img
-                    className="prof-card__picture"
-                    src={
-                        user.photo
-                            ? user.photo
-                            : "/uploads/profile-photos/user.png"
-                    }
-                    alt={user.name}
-                />
-                <h2>{user.name}</h2>
-                <div className="prof-card__row">
-                    <h3>Email:</h3>
-                    <p>{user.email}</p>
-                </div>
-                <div className="prof-car__row">
-                    <h3>Address:</h3>
-                    {(user.street && user.city && user.country) === "" ? (
-                        <p>NA</p>
-                    ) : (
-                        <p>
-                            {user.street}
-                            <br />
-                            {user.city}
-                            <br />
-                            {user.country}
-                            <br />
-                        </p>
-                    )}
-                </div>
-                <div className="prof-card__row">
-                    <h3>Eqipment:</h3>
-                    <p>{user.equipment}</p>
-                </div>
-                <MdEdit className="edit-icon" onClick={() => setEdit(true)} />
+            <main>
+                <Paper elevation={3} className="prof-card">
+                    <img
+                        className="prof-card__picture"
+                        src={
+                            user.photo
+                                ? user.photo
+                                : "/uploads/profile-photos/user.png"
+                        }
+                        alt={user.name}
+                    />
+                    <h2>{user.name}</h2>
+                    <div className="prof-card__content">
+                        <div className="prof-card__content__row">
+                            <h3>EMAIL</h3>
+                            <p>{user.email}</p>
+                        </div>
+                        <div  className="prof-card__content__row">
+                            <h3>EQUIPMENT</h3>
+                            <p>{user.equipment}</p>
+                        </div>
+                        <div  className="prof-card__content__row">
+                            <h3>ADDRESS</h3>
+                            {(user.street && user.city && user.country) === "" ? (
+                                <p>NA</p>
+                            ) : (
+                                <p>
+                                    {user.street}
+                                    <br />
+                                    {user.city}
+                                    <br />
+                                    {user.country}
+                                    <br />
+                                </p>
+                            )}
+                        </div>
+                    </div>
+                    <MdEdit className="edit-icon" onClick={() => setEdit(true)} />
+                </Paper>
             </main>
         );
     }

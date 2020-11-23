@@ -1,30 +1,32 @@
 .profile-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 12em;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 10px;
-
-  &__photo {
-    padding: 1em;
-    img {
-      width: 100%;
-      border-radius: 50%;
-    }
-  }
-
-  &__stats {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-
-  &__item {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+    min-width: 12em;
+    max-width: 12em;
+    background-color: white;
+    //border: 1px solid black;
+    //border-radius: 10px;
+
+    &__photo {
+        padding: 1em;
+        img {
+            width: 100%;
+            border-radius: 50%;
+        }
+    }
+
+    &__stats {
+        width: 100%;
+        padding: 0.3em 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

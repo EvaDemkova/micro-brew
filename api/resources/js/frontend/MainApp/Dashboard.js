@@ -7,8 +7,7 @@ import "./styles/dashboard.scss";
 import { useGlobalContext } from "../context";
 import { useParams } from "react-router-dom";
 import { useDashboardContext } from "./dashboardContext";
-import Statistics from './components/Statistics';
-
+import Statistics from "./components/Statistics";
 
 const Dashboard = () => {
     const {
@@ -36,8 +35,8 @@ const Dashboard = () => {
                     }}
                 />
             )}
-            {isBeerpostForm && <BeerpostForm />}
             <Statistics url={`/api/beerposts/users/${id}`} />
+            {isBeerpostForm && <BeerpostForm />}
         </div>
     );
 };

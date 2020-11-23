@@ -49,7 +49,6 @@ const ProfileCard = ({ id }) => {
             });
     };
 
-    console.log(followedBy.map(item => item.id).indexOf(user.id));
     if (isLoading) {
         return <div></div>;
     }

@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 
 const Profile = () => {
     //context
-    const { createAlert } = useGlobalContext();
+    const { createAlert, setCoordinates } = useGlobalContext();
 
     //useStates
     const [file, setFile] = useState([]);
@@ -89,8 +89,6 @@ const Profile = () => {
                 console.log(error);
             });
         fetchDatas();
-    
-    
     };
 
     const handleSubmit = async e => {
@@ -117,6 +115,7 @@ const Profile = () => {
                         lat: lat,
                         lng: lng
                     }));
+                    setCoordinates(lat, lng);
                 });
         }
 

@@ -25,10 +25,24 @@ const AppProvider = ({ children }) => {
             lng: response.data.lng
         });
     };
+    const setCoordinates = (lat, lng) => {
+        setUser({
+            ...user,
+            lat: lat,
+            lng: lng
+        });
+    };
 
     return (
         <AppContext.Provider
-            value={{ user, fetchUser, alert, createAlert, resetAlert }}
+            value={{
+                user,
+                fetchUser,
+                alert,
+                createAlert,
+                resetAlert,
+                setCoordinates
+            }}
         >
             {children}
         </AppContext.Provider>

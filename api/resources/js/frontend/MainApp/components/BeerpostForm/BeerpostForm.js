@@ -307,7 +307,7 @@ const BeerpostForm = () => {
                     />
                 </div>
 
-                <Accordion expanded={expanded === 'panel1'} onChange={handleExpand('panel1')}>
+                <Accordion defaultExpanded onChange={handleExpand('panel1')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"

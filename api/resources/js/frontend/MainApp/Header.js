@@ -8,25 +8,27 @@ import "./styles/header.scss";
 const Header = () => {
     const { user } = useGlobalContext();
     return (
-        <nav>
-            <ul>
-                <li>
-                    <Link to={`/dashboard/${user.id}`}>Dashboard</Link>
-                </li>
-                <li>
-                    <Link to="/feed">Feed</Link>
-                </li>
-                <li>
-                    <Link to="/map">Map</Link>
-                </li>
-                <li>
-                    <Link to="/profile">Profile</Link>
-                </li>
-                <li>
-                    <Logout />
-                </li>
-            </ul>
-        </nav>
+        <header>
+            <div className="logo">Micro Brew</div>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to={`/dashboard/${user.id}`}>Dashboard</Link>
+                    </li>
+                    <li>
+                        <Link to="/feed">Feed</Link>
+                    </li>
+                    <li>
+                        <Link to="/map">Map</Link>
+                    </li>
+                    <li>
+                        <Link to="/profile">Profile</Link>
+                    </li>
+                </ul>
+            </nav>
+
+            <Logout />
+        </header>
     );
 };
 

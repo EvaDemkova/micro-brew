@@ -30,26 +30,12 @@
 .form-heading {
     display: flex;
     margin-bottom: 2em;
+    justify-content: space-between;
 }
 
 .beerpost-form h1 {
-    margin: 0 4em;
-}
-
-.general-section {
-    display: flex;
-    height: 500px;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: space-evenly;
-}
-.input-item {
-    display: flex;
-    width: 320px;
-    //border: 1px solid black;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.3em;
+    margin: 0 5em;
+    align-self: center;
 }
 
 .input-item input {
@@ -58,10 +44,13 @@
 
 .loader-container {
     border: 1px dashed lightgray;
-    width: 350px;
+    width: 600px;
     min-height: 130px;
     padding: 2.2em 2em;
     color: grey;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    margin-left: 0.5em;
 
     p {
         text-align: center;

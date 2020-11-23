@@ -4,6 +4,7 @@ import axios from "axios";
 import "./styles/listFollow.scss";
 import { useGlobalContext } from "../../context";
 import { useDashboardContext } from "../dashboardContext";
+import { Button } from "@material-ui/core";
 
 const ListFollow = () => {
     const [followList, setFollowList] = useState([]);
@@ -41,7 +42,7 @@ const ListFollow = () => {
     }
     return (
         <div className="list-follow">
-            <h2>Who to follow</h2>
+            <h2>Other Brewers</h2>
             {followList.map(user => {
                 return (
                     <div key={user.id} className="user-card">
@@ -57,13 +58,20 @@ const ListFollow = () => {
                         <div className="user-card__infos">{user.name}</div>
                         <div className="button-list">
                             <Link to={`/dashboard/${user.id}`}>
-                                View Profile
+                                <Button
+                                    //variant="contained"
+                                    color="primary"
+                                >
+                                    View Profile
+                                </Button>
                             </Link>
-                            <button
+                            <Button
+                                //variant="contained"
+                                color="primary"
                                 onClick={() => addFollow(user.id, user.name)}
                             >
                                 Follow
-                            </button>
+                            </Button>
                         </div>
                     </div>
                 );

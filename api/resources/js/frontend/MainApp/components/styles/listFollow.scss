@@ -2,8 +2,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 10em;
     max-width: 12em;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 10px;
+    //background-color: white;
+    //border: 1px solid black;
+    //border-radius: 10px;
+
+    .user-card {
+        border-top: 1px solid black;
+        padding: 1em 0;
+
+        img {
+            border-radius: 50%;
+        }
+
+        &__infos {
+            text-align: center;
+        }
+    }
 }

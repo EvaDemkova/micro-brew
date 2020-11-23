@@ -7,7 +7,7 @@ import Dashboard from "./MainApp/Dashboard";
 import Feed from "./MainApp/Feed";
 import Map from "./MainApp/Map";
 import Profile from "./MainApp/Profile";
-import Header from "./MainApp/Header";
+import Header from "./MainApp/components/Header";
 import ErrorPage from "./MainApp/ErrorPage";
 import Alert from "./MainApp/components/Alert";
 import { useGlobalContext } from "./context";

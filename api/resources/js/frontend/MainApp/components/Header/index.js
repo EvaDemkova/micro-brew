@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useGlobalContext } from "../context";
 import Logout from "./Logout";
 
-import "./styles/header.scss";
+import "./header.scss";
+import { useGlobalContext } from "../../../context";
 
 const Header = () => {
     const { user } = useGlobalContext();
     return (
         <header>
-            <div className="logo">Micro Brew</div>
+            <div className="logo">
+                <img src="/logo/toast.svg" alt="" />
+                <h3>Micro Brew</h3>
+            </div>
             <nav>
                 <ul>
                     <li>

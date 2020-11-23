@@ -24,7 +24,7 @@ const exampleMapStyles = [
                 visibility: "off"
             }
         ]
-    }
+    },
     //     {
     //         elementType: "labels.text.fill",
     //         stylers: [
@@ -261,7 +261,7 @@ const SimpleMap = () => {
                     </Button>
                     <p className="search-result">{searchText}</p>
                 </form>
-                <div style={{ height: "80vh", width: "100%" }}>
+                <div style={{ height: "77vh", width: "100%" }}>
                     <GoogleMapReact
                         bootstrapURLKeys={{
                             key: process.env.MIX_GOOGLE_API_KEY
@@ -289,7 +289,7 @@ const SimpleMap = () => {
                                     lng={user.lng}
                                     user={user}
                                     name="My Marker"
-                                    color="black"
+                                    color="#C96E12"
                                     handleClick={handleClick}
                                 />
                             );
@@ -302,7 +302,7 @@ const SimpleMap = () => {
                                     lng={user.lng}
                                     user={user}
                                     name="My Marker"
-                                    color="blue"
+                                    color="black"
                                     handleClick={handleClick}
                                 />
                             );
@@ -313,7 +313,7 @@ const SimpleMap = () => {
                             lng={user.lng}
                             user={user}
                             name="My Marker"
-                            color="red"
+                            color="#fec63d"
                             handleClick={handleClick}
                         />
 

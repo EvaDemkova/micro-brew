@@ -4,7 +4,7 @@ import {
 } from 'recharts';
 
 
-const COLORS = ['#f28e1c', '#fec63d', '#C96E12'];
+const COLORS = ['#f28e1c', '#fec63d', '#8B4513'];
 
 export default class Example extends PureComponent {
     render() {

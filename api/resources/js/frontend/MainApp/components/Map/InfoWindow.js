@@ -9,8 +9,9 @@ const InfoWindow = ({ name, id }) => {
             <h3>{name}</h3>
             <Link to={`/dashboard/${id}`}>
                 <Button variant="contained" style={{  
-                                        backgroundColor: "#fec63d",
-                                        fontWeight: 'bold'
+                                        backgroundColor: "darkgrey",
+                    fontWeight: 'bold', 
+                                        color: 'white'
                                     }}>
                     View Profile
                 </Button>

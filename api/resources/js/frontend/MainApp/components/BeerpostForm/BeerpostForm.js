@@ -5,72 +5,72 @@ import axios from "axios";
 import "./BeerpostForm.scss";
 import Beerpost_ingredients from "./Beerpost_ingredients";
 import Beerpost_sections from "./Beerpost_sections";
-import SaveBtn from '../SaveBtn';
+import SaveBtn from "../SaveBtn";
 import Dropzone from "./Dropzone";
 import { templateIngredients, templateSections } from "./datas";
 import { useDashboardContext } from "../../dashboardContext.js";
-import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import { makeStyles } from "@material-ui/core/styles";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import TextField from "@material-ui/core/TextField";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
+const useStyles = makeStyles(theme => ({
+    root: {
+        "& .MuiTextField-root": {
+            margin: theme.spacing(1),
+            width: "25ch"
+        }
     },
     width: {
-        width: '650px',
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
+        width: "650px"
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2)
     },
     heading: {
         // textAlign: center,
-    fontSize: theme.typography.pxToRem(15),
-    flexBasis: '33.33%',
-    flexShrink: 0,
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
+        fontSize: theme.typography.pxToRem(15),
+        flexBasis: "33.33%",
+        flexShrink: 0
     },
-  nameType: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: '1em',
-    }, 
-  generalInputs: {
-    height: '225px',
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    alignContent: 'space-between',
+    secondaryHeading: {
+        fontSize: theme.typography.pxToRem(15),
+        color: theme.palette.text.secondary
+    },
+    nameType: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: "1em"
+    },
+    generalInputs: {
+        height: "225px",
+        display: "flex",
+        flexDirection: "column",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        alignContent: "space-between"
     },
     btn: {
-        margin: 'auto',
+        margin: "auto"
     },
-    ingredients: { 
-      width: '600px', 
-      display: 'flex', 
-      flexDirection: 'column', 
-      flexWrap: 'wrap', 
-      alignContent: 'center',
-  }
+    ingredients: {
+        width: "600px",
+        display: "flex",
+        flexDirection: "column",
+        flexWrap: "wrap",
+        alignContent: "center"
+    }
 }));
 
 const BeerpostForm = () => {
@@ -119,8 +119,8 @@ const BeerpostForm = () => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
-    const handleExpand = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+    const handleExpand = panel => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
     };
 
     useEffect(() => {
@@ -283,7 +283,12 @@ const BeerpostForm = () => {
 
     return (
         <div className={classes.root}>
-            <form method="post" className={classes.root} className="beerpost-form" onSubmit={handleSubmit}>
+            <form
+                method="post"
+                className={classes.root}
+                className="beerpost-form"
+                onSubmit={handleSubmit}
+            >
                 <div className="form-heading">
                     {isFormUpdating && (
                         <MdDelete
@@ -291,21 +296,30 @@ const BeerpostForm = () => {
                             onClick={deleteBeerpost}
                         />
                     )}
-                    <h1>New Beer Post</h1>
+                    {isFormUpdating ? (
+                        <h1>Updating Beer post</h1>
+                    ) : (
+                        <h1>New Beer Post</h1>
+                    )}
                     <MdCancel
                         className="cancel-icon"
                         onClick={() => closeBeerpostForm()}
                     />
                 </div>
 
-                <Accordion className={ classes.width} defaultExpanded onChange={handleExpand('panel1')}>
+                <Accordion
+                    className={classes.width}
+                    defaultExpanded
+                    onChange={handleExpand("panel1")}
+                >
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
-                        >
-                        <Typography className={classes.heading}><h3>General information</h3></Typography>
-                        
+                    >
+                        <Typography className={classes.heading}>
+                            <h3>General information</h3>
+                        </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
@@ -317,20 +331,29 @@ const BeerpostForm = () => {
                                     variant="outlined"
                                     type="text"
                                     value={values.beer_name}
-                                    onChange={e => setValues(prev => ({
-                                        ...prev, 
-                                        beer_name: e.target.value
-                                    }))}
+                                    onChange={e =>
+                                        setValues(prev => ({
+                                            ...prev,
+                                            beer_name: e.target.value
+                                        }))
+                                    }
                                 />
-                                <FormControl variant="outlined" className={classes.formControl}>
-                                    <InputLabel htmlFor="outlined-age-native-simple">Beer Type</InputLabel>
+                                <FormControl
+                                    variant="outlined"
+                                    className={classes.formControl}
+                                >
+                                    <InputLabel htmlFor="outlined-age-native-simple">
+                                        Beer Type
+                                    </InputLabel>
                                     <Select
                                         native
                                         value={values.type}
-                                        onChange={e => setValues(prev => ({
-                                        ...prev, 
-                                        type: e.target.value
-                                        }))}
+                                        onChange={e =>
+                                            setValues(prev => ({
+                                                ...prev,
+                                                type: e.target.value
+                                            }))
+                                        }
                                         size="small"
                                         label="Type"
                                     >
@@ -343,27 +366,29 @@ const BeerpostForm = () => {
                             <TextField
                                 id="outlined-full-width"
                                 label="Description"
-                                        style={{ margin: 0 }}
-                                        style={{ width: 600}}
+                                style={{ margin: 0 }}
+                                style={{ width: 600 }}
                                 fullWidth
                                 size="small"
                                 margin="normal"
                                 InputLabelProps={{
-                                shrink: true,
+                                    shrink: true
                                 }}
                                 multiline
                                 rows={3}
                                 variant="outlined"
                                 value={values.description}
-                                onChange={e => setValues(prev => ({
-                                    ...prev, 
-                                    description: e.target.value
-                                }))}
+                                onChange={e =>
+                                    setValues(prev => ({
+                                        ...prev,
+                                        description: e.target.value
+                                    }))
+                                }
                             />
                             <Dropzone files={files} setFiles={setFiles} />
                             <div className={classes.generalInputs}>
                                 <TextField
-                                    style={{width: 230}}
+                                    style={{ width: 230 }}
                                     id="outlined-helperText"
                                     label="ABV"
                                     defaultValue="Default Value"
@@ -371,13 +396,15 @@ const BeerpostForm = () => {
                                     type="text"
                                     size="small"
                                     value={values.abv}
-                                    onChange={e => setValues(prev => ({
-                                        ...prev, 
-                                        abv: e.target.value
-                                    }))}
+                                    onChange={e =>
+                                        setValues(prev => ({
+                                            ...prev,
+                                            abv: e.target.value
+                                        }))
+                                    }
                                 />
                                 <TextField
-                                    style={{width: 230}}
+                                    style={{ width: 230 }}
                                     id="outlined-helperText"
                                     label="OG"
                                     defaultValue="Default Value"
@@ -385,13 +412,15 @@ const BeerpostForm = () => {
                                     type="text"
                                     size="small"
                                     value={values.og}
-                                    onChange={e => setValues(prev => ({
-                                        ...prev, 
-                                        og: e.target.value
-                                    }))}
+                                    onChange={e =>
+                                        setValues(prev => ({
+                                            ...prev,
+                                            og: e.target.value
+                                        }))
+                                    }
                                 />
                                 <TextField
-                                    style={{width: 230}}
+                                    style={{ width: 230 }}
                                     id="outlined-helperText"
                                     label="EBC"
                                     defaultValue="Default Value"
@@ -399,13 +428,15 @@ const BeerpostForm = () => {
                                     type="text"
                                     size="small"
                                     value={values.ebc}
-                                    onChange={e => setValues(prev => ({
-                                        ...prev, 
-                                        ebc: e.target.value
-                                    }))}
+                                    onChange={e =>
+                                        setValues(prev => ({
+                                            ...prev,
+                                            ebc: e.target.value
+                                        }))
+                                    }
                                 />
                                 <TextField
-                                    style={{width: 230}}
+                                    style={{ width: 230 }}
                                     id="outlined-helperText"
                                     label="IBU"
                                     defaultValue="Default Value"
@@ -413,13 +444,15 @@ const BeerpostForm = () => {
                                     type="text"
                                     size="small"
                                     value={values.ibu}
-                                    onChange={e => setValues(prev => ({
-                                        ...prev, 
-                                        ibu: e.target.value
-                                    }))}
-                                />                    
+                                    onChange={e =>
+                                        setValues(prev => ({
+                                            ...prev,
+                                            ibu: e.target.value
+                                        }))
+                                    }
+                                />
                                 <TextField
-                                    style={{width: 230}}
+                                    style={{ width: 230 }}
                                     id="outlined-helperText"
                                     label="Gravity"
                                     defaultValue="Default Value"
@@ -427,13 +460,15 @@ const BeerpostForm = () => {
                                     type="text"
                                     size="small"
                                     value={values.gravity}
-                                    onChange={e => setValues(prev => ({
-                                        ...prev, 
-                                        gravity: e.target.value
-                                    }))}
+                                    onChange={e =>
+                                        setValues(prev => ({
+                                            ...prev,
+                                            gravity: e.target.value
+                                        }))
+                                    }
                                 />
                                 <TextField
-                                    style={{width: 230}}
+                                    style={{ width: 230 }}
                                     id="outlined-helperText"
                                     label="Carbonation"
                                     defaultValue="Default Value"
@@ -441,13 +476,15 @@ const BeerpostForm = () => {
                                     type="text"
                                     size="small"
                                     value={values.carbonation}
-                                    onChange={e => setValues(prev => ({
-                                        ...prev, 
-                                        carbonation: e.target.value
-                                    }))}
+                                    onChange={e =>
+                                        setValues(prev => ({
+                                            ...prev,
+                                            carbonation: e.target.value
+                                        }))
+                                    }
                                 />
                                 <TextField
-                                    style={{width: 230}}
+                                    style={{ width: 230 }}
                                     id="outlined-helperText"
                                     label="Status"
                                     defaultValue="Default Value"
@@ -455,13 +492,15 @@ const BeerpostForm = () => {
                                     type="text"
                                     size="small"
                                     value={values.status}
-                                    onChange={e => setValues(prev => ({
-                                        ...prev, 
-                                        status: e.target.value
-                                    }))}
+                                    onChange={e =>
+                                        setValues(prev => ({
+                                            ...prev,
+                                            status: e.target.value
+                                        }))
+                                    }
                                 />
                                 <TextField
-                                    style={{width: 230}}
+                                    style={{ width: 230 }}
                                     id="outlined-helperText"
                                     label="Batch Volume"
                                     defaultValue="Default Value"
@@ -469,52 +508,68 @@ const BeerpostForm = () => {
                                     type="number"
                                     size="small"
                                     value={values.batch_volume}
-                                    onChange={e => setValues(prev => ({
-                                        ...prev, 
-                                        batch_volume: e.target.value
-                                    }))}
+                                    onChange={e =>
+                                        setValues(prev => ({
+                                            ...prev,
+                                            batch_volume: e.target.value
+                                        }))
+                                    }
                                 />
                             </div>
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
-                <Accordion className={ classes.width} expanded={expanded === 'panel2'} onChange={handleExpand('panel2')}>
+                <Accordion
+                    className={classes.width}
+                    expanded={expanded === "panel2"}
+                    onChange={handleExpand("panel2")}
+                >
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel2bh-content"
                         id="panel2bh-header"
-                        >
-                        <Typography className={classes.heading}><h3>Ingredients</h3></Typography>
+                    >
+                        <Typography className={classes.heading}>
+                            <h3>Ingredients</h3>
+                        </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
-                            <div className={ classes.ingredients}>
+                            <div className={classes.ingredients}>
                                 <Beerpost_ingredients
                                     beerpostIngredients={beerpostIngredients}
-                                    setBeerpostIngredients={setBeerpostIngredients}
+                                    setBeerpostIngredients={
+                                        setBeerpostIngredients
+                                    }
                                 />
                             </div>
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
-                <Accordion className={ classes.width} expanded={expanded === 'panel3'} onChange={handleExpand('panel3')}>
+                <Accordion
+                    className={classes.width}
+                    expanded={expanded === "panel3"}
+                    onChange={handleExpand("panel3")}
+                >
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel2bh-content"
                         id="panel2bh-header"
-                        >
-                        <Typography className={classes.heading}><h3>Brewing Steps</h3></Typography>
+                    >
+                        <Typography className={classes.heading}>
+                            <h3>Brewing Steps</h3>
+                        </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
                             <Beerpost_sections
-                                 beerpostSections={beerpostSections}
-                                    setBeerpostSections={setBeerpostSections}
+                                beerpostSections={beerpostSections}
+                                setBeerpostSections={setBeerpostSections}
                             />
                         </Typography>
                     </AccordionDetails>
-                 </Accordion>
-                <SaveBtn className={classes.btn} handleSubmit={ handleSubmit}/>
+                </Accordion>
+                <SaveBtn className={classes.btn} handleSubmit={handleSubmit} />
             </form>
         </div>
     );

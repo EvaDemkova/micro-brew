@@ -3,6 +3,7 @@ import { useDashboardContext } from "../dashboardContext";
 import Loader from "./Loader";
 import Beerpost from "./Beerpost/Beerpost";
 import "./styles/listBeerpost.scss";
+import NewUserPage from "./NewUserPage";
 
 const ListBeerpost = ({ url }) => {
     const [beerposts, setBeerposts] = useState([]);
@@ -32,7 +33,7 @@ const ListBeerpost = ({ url }) => {
     return (
         <div className="listBeerpost">
             {beerposts.length === 0 ? (
-                <h3>No Beerpost Available</h3>
+                <NewUserPage />
             ) : (
                 <>
                     {beerposts.map(beerpost => (

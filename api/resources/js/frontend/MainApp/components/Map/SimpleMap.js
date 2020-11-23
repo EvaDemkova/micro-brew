@@ -189,8 +189,6 @@ const SimpleMap = () => {
         await axios
             .get(`/api/users/map`)
             .then(function(response) {
-                console.log(response);
-
                 setUsers(response.data);
             })
             .catch(function(error) {
@@ -226,7 +224,7 @@ const SimpleMap = () => {
                     name.match(regex)
                 )
             );
-        console.log(result);
+
         if (result.length !== 0) {
             setCenter({ lat: result[0].lat, lng: result[0].lng });
             setInfosWindow({

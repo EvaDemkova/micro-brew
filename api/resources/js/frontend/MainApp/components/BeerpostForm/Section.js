@@ -1,8 +1,26 @@
 import React from "react";
 import { MdLabel } from "react-icons/md";
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    date: {
+        margin: 0, 
+        display: 'flex', 
+        alignItems: 'center', 
+    },
+
+    root: {
+        display: 'flex', 
+        flexDirection: 'row', 
+        justifyContent: 'space-between',
+        margin: '0.5em', 
+    }
+}));
 
 const Section = ({ setBeerpostSections, section }) => {
     const { key, section_name, description, duration, date } = section;
+    const classes = useStyles();
 
     const handleDate = (e, key) => {
         setBeerpostSections(prev =>
@@ -51,43 +69,55 @@ const Section = ({ setBeerpostSections, section }) => {
 
     return (
         <div className="section">
-            <h2>{section_name}</h2>
-            {key !== 2 ? (
-                <div className="section-date">
-                    <label htmlFor="date">Date:</label>
-                    <input
-                        type="date"
-                        name="date"
-                        id=""
-                        value={date || ""}
-                        onChange={e => handleDate(e, key)}
-                    />
-                </div>
-            ) : null}
-            {key === 3 || key === 5 ? (
-                <div className="section-duration">
-                    <label htmlFor="duration">Duration:</label>
-                    <input
-                        type="number"
-                        name="duration"
-                        id=""
-                        placeholder="Days"
-                        value={duration || ""}
-                        onChange={e => handleDuration(e, key)}
-                    />
-                </div>
-            ) : null}
-            <label className="section-desctiprion" htmlFor="description">
-                Description:{" "}
-            </label>
-            <textarea
-                name="descripton"
-                id=""
-                cols="80"
-                rows="8"
+            <h4 style={{textAlign: 'center', margin: '1em'}}>{section_name}</h4>
+            <div className={ classes.root}>
+                {key !== 2 ? (
+                    <div className={ classes.date}>
+                        <label htmlFor="date">Date:</label>
+                        <TextField
+                            id="outlined-helperText"
+                            variant="outlined"
+                            type="date"
+                            size='small'
+                            value={date || ""}
+                            onChange={e => handleDate(e, key)}
+                        />
+                    </div>
+                ) : null}
+                {key === 3 || key === 5 ? (
+                    <div className={ classes.date}>
+                        <label htmlFor="duration">Duration:</label>
+                        <TextField
+                            id="outlined-helperText"
+                            label="Duration"
+                            defaultValue="Default Value"
+                            variant="outlined"
+                            type="number"
+                            size='small'
+                            placeholder='Days'
+                            value={duration || ""}
+                            onChange={e => handleDuration(e, key)}
+                        />
+                    </div>
+                ) : null}
+            </div>
+            <TextField
+                id="outlined-full-width"
+                label="Description"
+                style={{ margin: 0 }}
+                style={{ width: 600}}
+                fullWidth
+                size="small"
+                margin="normal"
+                InputLabelProps={{
+                shrink: true,
+                }}
+                multiline
+                rows={4}
+                variant="outlined"
                 value={description || ""}
                 onChange={e => handleDescription(e, key)}
-            ></textarea>
+            />
         </div>
     );
 };

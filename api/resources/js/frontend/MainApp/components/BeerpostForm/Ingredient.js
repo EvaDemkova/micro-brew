@@ -1,12 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { BsFillPlusCircleFill } from 'react-icons/bs'
 import { makeStyles } from '@material-ui/core/styles';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {

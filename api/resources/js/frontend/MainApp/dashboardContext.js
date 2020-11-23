@@ -1,8 +1,12 @@
 import React, { useState, useContext } from "react";
+import axios from "axios";
+import { useGlobalContext } from "../context";
 
 const DashboardContext = React.createContext();
 
 const DashboardProvider = ({ children }) => {
+    const { createAlert } = useGlobalContext();
+
     const [isFormUpdating, setIsFormUpdating] = useState(false);
     const formIsUpdating = () => {
         setIsFormUpdating(true);
@@ -23,6 +27,21 @@ const DashboardProvider = ({ children }) => {
     const [isBeerListRender, setIsBeerListRender] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
+    const addFollow = async (id, name) => {
+        await axios.get(`/sanctum/csrf-cookie`);
+        await axios
+            .post(`/api/users/add_follow`, {
+                id_to_follow: id
+            })
+            .then(function(response) {
+                createAlert("success", `You are now following ${name}`);
+                setIsBeerListRender(true);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    };
+
     return (
         <DashboardContext.Provider
             value={{
@@ -37,7 +56,8 @@ const DashboardProvider = ({ children }) => {
                 isBeerListRender,
                 setIsBeerListRender,
                 isLoading,
-                setIsLoading
+                setIsLoading,
+                addFollow
             }}
         >
             {children}

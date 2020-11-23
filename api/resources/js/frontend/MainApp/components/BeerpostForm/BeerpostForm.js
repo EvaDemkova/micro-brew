@@ -17,11 +17,8 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,6 +63,13 @@ const useStyles = makeStyles((theme) => ({
     },
     btn: {
         margin: 'auto',
+    },
+    ingredients: { 
+      width: '600px', 
+      display: 'flex', 
+      flexDirection: 'column', 
+      flexWrap: 'wrap', 
+      alignContent: 'center',
   }
 }));
 
@@ -484,10 +488,12 @@ const BeerpostForm = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
-                            <Beerpost_ingredients
-                                beerpostIngredients={beerpostIngredients}
-                                setBeerpostIngredients={setBeerpostIngredients}
-                            />
+                            <div className={ classes.ingredients}>
+                                <Beerpost_ingredients
+                                    beerpostIngredients={beerpostIngredients}
+                                    setBeerpostIngredients={setBeerpostIngredients}
+                                />
+                            </div>
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
@@ -508,7 +514,7 @@ const BeerpostForm = () => {
                         </Typography>
                     </AccordionDetails>
                  </Accordion>
-                <SaveBtn className={classes.btn} />
+                <SaveBtn className={classes.btn} handleSubmit={ handleSubmit}/>
             </form>
         </div>
     );

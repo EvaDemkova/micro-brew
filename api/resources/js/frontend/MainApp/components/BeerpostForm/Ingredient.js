@@ -1,5 +1,31 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { BsFillPlusCircleFill } from 'react-icons/bs'
+import { makeStyles } from '@material-ui/core/styles';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex', 
+    alignItems: 'center',   
+  },
+  btnSize: {
+    width: '25px', 
+    height: '25px'
+  },
+
+  inputWidth: {
+    width: '100px',
+  },
+
+  headingWidth: {
+    width: '100px'
+  }
+}));
 
 const Ingredient = ({
   beerpostIngredients,
@@ -8,6 +34,7 @@ const Ingredient = ({
   ingredient_id,
   name,
 }) => {
+  const classes = useStyles();
   const handleName = (e, key) => {
     setBeerpostIngredients((prev) =>
       prev.map((item) => {
@@ -45,23 +72,40 @@ const Ingredient = ({
       {beerpostIngredients.map((item, index) => {
         return (
           <div key={index}>
-            <div className='ingredient-item'>
-              <label htmlFor={name}>{name}</label>
-              <input
-                type='text'
-                name='ingredient_name'
-                value={item.ingredient_name}
-                onChange={(e) => handleName(e, item.key)}
-                placeholder={name }
+            <div className={classes.root}>
+              <h4 className={classes.headingWidth}>{name}</h4>
+              <TextField
+                  style={{width: '160px'}}
+                  id="outlined-helperText"
+                  label={name}
+                  defaultValue="Default Value"
+                  variant="outlined"
+                  type="text"
+                  size='small'
+                  value={item.ingredient_name}
+                  placeholder={name }
+                  onChange={(e) => handleName(e, item.key)}
               />
-              <input
+              <TextField
+                  style={{width: '90px'}}
+                  id="outlined-helperText"
+                  label="Quantity"
+                  defaultValue="Default Value"
+                  variant="outlined"
+                  type="text"
+                  size='small'
+                  value={item.quantity}
+                  onChange={(e) => handleQuantity(e, item.key)}
+              />
+              {/* <input
                 type='text'
                 name='quantity'
                 value={item.quantity}
                 onChange={(e) => handleQuantity(e, item.key)}
                 placeholder="Quantity"
-              />
+              /> */}
               <BsFillPlusCircleFill
+                className={classes.btnSize}
                 onClick={() => addIngredient(ingredient_id)}
               />
             </div>

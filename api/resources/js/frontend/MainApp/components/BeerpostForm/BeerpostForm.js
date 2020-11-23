@@ -5,6 +5,7 @@ import axios from "axios";
 import "./BeerpostForm.scss";
 import Beerpost_ingredients from "./Beerpost_ingredients";
 import Beerpost_sections from "./Beerpost_sections";
+import SaveBtn from '../SaveBtn';
 import Dropzone from "./Dropzone";
 import { templateIngredients, templateSections } from "./datas";
 import { useDashboardContext } from "../../dashboardContext.js";
@@ -21,26 +22,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     width: '100%',
-//   },
-//   heading: {
-//     fontSize: theme.typography.pxToRem(15),
-//     flexBasis: '33.33%',
-//     flexShrink: 0,
-//   },
-//   secondaryHeading: {
-//     fontSize: theme.typography.pxToRem(15),
-//     color: theme.palette.text.secondary,
-//     },
-// nameType: {
-//     display: flex,
-//     justifyContent: space-between,
-//     alignItems: center,
-//     marginBottom: '1em',
-//   }
-// }));
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
       width: '25ch',
     },
     },
+    width: {
+        width: '650px',
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -79,7 +63,10 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignContent: 'space-between',
-  },
+    },
+    btn: {
+        margin: 'auto',
+  }
 }));
 
 const BeerpostForm = () => {
@@ -307,13 +294,13 @@ const BeerpostForm = () => {
                     />
                 </div>
 
-                <Accordion defaultExpanded onChange={handleExpand('panel1')}>
+                <Accordion className={ classes.width} defaultExpanded onChange={handleExpand('panel1')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                         >
-                        <Typography className={classes.heading}><h2>General information</h2></Typography>
+                        <Typography className={classes.heading}><h3>General information</h3></Typography>
                         
                     </AccordionSummary>
                     <AccordionDetails>
@@ -487,13 +474,13 @@ const BeerpostForm = () => {
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
-                <Accordion expanded={expanded === 'panel2'} onChange={handleExpand('panel2')}>
+                <Accordion className={ classes.width} expanded={expanded === 'panel2'} onChange={handleExpand('panel2')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel2bh-content"
                         id="panel2bh-header"
                         >
-                        <Typography className={classes.heading}>Ingredients</Typography>
+                        <Typography className={classes.heading}><h3>Ingredients</h3></Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
@@ -504,13 +491,13 @@ const BeerpostForm = () => {
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
-                <Accordion expanded={expanded === 'panel3'} onChange={handleExpand('panel3')}>
+                <Accordion className={ classes.width} expanded={expanded === 'panel3'} onChange={handleExpand('panel3')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel2bh-content"
                         id="panel2bh-header"
                         >
-                        <Typography className={classes.heading}>Brewing Steps</Typography>
+                        <Typography className={classes.heading}><h3>Brewing Steps</h3></Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography>
@@ -521,7 +508,7 @@ const BeerpostForm = () => {
                         </Typography>
                     </AccordionDetails>
                  </Accordion>
-                <button type="submit">Save</button>
+                <SaveBtn className={classes.btn} />
             </form>
         </div>
     );

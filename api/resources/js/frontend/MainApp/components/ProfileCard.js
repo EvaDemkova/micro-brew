@@ -4,6 +4,14 @@ import { useGlobalContext } from "../../context";
 import "./styles/profileCard.scss";
 import { useDashboardContext } from "../dashboardContext";
 import { Button } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    btn: {
+        margin: '0.5em 0', 
+        color: '#fec63d'
+    },
+}));
 
 const ProfileCard = ({ id }) => {
     const [name, setName] = useState("");
@@ -18,6 +26,7 @@ const ProfileCard = ({ id }) => {
         isBeerListRender,
         setIsBeerListRender
     } = useDashboardContext();
+    const classes = useStyles();
 
     const fetchDatas = async () => {
         const response = await fetch(`/api/users/${id}`);
@@ -77,17 +86,23 @@ const ProfileCard = ({ id }) => {
             </div>
             {user.id != id &&
                 (followedBy.map(item => item.id).indexOf(user.id) === -1 ? (
-                    <Button
+                <Button
+                    style={{
+                            margin: '0.5em',  
+                            backgroundColor: "#fec63d"
+                        }}
                         variant="contained"
-                        color="primary"
                         onClick={() => addFollow(id, name)}
                     >
                         Follow
                     </Button>
                 ) : (
                     <Button
+                        style={{
+                            margin: '0.5em',  
+                            backgroundColor: "#fec63d",
+                        }}
                         variant="contained"
-                        color="primary"
                         onClick={() => unFollow(id)}
                     >
                         Unfollow

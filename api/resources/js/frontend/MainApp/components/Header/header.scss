@@ -45,6 +45,9 @@ header {
                     color: black;
                 }
             }
+            &.active {
+                border-bottom: 4px solid brown;
+            }
         }
     }
     a {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logout from "./Logout";
 
 import "./header.scss";
@@ -7,6 +7,8 @@ import { useGlobalContext } from "../../../context";
 
 const Header = () => {
     const { user } = useGlobalContext();
+    const { pathname } = useLocation();
+
     return (
         <header>
             <div className="logo">
@@ -15,16 +17,16 @@ const Header = () => {
             </div>
             <nav>
                 <ul>
-                    <li>
+                    <li className={/dashboard/.test(pathname) ? "active" : ""}>
                         <Link to={`/dashboard/${user.id}`}>Dashboard</Link>
                     </li>
-                    <li>
+                    <li className={pathname == "/feed" ? "active" : ""}>
                         <Link to="/feed">Feed</Link>
                     </li>
-                    <li>
+                    <li className={pathname == "/map" ? "active" : ""}>
                         <Link to="/map">Map</Link>
                     </li>
-                    <li>
+                    <li className={pathname == "/profile" ? "active" : ""}>
                         <Link to="/profile">Profile</Link>
                     </li>
                 </ul>

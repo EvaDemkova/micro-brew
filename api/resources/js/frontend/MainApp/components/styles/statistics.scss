@@ -1,0 +1,35 @@
+.statistics-container {
+    min-height: 200px;
+    min-width: 200px;
+    max-width: 300;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px lightgray;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (max-width: 980px) {
+        min-width: 130px;
+    }
+
+    p {
+        text-align: center;
+        color: grey;
+        margin-top: 2em;
+        padding: 1em;
+        line-height: 1.5em;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 0.5em;
+        color: #f28e1c;
+    }
+
+    h4 {
+        text-align: center;
+        color: grey;
+        margin-top: 0.5em;
+    }
+}

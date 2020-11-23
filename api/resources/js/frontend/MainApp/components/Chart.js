@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react';
 import {
-  PieChart, Pie, Sector, Cell, Legend, Tooltip
+  PieChart, Pie, Sector, Cell, Legend, Tooltip, LabelList
 } from 'recharts';
 
 
-const COLORS = ['#f28e1c', '#ffe80f', '#fec63d'];
+const COLORS = ['#f28e1c', '#fec63d', '#C96E12'];
 
 export default class Example extends PureComponent {
     render() {
-        const { aleVolume, lagerVolume, totalVolume } = this.props;
+        const { aleVolume, lagerVolume, totalVolume, cy, cx, innerRadius, outerRadius, width, height, layout} = this.props;
         const data = [
             { name: 'Ale', value: aleVolume },
             { name: 'Lager', value: lagerVolume },
@@ -16,24 +16,25 @@ export default class Example extends PureComponent {
         ]
 
     return (
-      <PieChart width={220} height={250} onMouseEnter={this.onPieEnter}>
+      <PieChart width={width} height={height} onMouseEnter={this.onPieEnter}>
         <Pie
           data={data}
-          cx={90}
-          cy={100}
-          innerRadius={40}
-          outerRadius={70}
+          cx={cx}
+          cy={cy}
+          innerRadius={innerRadius}
+          outerRadius={outerRadius}
           fill="#8884d8"
           paddingAngle={5}
           dataKey="value"
           label
+          
         >
           {
             data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
           }
             </Pie>
-            <Legend />
-            <Tooltip/>
+        <Legend layout={layout} />
+          <Tooltip/>
       </PieChart>
     );
   }

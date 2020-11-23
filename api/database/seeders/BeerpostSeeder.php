@@ -111,7 +111,7 @@ class BeerpostSeeder extends Seeder
                 "status"=>"Ready to drink",
                 "ebc"=>"15.2",
                 "ibu"=>"32",
-                "batch_volume"=>"24.42",
+                "batch_volume"=>"24",
                 'created_at'=> '2020-11-02 11:13:24', 
                 'updated_at'=> '2020-11-11 16:13:24',
         ], [

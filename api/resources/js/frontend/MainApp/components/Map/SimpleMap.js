@@ -253,7 +253,10 @@ const SimpleMap = () => {
                         onChange={e => setSearchValue(e.target.value)}
                     />
 
-                    <Button variant="outlined" type="submit">
+                    <Button variant="contained" type="submit" style={{  
+                                        backgroundColor: "#fec63d",  
+                                        fontWeight: 'bold'
+                                    }}>
                         SEARCH
                     </Button>
                     <p className="search-result">{searchText}</p>

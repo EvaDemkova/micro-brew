@@ -181,6 +181,7 @@ const SimpleMap = () => {
         id: ""
     });
     const [searchValue, setSearchValue] = useState("");
+    const [searchText, setSearchText] = useState("");
     const { user } = useGlobalContext();
 
     const fetchUsers = async () => {
@@ -236,7 +237,7 @@ const SimpleMap = () => {
                 id: result[0].id
             });
         } else {
-            console.log("no result found");
+            setSearchText("No result found for this search");
         }
     };
 
@@ -257,6 +258,7 @@ const SimpleMap = () => {
                     <Button variant="outlined" type="submit">
                         SEARCH
                     </Button>
+                    <p className="search-result">{searchText}</p>
                 </form>
                 <div style={{ height: "80vh", width: "100%" }}>
                     <GoogleMapReact
@@ -277,15 +279,7 @@ const SimpleMap = () => {
                                 id={infosWindow.id}
                             />
                         )}
-                        <Marker
-                            key={user.id}
-                            lat={user.lat}
-                            lng={user.lng}
-                            user={user}
-                            name="My Marker"
-                            color="red"
-                            handleClick={handleClick}
-                        />
+
                         {users.follow_list_proposal.map(user => {
                             return (
                                 <Marker
@@ -312,6 +306,15 @@ const SimpleMap = () => {
                                 />
                             );
                         })}
+                        <Marker
+                            key={user.id}
+                            lat={user.lat}
+                            lng={user.lng}
+                            user={user}
+                            name="My Marker"
+                            color="red"
+                            handleClick={handleClick}
+                        />
 
                         {/* <Marker
                     key="marker_1"

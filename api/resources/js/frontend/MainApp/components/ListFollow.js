@@ -8,8 +8,7 @@ import { Button } from "@material-ui/core";
 
 const ListFollow = () => {
     const [followList, setFollowList] = useState([]);
-    const { createAlert } = useGlobalContext();
-    const { setIsBeerListRender, isLoading } = useDashboardContext();
+    const { isBeerListRender, isLoading, addFollow } = useDashboardContext();
 
     const fetchFollowList = async () => {
         const response = await fetch(`/api/users/follow_list_proposal`);
@@ -19,23 +18,7 @@ const ListFollow = () => {
 
     useEffect(() => {
         fetchFollowList();
-    }, []);
-
-    const addFollow = async (id, name) => {
-        await axios.get(`/sanctum/csrf-cookie`);
-        await axios
-            .post(`/api/users/add_follow`, {
-                id_to_follow: id
-            })
-            .then(function(response) {
-                createAlert("success", `You are now following ${name}`);
-                setIsBeerListRender(true);
-                console.log(response);
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
-    };
+    }, [isBeerListRender]);
 
     if (isLoading) {
         return <div></div>;

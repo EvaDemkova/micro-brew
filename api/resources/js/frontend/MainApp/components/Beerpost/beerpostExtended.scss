@@ -10,15 +10,18 @@
         min-width: 10em;
         max-width: 10em;
         text-align: center;
+        padding-top: 1em;
+        font-weight: bold;
     }
 
     .content {
         flex-grow: 1;
         border-left: 2px solid black;
         display: flex;
+        padding: 1em;
 
         &__category {
-            flex-basis: 40%;
+            flex-basis: 50%;
             display: flex;
             flex-direction: column;
         }
@@ -27,23 +30,39 @@
         ul {
             display: flex;
             flex-wrap: wrap;
-            padding-left: 3em;
+            //padding-left: 3em;
             //list-style-type: none;
         }
         li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.2em 2em;
             flex-basis: 50%;
+            h5 {
+                font-weight: bold;
+            }
+            p {
+                color: grey;
+                font-weight: 400;
+            }
         }
     }
     .ingredients {
         display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
     .ingredient-item {
         display: flex;
         flex-direction: column;
-        margin: 0 1em;
+        margin: 0 1em 0.5em 1em;
 
         h5 {
             align-self: center;
+        }
+        p {
+            color: rgb(88, 88, 88);
+            font-size: 0.9em;
         }
     }
 }

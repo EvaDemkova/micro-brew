@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoMdBeer } from "react-icons/io";
-import { FaCommentDots } from "react-icons/fa";
+import { BiMessageDetail } from "react-icons/bi";
 import { MdEdit } from "react-icons/md";
 import "./beerpost.scss";
 import BeerpostExtend from "./BeerpostExtend";
@@ -66,7 +66,8 @@ const Beerpost = ({ data }) => {
                     </div>
                     <LikeBtn likes={likes} beerpost_id={id} />
                     <div className="comments-stats">
-                        <FaCommentDots />
+                        <BiMessageDetail className="comment-icon" />
+                        <p>{data.comments.length}</p>
                     </div>
                 </div>
                 <div className="preview-info">
@@ -100,7 +101,7 @@ const Beerpost = ({ data }) => {
                             Type:{" "}
                             <span
                                 style={
-                                    type == "Ale"
+                                    type === "ale"
                                         ? { color: "#f28e1c" }
                                         : { color: "#fec63d" }
                                 }

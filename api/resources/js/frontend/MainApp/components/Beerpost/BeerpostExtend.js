@@ -18,11 +18,14 @@ const BeerpostExtend = ({ data }) => {
 
     const displayIngredient = ingredient => {
         const result = ingredients.filter(item => item.type === ingredient);
-        return result.map((item, index) => (
-            <p key={index}>
-                {item.pivot.ingredient_name} | {item.pivot.quantity}
-            </p>
-        ));
+        if (result[0].pivot.ingredient_name !== null) {
+            return result.map((item, index) => (
+                <p key={index}>
+                    {item.pivot.ingredient_name} | {item.pivot.quantity}
+                </p>
+            ));
+        }
+        return <p>none</p>;
     };
 
     const displaySection = section => {
@@ -39,13 +42,28 @@ const BeerpostExtend = ({ data }) => {
                 <div className="content">
                     <div className="stats">
                         <ul>
-                            <li>ABV - {abv}</li>
-                            <li>OG - {og}</li>
-                            <li>EBC - {ebc}</li>
-                            <li>IBU - {ibu}</li>
-                            <li>Carbonation - {carbonation}</li>
-                            <li>Gravity -{gravity}</li>
-                            <li>Batch Volume - {batch_volume}</li>
+                            <li>
+                                <h5>ABV</h5> <p>{abv}</p>
+                            </li>
+                            <li>
+                                <h5>OG</h5>
+                                <p>{og}</p>
+                            </li>
+                            <li>
+                                <h5>EBC</h5> <p>{ebc}</p>
+                            </li>
+                            <li>
+                                <h5>IBU</h5> <p>{ibu}</p>
+                            </li>
+                            <li>
+                                <h5>Carbonation</h5> <p>{carbonation}</p>
+                            </li>
+                            <li>
+                                <h5>Gravity</h5> <p>{gravity}</p>
+                            </li>
+                            <li>
+                                <h5>Batch Volume</h5> <p>{batch_volume} L</p>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -43,24 +43,49 @@ const RegisterForm = () => {
 
     return (
         <div className="user-form">
-            <h3>Registration form</h3>
+            <h3>REGISTER</h3>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name</label>
+
+                    <TextField
+                        id="standard-basic"
+                        label="Name"
+                        type="text"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                    />
+                
+                {/* <label htmlFor="name">Name</label>
                 <div className="inputs">
                     <input
                         type="text"
                         name="name"
                         value={name}
                         onChange={e => setName(e.target.value)}
+                    /> */}
+                     <TextField
+                        id="standard-basic"
+                        label="Email"
+                        type="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                     />
-                    <label htmlFor="email">Email</label>
+                    {/* <label htmlFor="email">Email</label>
                     <input
                         type="email"
                         name="email"
                         id="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
+                    /> */}
+                     <TextField
+                        id="standard-password-input"
+                        label="Password"
+                        type="password"
+                        autoComplete="current-password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                     />
+{/* 
                     <label htmlFor="password">Password</label>
                     <input
                         type="password"
@@ -68,8 +93,17 @@ const RegisterForm = () => {
                         id="password"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
+                    /> */}
+
+                    <TextField
+                        id="standard-password-input"
+                        label="Confirm Password"
+                        type="password"
+                        value={password_confirmation}
+                        onChange={e => setPasswordConfirm(e.target.value)}
                     />
-                    <label htmlFor="password_confirmation">
+
+                    {/* <label htmlFor="password_confirmation">
                         Confirm Password
                     </label>
                     <input
@@ -78,9 +112,9 @@ const RegisterForm = () => {
                         id="passwordConfirm"
                         value={password_confirmation}
                         onChange={e => setPasswordConfirm(e.target.value)}
-                    />
-                </div>
-                <button className="btn">REGISTER</button>
+                    /> */}
+                
+                <button className="btn">SUBMIT</button>
             </form>
         </div>
     );

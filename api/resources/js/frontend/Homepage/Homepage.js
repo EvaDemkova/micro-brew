@@ -29,7 +29,7 @@ const Homepage = () => {
                 <div className="homepage__header__top">
                     <img src="/logo/homepage-logo.svg" alt="Logo"/>
                     <h1>Micro Brew</h1>
-                    <h3>... Brew, Enjoy, Empty, Repeat ! ...</h3>
+                    <h3>... Empty, Brew, Enjoy, Repeat ! ...</h3>
                 </div>
                 <div className="interface">
                     <button

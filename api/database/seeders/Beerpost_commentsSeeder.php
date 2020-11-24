@@ -33,7 +33,7 @@ class Beerpost_commentsSeeder extends Seeder
                 "text" => "I will try this recipe",
             ], [
                 "beerpost_id" => 3,
-                "user_id"=> 2,
+                "user_id"=> 1,
                 "text" => "Great, when did you brew it? ",
             ], [
                 "beerpost_id" => 3,
@@ -41,7 +41,7 @@ class Beerpost_commentsSeeder extends Seeder
                 "text" => "Nice, please save me some beer, next week I will stop at your place",
             ],[
                 "beerpost_id" => 3,
-                "user_id"=> 2,
+                "user_id"=> 6,
                 "text" => "Great!",
             ]
         ]);

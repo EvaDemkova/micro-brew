@@ -36,13 +36,13 @@ const Homepage = () => {
                         className="btn btn-login"
                         onClick={() => setIsLoginForm(true)}
                         >
-                        Login
+                        LOGIN
                     </button>
                     <button
                         className="btn btn-register"
                         onClick={() => setIsRegisterForm(true)}
                         >
-                        Register
+                        REGISTER
                     </button>
                 </div>
             </div>

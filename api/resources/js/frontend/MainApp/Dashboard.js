@@ -36,6 +36,7 @@ const Dashboard = () => {
                 />
             )}
             <Statistics url={`/api/beerposts/users/${id}`} />
+            {(isBeerpostForm) && <div className="filter"></div>}
             {isBeerpostForm && <BeerpostForm />}
         </div>
     );

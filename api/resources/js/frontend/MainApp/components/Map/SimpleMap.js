@@ -289,7 +289,7 @@ const SimpleMap = () => {
                                     lng={user.lng}
                                     user={user}
                                     name="My Marker"
-                                    color="#C96E12"
+                                    color="#c35817"
                                     handleClick={handleClick}
                                 />
                             );
@@ -302,7 +302,7 @@ const SimpleMap = () => {
                                     lng={user.lng}
                                     user={user}
                                     name="My Marker"
-                                    color="black"
+                                    color="#e8a317"
                                     handleClick={handleClick}
                                 />
                             );
@@ -313,22 +313,9 @@ const SimpleMap = () => {
                             lng={user.lng}
                             user={user}
                             name="My Marker"
-                            color="#fec63d"
+                            color="black"
                             handleClick={handleClick}
                         />
-
-                        {/* <Marker
-                    key="marker_1"
-                    icon={{
-                        url: "https://cdn.mindbowser.com/custom_marker_pin.svg",
-                        anchor: new google.maps.Point(17, 46),
-                        scaledSize: new google.maps.Size(37, 37)
-                    }}
-                    position={{
-                        lat: 47.444,
-                        lng: -122.176
-                    }}
-                /> */}
                     </GoogleMapReact>
                 </div>
             </div>

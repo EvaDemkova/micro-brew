@@ -24,6 +24,11 @@
             flex-basis: 50%;
             display: flex;
             flex-direction: column;
+
+            p {
+                color: grey;
+                font-size: 0.9em;
+            }
         }
     }
     .stats {

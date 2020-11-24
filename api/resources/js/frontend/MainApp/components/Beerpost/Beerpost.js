@@ -64,10 +64,12 @@ const Beerpost = ({ data }) => {
                             Posted : <span>{moment(updated_at).fromNow()}</span>
                         </p>
                     </div>
-                    <LikeBtn likes={likes} beerpost_id={id} />
-                    <div className="comments-stats">
-                        <BiMessageDetail className="comment-icon" />
-                        <p>{data.comments.length}</p>
+                    <div className="stats">
+                        <LikeBtn likes={likes} beerpost_id={id} />
+                        <div className="comments-stats">
+                            <BiMessageDetail className="comment-icon" />
+                            {data.comments.length}
+                        </div>
                     </div>
                 </div>
                 <div className="preview-info">

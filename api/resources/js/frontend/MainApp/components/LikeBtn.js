@@ -60,17 +60,19 @@ const LikeBtn = ({ likes, beerpost_id }) => {
 
     return (
         <div className="likes" onClick={likeBtn}>
-            <FormControlLabel
-                control={
-                    <Checkbox
-                        checked={isLiked}
-                        icon={<FavoriteBorder />}
-                        checkedIcon={<Favorite style={{ color: "#8B4513" }} />}
-                        name="checkedH"
-                    />
-                }
-                label={nbLikes}
+            {/* <FormControlLabel
+                control={ */}
+
+            <Checkbox
+                checked={isLiked}
+                icon={<FavoriteBorder />}
+                checkedIcon={<Favorite style={{ color: "#8B4513" }} />}
+                name="checkedH"
             />
+
+            {/* } // label={nbLikes}
+            // labelPlacement="bottom" ///> */}
+            <p className="count">{nbLikes}</p>
         </div>
     );
 };

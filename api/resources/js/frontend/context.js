@@ -22,7 +22,8 @@ const AppProvider = ({ children }) => {
             id: response.data.id,
             name: response.data.name,
             lat: response.data.lat,
-            lng: response.data.lng
+            lng: response.data.lng,
+            photo: response.data.profile_photo
         });
     };
     const setCoordinates = (lat, lng) => {

@@ -43,18 +43,24 @@
                 }
             }
 
+            .stats {
+                display: flex;
+            }
             .comments-stats {
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                height: 1.8em;
+                padding-top: 0.9em;
+                font-weight: bold;
+
+                svg.comment-icon {
+                    width: 1.8em;
+                    height: 1.8em;
+                    color: rgb(88, 88, 88);
+                }
             }
             p {
                 padding-left: 0.5em;
-            }
-            svg.comment-icon {
-                width: 1.8em;
-                height: 1.8em;
-                color: rgb(88, 88, 88);
             }
         }
     }

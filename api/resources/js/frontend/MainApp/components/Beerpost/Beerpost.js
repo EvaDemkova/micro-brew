@@ -11,7 +11,12 @@ import moment from "moment";
 import { useGlobalContext } from "../../../context";
 import { useDashboardContext } from "../../dashboardContext";
 import BeerpostCarousel from "./BeerpostCarousel";
-import { FormControlLabel, Switch, withStyles } from "@material-ui/core";
+import {
+    Collapse,
+    FormControlLabel,
+    Switch,
+    withStyles
+} from "@material-ui/core";
 
 const ColoredSwitch = withStyles({
     switchBase: {
@@ -66,7 +71,10 @@ const Beerpost = ({ data }) => {
                     </div>
                     <div className="stats">
                         <LikeBtn likes={likes} beerpost_id={id} />
-                        <div className="comments-stats">
+                        <div
+                            className="comments-stats"
+                            onClick={() => setIsExtended(!isExtended)}
+                        >
                             <BiMessageDetail className="comment-icon" />
                             {data.comments.length}
                         </div>
@@ -124,6 +132,7 @@ const Beerpost = ({ data }) => {
                             }
                             label=""
                         />
+                        more infos
                     </div>
                 </div>
                 <div className="beerpost__photos">
@@ -134,8 +143,9 @@ const Beerpost = ({ data }) => {
                     )}
                 </div>
             </div>
-
-            {isExtended && <BeerpostExtend data={data} />}
+            <Collapse in={isExtended}>
+                <BeerpostExtend data={data} />
+            </Collapse>
         </div>
     );
 };

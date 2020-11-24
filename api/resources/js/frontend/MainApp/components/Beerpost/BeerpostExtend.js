@@ -33,7 +33,7 @@ const BeerpostExtend = ({ data }) => {
         const result = beerpost_sections.filter(
             item => item.section_name == section
         );
-        return result[0].description;
+        return result[0].description || "NA";
     };
 
     return (
@@ -44,26 +44,30 @@ const BeerpostExtend = ({ data }) => {
                     <div className="stats">
                         <ul>
                             <li>
-                                <h5>ABV</h5> <p>{abv}</p>
+                                <h5>ABV</h5> <p>{abv || "NA"}</p>
                             </li>
                             <li>
                                 <h5>OG</h5>
-                                <p>{og}</p>
+                                <p>{og || "NA"}</p>
                             </li>
                             <li>
-                                <h5>EBC</h5> <p>{ebc}</p>
+                                <h5>EBC</h5> <p>{ebc || "NA"}</p>
                             </li>
                             <li>
-                                <h5>IBU</h5> <p>{ibu}</p>
+                                <h5>IBU</h5> <p>{ibu || "NA"}</p>
                             </li>
                             <li>
-                                <h5>Carbonation</h5> <p>{carbonation}</p>
+                                <h5>Carbonation</h5>{" "}
+                                <p>{carbonation || "NA"}</p>
                             </li>
                             <li>
-                                <h5>Gravity</h5> <p>{gravity}</p>
+                                <h5>Gravity</h5> <p>{gravity || "NA"}</p>
                             </li>
                             <li>
-                                <h5>Batch Volume</h5> <p>{batch_volume} L</p>
+                                <h5>Batch Volume</h5>{" "}
+                                <p>
+                                    {batch_volume ? batch_volume + " L" : "NA"}
+                                </p>
                             </li>
                         </ul>
                     </div>

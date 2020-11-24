@@ -3,7 +3,7 @@ import { useDashboardContext } from "../dashboardContext";
 import "./styles/listBeerpost.scss";
 import Chart from "./Chart";
 import "./styles/statistics.scss";
-import useWindowWidth from './useWindowWidth';
+import useWindowWidth from "./useWindowWidth";
 
 const Statistics = ({ url }) => {
     const [lagerVolume, setLagerVolume] = useState(0);
@@ -38,22 +38,20 @@ const Statistics = ({ url }) => {
         fetchDatas();
     }, [url]);
 
-    console.log(width);
-
     if (isLoading) {
         return <div></div>;
     }
 
-    if ((aleVolume ===0) && (lagerVolume===0) && (totalVolume === 0)) {
+    if (aleVolume === 0 && lagerVolume === 0 && totalVolume === 0) {
         return (
             <div className="statistics-container">
                 <h2>Beer Statistics</h2>
                 <p>No statistics available yet</p>
             </div>
-        )
+        );
     }
 
-    if ((width >= 1150 ) && (width < 1500) ) {
+    if (width >= 1150 && width < 1500) {
         return (
             <div className="statistics-container">
                 <h2>Beer Statistics</h2>
@@ -91,7 +89,7 @@ const Statistics = ({ url }) => {
                 />
             </div>
         );
-    } else if ((width < 1150) &&(width >= 980)) {
+    } else if (width < 1150 && width >= 980) {
         return (
             <div className="statistics-container">
                 <h2>Beer Statistics</h2>
@@ -110,7 +108,7 @@ const Statistics = ({ url }) => {
                 />
             </div>
         );
-    } else if ((width < 980) &&(width >= 500)) {
+    } else if (width < 980 && width >= 500) {
         return (
             <div className="statistics-container">
                 <h2>Beer Statistics</h2>

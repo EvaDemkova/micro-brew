@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoMdBeer } from "react-icons/io";
+import { FaCommentDots } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
-import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import "./beerpost.scss";
 import BeerpostExtend from "./BeerpostExtend";
 import LikeBtn from "../LikeBtn";
@@ -10,7 +10,22 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { useGlobalContext } from "../../../context";
 import { useDashboardContext } from "../../dashboardContext";
-import BeerpostCarousel from './BeerpostCarousel';
+import BeerpostCarousel from "./BeerpostCarousel";
+import { FormControlLabel, Switch, withStyles } from "@material-ui/core";
+
+const ColoredSwitch = withStyles({
+    switchBase: {
+        color: "#C5A289",
+        "&$checked": {
+            color: "#8B4513"
+        },
+        "&$checked + $track": {
+            backgroundColor: "#8B4513"
+        }
+    },
+    checked: {},
+    track: {}
+})(Switch);
 
 const Beerpost = ({ data }) => {
     const {
@@ -18,16 +33,10 @@ const Beerpost = ({ data }) => {
         updated_at,
         beer_name,
         type,
-        abv,
-        batch_volume,
-        carbonation,
         description,
         ebc,
-        gravity,
-        ibu,
-        og,
         status,
-        likes, 
+        likes,
         beerpost_photos
     } = data;
     const [isExtended, setIsExtended] = useState(false);
@@ -37,10 +46,6 @@ const Beerpost = ({ data }) => {
         formIsUpdating,
         setBeerpostToModify
     } = useDashboardContext();
-
-    const extendsBeerpost = () => {
-        setIsExtended(!isExtended);
-    };
 
     return (
         <div className="beerpost">
@@ -55,9 +60,14 @@ const Beerpost = ({ data }) => {
                         </p>
                     </div>
                     <div className="updated-time">
-                        Posted : {moment(updated_at).fromNow()}
+                        <p>
+                            Posted : <span>{moment(updated_at).fromNow()}</span>
+                        </p>
                     </div>
                     <LikeBtn likes={likes} beerpost_id={id} />
+                    <div className="comments-stats">
+                        <FaCommentDots />
+                    </div>
                 </div>
                 <div className="preview-info">
                     <div className="header">
@@ -79,31 +89,49 @@ const Beerpost = ({ data }) => {
                             />
                         )}
                     </div>
-                    <div className="status">Status {status}</div>
-                    <div className="type">Type - {type}</div>
-                    <div className="stats">
-                        <ul>
-                            <li>ABV - {abv}</li>
-                            <li>OG - {og}</li>
-                            <li>EBC - {ebc}</li>
-                            <li>IBU - {ibu}</li>
-                            <li>Carbonation - {carbonation}</li>
-                            <li>Gravity -{gravity}</li>
-                            <li>Batch Volume - {batch_volume}</li>
-                        </ul>
+                    <div className="status">
+                        <h4>
+                            Status:{" "}
+                            <span style={{ color: "#8B4513" }}>{status}</span>
+                        </h4>
+                    </div>
+                    <div className="type">
+                        <h4>
+                            Type:{" "}
+                            <span
+                                style={
+                                    type == "Ale"
+                                        ? { color: "#f28e1c" }
+                                        : { color: "#fec63d" }
+                                }
+                            >
+                                {type}
+                            </span>
+                        </h4>
+                    </div>
+                    <div className="switch-btn">
+                        <FormControlLabel
+                            control={
+                                <ColoredSwitch
+                                    checked={isExtended}
+                                    onChange={() => setIsExtended(!isExtended)}
+                                    name="checkedB"
+                                    //color="primary"
+                                />
+                            }
+                            label=""
+                        />
                     </div>
                 </div>
                 <div className="beerpost__photos">
-                    {
-                        (beerpost_photos.length !== 0) ? <BeerpostCarousel photos={beerpost_photos} /> : 
+                    {beerpost_photos.length !== 0 ? (
+                        <BeerpostCarousel photos={beerpost_photos} />
+                    ) : (
                         <div className="beerpost__photos__na"></div>
-                    } 
+                    )}
                 </div>
-                
             </div>
-            <div className="arrow_down" onClick={extendsBeerpost}>
-                {isExtended ? <FaArrowUp /> : <FaArrowDown />}
-            </div>
+
             {isExtended && <BeerpostExtend data={data} />}
         </div>
     );

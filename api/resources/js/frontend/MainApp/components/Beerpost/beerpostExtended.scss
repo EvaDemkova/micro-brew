@@ -23,7 +23,17 @@
             flex-direction: column;
         }
     }
-
+    .stats {
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            padding-left: 3em;
+            //list-style-type: none;
+        }
+        li {
+            flex-basis: 50%;
+        }
+    }
     .ingredients {
         display: flex;
     }

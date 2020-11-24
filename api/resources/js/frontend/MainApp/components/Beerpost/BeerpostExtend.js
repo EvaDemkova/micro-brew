@@ -3,7 +3,17 @@ import ListComments from "../ListComments";
 import "./beerpostExtended.scss";
 
 const BeerpostExtend = ({ data }) => {
-    const { ingredients, beerpost_sections } = data;
+    const {
+        ingredients,
+        beerpost_sections,
+        abv,
+        batch_volume,
+        carbonation,
+        gravity,
+        ibu,
+        ebc,
+        og
+    } = data;
     const [comments, setComments] = useState(data.comments);
 
     const displayIngredient = ingredient => {
@@ -24,6 +34,22 @@ const BeerpostExtend = ({ data }) => {
 
     return (
         <div className="extended">
+            <section>
+                <div className="left-menu">Statistics</div>
+                <div className="content">
+                    <div className="stats">
+                        <ul>
+                            <li>ABV - {abv}</li>
+                            <li>OG - {og}</li>
+                            <li>EBC - {ebc}</li>
+                            <li>IBU - {ibu}</li>
+                            <li>Carbonation - {carbonation}</li>
+                            <li>Gravity -{gravity}</li>
+                            <li>Batch Volume - {batch_volume}</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
             <section>
                 <div className="left-menu">Ingredients</div>
                 <div className="content">

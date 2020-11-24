@@ -2,20 +2,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    &__icon {
-        color: red;
-        height: 2.5em;
-        width: 2.5em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        svg {
-            height: 2em;
-            width: 2em;
-        }
-        &:hover {
-            background-color: rgba(255, 0, 0, 0.2);
-        }
+    padding: 0.2em 0;
+    svg {
+        height: 1.3em;
+        width: 1.3em;
     }
+    // &__icon {
+    //     color: red;
+    //     height: 2.5em;
+    //     width: 2.5em;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     border-radius: 50%;
+    //     svg {
+    //         height: 2em;
+    //         width: 2em;
+    //     }
+    //     &:hover {
+    //         background-color: rgba(255, 0, 0, 0.2);
+    //     }
+    // }
 }

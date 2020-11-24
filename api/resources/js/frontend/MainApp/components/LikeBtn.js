@@ -3,6 +3,8 @@ import axios from "axios";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import { useGlobalContext } from "../../context";
 import "./styles/likeBtn.scss";
+import { Checkbox, FormControlLabel } from "@material-ui/core";
+import { Favorite, FavoriteBorder } from "@material-ui/icons";
 
 const LikeBtn = ({ likes, beerpost_id }) => {
     const [isLiked, setIsLiked] = useState(false);
@@ -58,10 +60,17 @@ const LikeBtn = ({ likes, beerpost_id }) => {
 
     return (
         <div className="likes" onClick={likeBtn}>
-            <div className="likes__icon">
-                {isLiked ? <IoIosHeart /> : <IoIosHeartEmpty />}
-            </div>
-            <div className="likes__count">{nbLikes}</div>
+            <FormControlLabel
+                control={
+                    <Checkbox
+                        checked={isLiked}
+                        icon={<FavoriteBorder />}
+                        checkedIcon={<Favorite style={{ color: "#8B4513" }} />}
+                        name="checkedH"
+                    />
+                }
+                label={nbLikes}
+            />
         </div>
     );
 };

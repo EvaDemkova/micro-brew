@@ -9,7 +9,10 @@ const Comment = ({ comment }) => {
             </div>
             <div className="comment__details">
                 <h5>{comment.user.name}</h5>
-                <p>{comment.text}</p>
+                <p>
+                    {/* {comment.text.replace(new RegExp("\r?\n", "g"), "<br />")} */}
+                    {comment.text}
+                </p>
             </div>
         </div>
     );

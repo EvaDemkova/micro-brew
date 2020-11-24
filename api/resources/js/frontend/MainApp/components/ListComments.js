@@ -38,12 +38,13 @@ const ListComments = ({ comments, setComments, beerpost_id }) => {
     };
 
     return (
-        <>
-            {comments.map(comment => (
-                <Comment key={comment.id} comment={comment} />
-            ))}
-
-            <form style={{ width: "100%" }} onSubmit={handleSubmit}>
+        <div className="list-comments">
+            <div>
+                {comments.map(comment => (
+                    <Comment key={comment.id} comment={comment} />
+                ))}
+            </div>
+            <form onSubmit={handleSubmit}>
                 <TextareaAutosize
                     aria-label="minimum height"
                     rowsMin={3}
@@ -53,7 +54,7 @@ const ListComments = ({ comments, setComments, beerpost_id }) => {
                 />
                 <button>Post your comment</button>
             </form>
-        </>
+        </div>
     );
 };
 

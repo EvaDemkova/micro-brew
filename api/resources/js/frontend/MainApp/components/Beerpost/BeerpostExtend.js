@@ -16,6 +16,7 @@ const BeerpostExtend = ({ data }) => {
     } = data;
     const [comments, setComments] = useState(data.comments);
 
+    console.log(comments);
     const displayIngredient = ingredient => {
         const result = ingredients.filter(item => item.type === ingredient);
         if (result[0].pivot.ingredient_name !== null) {
@@ -116,11 +117,13 @@ const BeerpostExtend = ({ data }) => {
                 <div className="left-menu">Fermentation</div>
                 <div className="content">
                     <div className="content__category">
-                        <h5>Primary</h5>
+                        <h5>Primary ({beerpost_sections[2].duration} days)</h5>
                         <p>{displaySection("Primary Fermentation")}</p>
                     </div>
                     <div className="content__category">
-                        <h5>Secondary</h5>
+                        <h5>
+                            Secondary ({beerpost_sections[4].duration} days)
+                        </h5>
                         <p>{displaySection("Secondary Fermentation")}</p>
                     </div>
                 </div>

@@ -25,22 +25,26 @@ const Homepage = () => {
 
     return (
         <div className="homepage">
-            <img src="homepage/beer4.jpg" alt="" />
-            <div className="interface">
-                <h3>Micro Brew</h3>
-                <h4>Brew, Enjoy, Empty, Repeat !</h4>
-                <button
-                    className="btn btn-login"
-                    onClick={() => setIsLoginForm(true)}
-                >
-                    Login
-                </button>
-                <button
-                    className="btn btn-register"
-                    onClick={() => setIsRegisterForm(true)}
-                >
-                    Register
-                </button>
+            <div className="homepage__header">
+                <div className="homepage__header__top">
+                    <img src="/logo/homepage-logo.svg" alt="Logo"/>
+                    <h1>Micro Brew</h1>
+                    <h3>... Brew, Enjoy, Empty, Repeat ! ...</h3>
+                </div>
+                <div className="interface">
+                    <button
+                        className="btn btn-login"
+                        onClick={() => setIsLoginForm(true)}
+                        >
+                        Login
+                    </button>
+                    <button
+                        className="btn btn-register"
+                        onClick={() => setIsRegisterForm(true)}
+                        >
+                        Register
+                    </button>
+                </div>
             </div>
             {(isLoginForm || isRegisterForm) && <div className="filter"></div>}
             {isLoginForm && <LoginForm />}

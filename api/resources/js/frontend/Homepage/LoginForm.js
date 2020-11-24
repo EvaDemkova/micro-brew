@@ -2,12 +2,24 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useGlobalContext } from "../context";
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { fetchUser } = useGlobalContext();
     const history = useHistory();
+     const classes = useStyles();
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -41,27 +53,26 @@ const LoginForm = () => {
 
     return (
         <div className="user-form">
-            <h3>Login form</h3>
-            <form onSubmit={handleSubmit}>
+            <h3>LOGIN</h3>
+            <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
                 <div className="inputs">
-                    <label htmlFor="email">Email</label>
-                    <input
+                    <TextField
+                        id="standard-basic"
+                        label="Email"
                         type="email"
-                        name="email"
-                        id="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
-                    <label htmlFor="password">Password</label>
-                    <input
+                    <TextField
+                        id="standard-password-input"
+                        label="Password"
                         type="password"
-                        name="password"
-                        id="password"
+                        autoComplete="current-password"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
                 </div>
-                <button className="btn">LOGIN</button>
+                <button className="btn">SUBMIT</button>
             </form>
         </div>
     );

@@ -81,7 +81,6 @@ const Header = () => {
         setAnchorEl(null);
     };
 
-    console.log(width)
 
     if (width <= 700) {
         return (

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Comment from "./Comment";
 import { useGlobalContext } from "../../context";
-import { Button, TextareaAutosize } from "@material-ui/core";
+import { Button, TextareaAutosize, TextField } from "@material-ui/core";
 
 const ListComments = ({ comments, setComments, beerpost_id }) => {
     const [value, setValue] = useState("");
@@ -45,11 +45,20 @@ const ListComments = ({ comments, setComments, beerpost_id }) => {
                 ))}
             </div>
             <form onSubmit={handleSubmit}>
-                <TextareaAutosize
+                <TextField
+                    id="outlined-full-width"
+                    label="your comment"
                     style={{ padding: "0.5em", maxWidth: "45em" }}
-                    aria-label="minimum height"
-                    rowsMin={3}
-                    placeholder="your comment..."
+                    fullWidth
+                    size="small"
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                    multiline
+                    rows={3}
+                    rowsMax={10}
+                    variant="outlined"
                     value={value}
                     onChange={e => setValue(e.target.value)}
                 />

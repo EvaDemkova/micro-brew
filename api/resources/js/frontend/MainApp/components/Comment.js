@@ -5,7 +5,13 @@ const Comment = ({ comment }) => {
     return (
         <div className="comment">
             <div className="comment__photo">
-                <img src={comment.user.profile_photo} alt="" />
+                <img
+                    src={
+                        comment.user.profile_photo ||
+                        "/uploads/profile-photos/user.png"
+                    }
+                    alt=""
+                />
             </div>
             <div className="comment__details">
                 <h5>{comment.user.name}</h5>

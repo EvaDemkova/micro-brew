@@ -11,7 +11,7 @@ const Statistics = ({ url }) => {
     const [totalVolume, setTotalVolume] = useState(0);
     const width = useWindowWidth();
 
-    const { isLoading, setIsLoading } = useDashboardContext();
+    const { isLoading, setIsLoading, isBeerListRender } = useDashboardContext();
 
     const fetchDatas = async () => {
         setLagerVolume(0);
@@ -36,7 +36,7 @@ const Statistics = ({ url }) => {
 
     useEffect(() => {
         fetchDatas();
-    }, [url]);
+    }, [url, isBeerListRender]);
 
     if (isLoading) {
         return <div></div>;

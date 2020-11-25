@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useGlobalContext } from "../context";
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
+const useStyles = makeStyles(theme => ({
+    root: {
+        "& .MuiTextField-root": {
+            margin: theme.spacing(1),
+            width: "25ch"
+        }
+    }
 }));
 
 const RegisterForm = () => {
@@ -20,14 +20,20 @@ const RegisterForm = () => {
     const [password, setPassword] = useState("");
     const [password_confirmation, setPasswordConfirm] = useState("");
     const { fetchUser } = useGlobalContext();
-     const classes = useStyles();
+    const classes = useStyles();
 
     const history = useHistory();
 
     const handleSubmit = async e => {
         e.preventDefault();
 
-        let request_data = { email, name, password, password_confirmation };
+        let request_data = {
+            email,
+            name,
+            password,
+            password_confirmation,
+            profile_photo: "/uploads/profile-photos/user.png"
+        };
 
         await axios.get(`/sanctum/csrf-cookie`);
         await axios
@@ -56,7 +62,12 @@ const RegisterForm = () => {
     return (
         <div className="user-form">
             <h3>REGISTER</h3>
-            <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
+            <form
+                onSubmit={handleSubmit}
+                className={classes.root}
+                noValidate
+                autoComplete="off"
+            >
                 <TextField
                     id="standard-basic"
                     label="Name"
@@ -64,14 +75,14 @@ const RegisterForm = () => {
                     value={name}
                     onChange={e => setName(e.target.value)}
                 />
-                    <TextField
+                <TextField
                     id="standard-basic"
                     label="Email"
                     type="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                 />
-                    <TextField
+                <TextField
                     id="standard-password-input"
                     label="Password"
                     type="password"
@@ -85,7 +96,7 @@ const RegisterForm = () => {
                     type="password"
                     value={password_confirmation}
                     onChange={e => setPasswordConfirm(e.target.value)}
-                />                
+                />
                 <button className="btn">SUBMIT</button>
             </form>
         </div>

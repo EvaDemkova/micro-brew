@@ -383,6 +383,7 @@ const BeerpostForm = () => {
                                 }}
                                 multiline
                                 rows={3}
+                                rowsMax={5}
                                 variant="outlined"
                                 value={values.description}
                                 onChange={e =>

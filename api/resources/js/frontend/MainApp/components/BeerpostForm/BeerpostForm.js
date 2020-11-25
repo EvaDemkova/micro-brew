@@ -249,6 +249,10 @@ const BeerpostForm = () => {
                     console.log(response.config.data);
                     if (response.status === 200) {
                         console.log("Beerpost saved");
+                        createAlert(
+                            "success",
+                            "You new receipe was successfully added !"
+                        );
                     }
                 })
                 .catch(function(error) {
@@ -266,6 +270,10 @@ const BeerpostForm = () => {
                     console.log(response.config.data);
                     if (response.status === 200) {
                         console.log("Beerpost updated");
+                        createAlert(
+                            "success",
+                            "You new receipe was successfully updated !"
+                        );
                     }
                 })
                 .catch(function(error) {
@@ -278,7 +286,6 @@ const BeerpostForm = () => {
         }
         setIsBeerListRender(true);
         closeBeerpostForm();
-        createAlert("success", "You new receipe was successfully added !");
     };
 
     return (

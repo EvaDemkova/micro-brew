@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Comment from "./Comment";
 import { useGlobalContext } from "../../context";
-import { TextareaAutosize } from "@material-ui/core";
+import { Button, TextareaAutosize } from "@material-ui/core";
 
 const ListComments = ({ comments, setComments, beerpost_id }) => {
     const [value, setValue] = useState("");
@@ -46,13 +46,24 @@ const ListComments = ({ comments, setComments, beerpost_id }) => {
             </div>
             <form onSubmit={handleSubmit}>
                 <TextareaAutosize
+                    style={{ padding: "0.5em", maxWidth: "45em" }}
                     aria-label="minimum height"
                     rowsMin={3}
                     placeholder="your comment..."
                     value={value}
                     onChange={e => setValue(e.target.value)}
                 />
-                <button>Post your comment</button>
+                <Button
+                    variant="contained"
+                    type="submit"
+                    style={{
+                        backgroundColor: "#fec63d",
+                        fontWeight: "bold",
+                        maxWidth: "15em"
+                    }}
+                >
+                    COMMENT
+                </Button>
             </form>
         </div>
     );

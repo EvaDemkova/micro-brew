@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', 'localhost:3000, https://www.micro-brew.codeboot.cz, localhost,127.0.0.1,127.0.0.1:8000,::1')),
+    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', 'localhost:3000, www.micro-brew.codeboot.cz, micro-brew.codeboot.cz, localhost,127.0.0.1,127.0.0.1:8000,::1')),
 
     /*
     |--------------------------------------------------------------------------

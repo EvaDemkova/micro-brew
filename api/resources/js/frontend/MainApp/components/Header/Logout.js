@@ -10,13 +10,6 @@ const useStyles = makeStyles({
         color: 'black',
         textTransform: 'uppercase',
         fontWeight: 'bold',
-        '&:hover': {
-            color: 'white',
-        },
-    
-        '&:focus': {
-            color: 'white',
-        },
     }, 
 });
 

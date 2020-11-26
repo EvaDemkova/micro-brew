@@ -148,6 +148,7 @@ const Profile = () => {
     if (isLoading) {
         return <Loader />;
     }
+    
 
     if (edit) {
         return (

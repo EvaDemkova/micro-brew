@@ -34,6 +34,9 @@ const Statistics = ({ url }) => {
         setIsLoading(false);
     };
 
+    console.log(aleVolume)
+    console.log(aleLager)
+
     useEffect(() => {
         fetchDatas();
     }, [url, isBeerListRender]);

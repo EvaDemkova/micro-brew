@@ -12,6 +12,9 @@ import { useGlobalContext } from "../context.js";
 
 const useStyles = makeStyles(theme => ({
     root: {
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center', 
         "& .MuiTextField-root": {
             margin: theme.spacing(1),
             width: "25ch"
@@ -155,109 +158,111 @@ const Profile = () => {
                         noValidate
                         autoComplete="off"
                     >
-                        <Uploader
-                            className="profile-form__uploader"
-                            file={file}
-                            setFile={setFile}
-                            image={user.photo}
-                        />
-                        <div className="profile-form__name">
-                            <h3>NAME</h3>
-                            <TextField
-                                id="outlined-helperText"
-                                label="Name"
-                                value={user.name}
-                                variant="outlined"
-                                size="small"
-                                onChange={e =>
-                                    setUser(prev => ({
-                                        ...prev,
-                                        name: e.target.value
-                                    }))
-                                }
+                        <div className="profile-form__alignment">
+                            <Uploader
+                                className="profile-form__alignment__uploader"
+                                file={file}
+                                setFile={setFile}
+                                image={user.photo}
                             />
+                            <div className="profile-form__alignment__name">
+                                <h3>NAME</h3>
+                                <TextField
+                                    id="outlined-helperText"
+                                    label="Name"
+                                    value={user.name}
+                                    variant="outlined"
+                                    size="small"
+                                    onChange={e =>
+                                        setUser(prev => ({
+                                            ...prev,
+                                            name: e.target.value
+                                        }))
+                                    }
+                                />
+                            </div>
+                            <div className="profile-form__alignment__content">
+                                <div className="profile-form__alignment__content__row">
+                                    <h3>EMAIL</h3>
+                                    <TextField
+                                        id="outlined-helperText"
+                                        label="Email"
+                                        variant="outlined"
+                                        value={user.email}
+                                        size="small"
+                                        onChange={e =>
+                                            setUser(prev => ({
+                                                ...prev,
+                                                email: e.target.value
+                                            }))
+                                        }
+                                    />
+                                </div>
+                                <div className="profile-form__alignment__content__row">
+                                    <h3>EQUIPMENT</h3>
+                                    <TextField
+                                        id="outlined-helperText"
+                                        label="Equipment"
+                                        value={user.equipment}
+                                        variant="outlined"
+                                        size="small"
+                                        onChange={e =>
+                                            setUser(prev => ({
+                                                ...prev,
+                                                equipment: e.target.value
+                                            }))
+                                        }
+                                    />
+                                </div>
+                                <div className="profile-form__alignment__content__row">
+                                    <h3>ADDRESS</h3>
+                                    <TextField
+                                        id="outlined-helperText"
+                                        label="Street"
+                                        value={user.street}
+                                        variant="outlined"
+                                        size="small"
+                                        onChange={e =>
+                                            setUser(prev => ({
+                                                ...prev,
+                                                street: e.target.value
+                                            }))
+                                        }
+                                    />
+                                </div>
+                                <div className="profile-form__alignment__content__row">
+                                    <TextField
+                                        id="outlined-helperText"
+                                        label="City"
+                                        value={user.city}
+                                        variant="outlined"
+                                        size="small"
+                                        onChange={e =>
+                                            setUser(prev => ({
+                                                ...prev,
+                                                city: e.target.value
+                                            }))
+                                        }
+                                    />
+                                </div>
+                                <div className="profile-form__alignment__content__row">
+                                    <TextField
+                                        id="outlined-helperText"
+                                        label="Country"
+                                        value={user.country}
+                                        variant="outlined"
+                                        size="small"
+                                        onChange={e =>
+                                            setUser(prev => ({
+                                                ...prev,
+                                                country: e.target.value
+                                            }))
+                                        }
+                                    />
+                                </div>
+                            </div>
+                            <SaveBtn handleSubmit={handleSubmit} />
                         </div>
-                        <div className="profile-form__content">
-                            <div className="profile-form__content__row">
-                                <h3>EMAIL</h3>
-                                <TextField
-                                    id="outlined-helperText"
-                                    label="Email"
-                                    variant="outlined"
-                                    value={user.email}
-                                    size="small"
-                                    onChange={e =>
-                                        setUser(prev => ({
-                                            ...prev,
-                                            email: e.target.value
-                                        }))
-                                    }
-                                />
-                            </div>
-                            <div className="profile-form__content__row">
-                                <h3>EQUIPMENT</h3>
-                                <TextField
-                                    id="outlined-helperText"
-                                    label="Equipment"
-                                    value={user.equipment}
-                                    variant="outlined"
-                                    size="small"
-                                    onChange={e =>
-                                        setUser(prev => ({
-                                            ...prev,
-                                            equipment: e.target.value
-                                        }))
-                                    }
-                                />
-                            </div>
-                            <div className="profile-form__content__row">
-                                <h3>ADDRESS</h3>
-                                <TextField
-                                    id="outlined-helperText"
-                                    label="Street"
-                                    value={user.street}
-                                    variant="outlined"
-                                    size="small"
-                                    onChange={e =>
-                                        setUser(prev => ({
-                                            ...prev,
-                                            street: e.target.value
-                                        }))
-                                    }
-                                />
-                            </div>
-                            <div className="profile-form__content__row">
-                                <TextField
-                                    id="outlined-helperText"
-                                    label="City"
-                                    value={user.city}
-                                    variant="outlined"
-                                    size="small"
-                                    onChange={e =>
-                                        setUser(prev => ({
-                                            ...prev,
-                                            city: e.target.value
-                                        }))
-                                    }
-                                />
-                            </div>
-                            <div className="profile-form__content__row">
-                                <TextField
-                                    id="outlined-helperText"
-                                    label="Country"
-                                    value={user.country}
-                                    variant="outlined"
-                                    size="small"
-                                    onChange={e =>
-                                        setUser(prev => ({
-                                            ...prev,
-                                            country: e.target.value
-                                        }))
-                                    }
-                                />
-                            </div>
-                        </div>
-                        <SaveBtn handleSubmit={handleSubmit} />
                     </form>
                 </Paper>
             </main>

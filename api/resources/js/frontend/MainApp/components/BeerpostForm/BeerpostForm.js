@@ -282,7 +282,7 @@ const BeerpostForm = () => {
         }
 
         if (files.length !== 0) {
-            handlePhotos(files);
+            await handlePhotos(files);
         }
         setIsBeerListRender(true);
         closeBeerpostForm();

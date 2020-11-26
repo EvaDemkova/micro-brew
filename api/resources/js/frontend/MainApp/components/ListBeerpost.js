@@ -17,6 +17,7 @@ const ListBeerpost = ({ url }) => {
     const fetchDatas = async () => {
         const response = await fetch(url);
         const data = await response.json();
+        console.log(data);
         setBeerposts(data);
         setIsLoading(false);
     };

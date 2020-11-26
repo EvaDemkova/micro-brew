@@ -35,7 +35,7 @@ const Statistics = ({ url }) => {
     };
 
     console.log(aleVolume)
-    console.log(aleLager)
+    console.log(lagerVolume)
 
     useEffect(() => {
         fetchDatas();

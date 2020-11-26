@@ -16,7 +16,6 @@ const BeerpostExtend = ({ data }) => {
     } = data;
     const [comments, setComments] = useState(data.comments);
 
-    console.log(comments);
     const displayIngredient = ingredient => {
         const result = ingredients.filter(item => item.type === ingredient);
         if (result[0].pivot.ingredient_name !== null) {

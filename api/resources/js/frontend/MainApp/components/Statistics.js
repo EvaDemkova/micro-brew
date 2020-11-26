@@ -14,23 +14,25 @@ const Statistics = ({ url }) => {
     const { isLoading, setIsLoading, isBeerListRender } = useDashboardContext();
 
     const fetchDatas = async () => {
-        setLagerVolume(0);
-        setAleVolume(0);
-        setTotalVolume(0);
-
         const response = await fetch(url);
         const data = await response.json();
 
-        data.forEach((beerpost, i) => {
+        let newAleVolume = 0;
+        let newLagerVolume = 0;
+        let newTotalVolume = 0;
+        data.map(beerpost => {
             if (beerpost.type === "ale") {
-                setAleVolume(prev => prev + beerpost.batch_volume);
+                newAleVolume += beerpost.batch_volume;
             } else if (beerpost.type === "lager") {
-                setLagerVolume(prev => prev + beerpost.batch_volume);
+                newLagerVolume += beerpost.batch_volume;
             } else {
                 console.log("something is wrong");
             }
-            setTotalVolume(prev => prev + beerpost.batch_volume);
+            newTotalVolume += beerpost.batch_volume;
         });
+        setLagerVolume(newAleVolume);
+        setAleVolume(newLagerVolume);
+        setTotalVolume(newTotalVolume);
         setIsLoading(false);
     };
 
